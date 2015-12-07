@@ -1,0 +1,29 @@
+{
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "1513692411719F87B0727444FB247E46F4464C62" : 0,
+    "9E1C24A30330BEED1242D51790D9D033BB6B97F2" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "BC643C0F-266F-48C0-8A58-6355691FE71E",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "1513692411719F87B0727444FB247E46F4464C62" : "..\/TudouIphone",
+    "9E1C24A30330BEED1242D51790D9D033BB6B97F2" : ""
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "CompanyApp",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "CompanyApp.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "git.intra.tudou.com:tudou_ios\/TudouIphone.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "1513692411719F87B0727444FB247E46F4464C62"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/chen1987lei\/CompanyApp.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "9E1C24A30330BEED1242D51790D9D033BB6B97F2"
+    }
+  ]
+}
