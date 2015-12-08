@@ -23,8 +23,6 @@
     
     NSString *destDateString = [dateFormatter stringFromDate:date];
     
-    [dateFormatter release];
-    
     return destDateString;
     
 }
@@ -158,27 +156,27 @@
 }
 
 - (NSString*)escape {
-	NSString *s = (NSString *)CFURLCreateStringByAddingPercentEscapes(NULL,
+	NSString *s = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(NULL,
                                                                       (CFStringRef)self,
                                                                       NULL,
                                                                       (CFStringRef)@"!*'\"();:@&=+$,/?%#[]% ",
-                                                                      kCFStringEncodingUTF8);
-	return [s autorelease]; // Due to the 'create rule' we own the above and must autorelease it
+                                                                      kCFStringEncodingUTF8));
+	return s; // Due to the 'create rule' we own the above and must autorelease it
 }
 
 - (NSString*)unescape
 {
-    NSString *result = (NSString *)CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
+    NSString *result = (NSString *)CFBridgingRelease(CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
                                                                            (CFStringRef)self,
                                                                            NULL,
 																		   CFSTR("!*'();:@&=+$,/?%#[]"),
-                                                                           kCFStringEncodingUTF8);
-    [result autorelease];
+                                                                           kCFStringEncodingUTF8));
+
 	return result;
 }
 
 - (NSString *)toQueryString:(NSDictionary *)params {
-    NSMutableString *urlWithQuerystring = [[[NSMutableString alloc] initWithString:self] autorelease];
+    NSMutableString *urlWithQuerystring = [[NSMutableString alloc] initWithString:self];
 	// Convert the params into a query string
 	if (params) {
 		for(id key in params) {
@@ -230,19 +228,19 @@
     }
 }
 
-- (BOOL)isVideoID {
-    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^(X|id_)?(\\w+)$" options:NSRegularExpressionCaseInsensitive error:nil];
-    NSTextCheckingResult *match = [regex firstMatchInString:self
-                                                    options:0
-                                                      range:NSMakeRange(0, [self length])];
-    if ([match numberOfRanges] == 3) {
-        NSRange range = [match rangeAtIndex:2];
-        NSData *data = [Base64 decode:[self substringWithRange:range]];
-        NSInteger value = [[[[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding] autorelease] integerValue] >> 2;
-        return value > 0;        
-    }
-    return false;
-}
+//- (BOOL)isVideoID {
+//    NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"^(X|id_)?(\\w+)$" options:NSRegularExpressionCaseInsensitive error:nil];
+//    NSTextCheckingResult *match = [regex firstMatchInString:self
+//                                                    options:0
+//                                                      range:NSMakeRange(0, [self length])];
+//    if ([match numberOfRanges] == 3) {
+//        NSRange range = [match rangeAtIndex:2];
+//        NSData *data = [Base64 decode:[self substringWithRange:range]];
+//        NSInteger value = [[[[NSString alloc] initWithData:data encoding:NSASCIIStringEncoding] autorelease] integerValue] >> 2;
+//        return value > 0;        
+//    }
+//    return false;
+//}
 
 - (BOOL)isContainSpace{
     NSRange _range = [self rangeOfString:@" "];
@@ -452,7 +450,7 @@
 	//NSData *decryptedData = [encryptedData AESDecryptWithPassphrase:password];
 	NSData *decryptedData = [b64DecData AESDecryptWithPassphrase:AESKeychain];
 	
-	NSString* decryptedStr = [[[NSString alloc] initWithData:decryptedData encoding:NSUTF8StringEncoding] autorelease];
+	NSString* decryptedStr = [[NSString alloc] initWithData:decryptedData encoding:NSUTF8StringEncoding];
 	
 	//NSLog(@"decrypted string = %@",decryptedStr);
     return decryptedStr;
@@ -536,12 +534,13 @@ NSData *encryptData(NSData *data, NSString *key)
     [Base64 initialize];
     NSData *dataKey=[Base64 decode:keychain];
     NSString *strKey=[[NSString alloc]initWithData:dataKey encoding:NSUTF8StringEncoding];
-    self=[self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    NSData	*dataOld64 = [Base64 decode:self];
+    NSString *tmpstr = [self stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    NSData	*dataOld64 = [Base64 decode:tmpstr];
     NSData *dataNew = [dataOld64 AESDecryptWithPassphrase:strKey];
     NSString *strNew=[[NSString alloc]initWithData:dataNew encoding:NSUTF8StringEncoding];
     return strNew;
 }
+
 -(NSString *)stringEncodeByUTF8{
   CFStringRef stringref =  CFURLCreateStringByAddingPercentEscapes(kCFAllocatorDefault,
                                                                                 (CFStringRef)self,
@@ -640,7 +639,7 @@ BOOL IsStringWithAnyText(id object) {
 
 @implementation NSString (DateFormat)
 -(NSDate *)getDateWithFormat:(NSString *)format{
-    NSDateFormatter *date_formater=[[[NSDateFormatter alloc] init] autorelease];
+    NSDateFormatter *date_formater=[[NSDateFormatter alloc] init] ;
     [date_formater setDateFormat:format];
     return [date_formater dateFromString:self];
 }

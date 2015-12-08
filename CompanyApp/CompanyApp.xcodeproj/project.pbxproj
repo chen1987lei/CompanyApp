@@ -41,7 +41,6 @@
 		CE41D6031C15AB74002FC6BF /* WKWebView+JavascriptRun.m in Sources */ = {isa = PBXBuildFile; fileRef = CE41D5E81C15AB74002FC6BF /* WKWebView+JavascriptRun.m */; };
 		CE41D6351C15ACD1002FC6BF /* NSDate+Fuzzy.m in Sources */ = {isa = PBXBuildFile; fileRef = CE41D6081C15ACD1002FC6BF /* NSDate+Fuzzy.m */; };
 		CE41D6361C15ACD1002FC6BF /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = CE41D60A1C15ACD1002FC6BF /* NSString+MD5.m */; };
-		CE41D6371C15ACD1002FC6BF /* UIDevice+WidgetHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = CE41D60C1C15ACD1002FC6BF /* UIDevice+WidgetHelper.m */; };
 		CE41D6381C15ACD1002FC6BF /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = CE41D60F1C15ACD1002FC6BF /* MKAnnotationView+WebCache.m */; };
 		CE41D6391C15ACD1002FC6BF /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = CE41D6111C15ACD1002FC6BF /* NSData+ImageContentType.m */; };
 		CE41D63A1C15ACD1002FC6BF /* SDImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = CE41D6131C15ACD1002FC6BF /* SDImageCache.m */; };
@@ -64,6 +63,23 @@
 		CE41D6521C15ACF8002FC6BF /* NSData-AES.m in Sources */ = {isa = PBXBuildFile; fileRef = CE41D64D1C15ACF8002FC6BF /* NSData-AES.m */; };
 		CE41D6531C15ACF8002FC6BF /* NSFileManager-AES.m in Sources */ = {isa = PBXBuildFile; fileRef = CE41D64F1C15ACF8002FC6BF /* NSFileManager-AES.m */; };
 		CE41D6541C15ACF8002FC6BF /* rijndael.c in Sources */ = {isa = PBXBuildFile; fileRef = CE41D6501C15ACF8002FC6BF /* rijndael.c */; };
+		CE41D6B21C16B2AB002FC6BF /* Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = CE41D6A81C16B2AA002FC6BF /* Base64.m */; };
+		CE41D6B31C16B2AB002FC6BF /* CoreDataAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = CE41D6AA1C16B2AA002FC6BF /* CoreDataAccess.m */; };
+		CE41D6B61C16B2AB002FC6BF /* wwanconnect.c in Sources */ = {isa = PBXBuildFile; fileRef = CE41D6B01C16B2AA002FC6BF /* wwanconnect.c */; };
+		CE41D6B91C16BC85002FC6BF /* NCHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE41D6B81C16BC85002FC6BF /* NCHomeViewController.m */; };
+		CE41D6BC1C16BC93002FC6BF /* NCMyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE41D6BB1C16BC93002FC6BF /* NCMyViewController.m */; };
+		CE41D6BF1C16BCB6002FC6BF /* NCMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE41D6BE1C16BCB6002FC6BF /* NCMessageViewController.m */; };
+		CE41D6C21C16BCC8002FC6BF /* NCLibraryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE41D6C11C16BCC8002FC6BF /* NCLibraryViewController.m */; };
+		CE41D6C41C16BF91002FC6BF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE41D6C31C16BF91002FC6BF /* UIKit.framework */; };
+		CE41D6C61C16BF96002FC6BF /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE41D6C51C16BF96002FC6BF /* AVFoundation.framework */; };
+		CE41D6C81C16BF9F002FC6BF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE41D6C71C16BF9F002FC6BF /* Foundation.framework */; };
+		CE41D6CA1C16BFA7002FC6BF /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE41D6C91C16BFA7002FC6BF /* CoreGraphics.framework */; };
+		CE41D6CC1C16BFAD002FC6BF /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE41D6CB1C16BFAD002FC6BF /* CFNetwork.framework */; };
+		CE41D6D01C16CBB5002FC6BF /* NCLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE41D6CF1C16CBB5002FC6BF /* NCLoginViewController.m */; };
+		CE41D6D41C16D21F002FC6BF /* NCUserConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = CE41D6D31C16D21F002FC6BF /* NCUserConfig.m */; };
+		CE95FCDA1C1713DD00C53975 /* NCBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE95FCD91C1713DD00C53975 /* NCBaseViewController.m */; };
+		CE95FCDD1C1715C800C53975 /* TDAutocompleteTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = CE95FCDC1C1715C800C53975 /* TDAutocompleteTextField.m */; };
+		CE95FCE01C17162700C53975 /* TDNoneMenuTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = CE95FCDF1C17162700C53975 /* TDNoneMenuTextField.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -136,8 +152,6 @@
 		CE41D6081C15ACD1002FC6BF /* NSDate+Fuzzy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+Fuzzy.m"; sourceTree = "<group>"; };
 		CE41D6091C15ACD1002FC6BF /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
 		CE41D60A1C15ACD1002FC6BF /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
-		CE41D60B1C15ACD1002FC6BF /* UIDevice+WidgetHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+WidgetHelper.h"; sourceTree = "<group>"; };
-		CE41D60C1C15ACD1002FC6BF /* UIDevice+WidgetHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+WidgetHelper.m"; sourceTree = "<group>"; };
 		CE41D60E1C15ACD1002FC6BF /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
 		CE41D60F1C15ACD1002FC6BF /* MKAnnotationView+WebCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "MKAnnotationView+WebCache.m"; sourceTree = "<group>"; };
 		CE41D6101C15ACD1002FC6BF /* NSData+ImageContentType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+ImageContentType.h"; sourceTree = "<group>"; };
@@ -184,6 +198,36 @@
 		CE41D6501C15ACF8002FC6BF /* rijndael.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rijndael.c; sourceTree = "<group>"; };
 		CE41D6511C15ACF8002FC6BF /* rijndael.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rijndael.h; sourceTree = "<group>"; };
 		CE41D65B1C15AE12002FC6BF /* Marco.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Marco.h; sourceTree = "<group>"; };
+		CE41D6A61C16B2A9002FC6BF /* ARCHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ARCHelper.h; sourceTree = "<group>"; };
+		CE41D6A71C16B2AA002FC6BF /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
+		CE41D6A81C16B2AA002FC6BF /* Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Base64.m; sourceTree = "<group>"; };
+		CE41D6A91C16B2AA002FC6BF /* CoreDataAccess.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreDataAccess.h; sourceTree = "<group>"; };
+		CE41D6AA1C16B2AA002FC6BF /* CoreDataAccess.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreDataAccess.m; sourceTree = "<group>"; };
+		CE41D6B01C16B2AA002FC6BF /* wwanconnect.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = wwanconnect.c; sourceTree = "<group>"; };
+		CE41D6B11C16B2AA002FC6BF /* wwanconnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wwanconnect.h; sourceTree = "<group>"; };
+		CE41D6B71C16BC85002FC6BF /* NCHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCHomeViewController.h; sourceTree = "<group>"; };
+		CE41D6B81C16BC85002FC6BF /* NCHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCHomeViewController.m; sourceTree = "<group>"; };
+		CE41D6BA1C16BC93002FC6BF /* NCMyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCMyViewController.h; sourceTree = "<group>"; };
+		CE41D6BB1C16BC93002FC6BF /* NCMyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCMyViewController.m; sourceTree = "<group>"; };
+		CE41D6BD1C16BCB6002FC6BF /* NCMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCMessageViewController.h; sourceTree = "<group>"; };
+		CE41D6BE1C16BCB6002FC6BF /* NCMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCMessageViewController.m; sourceTree = "<group>"; };
+		CE41D6C01C16BCC8002FC6BF /* NCLibraryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCLibraryViewController.h; sourceTree = "<group>"; };
+		CE41D6C11C16BCC8002FC6BF /* NCLibraryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCLibraryViewController.m; sourceTree = "<group>"; };
+		CE41D6C31C16BF91002FC6BF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		CE41D6C51C16BF96002FC6BF /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		CE41D6C71C16BF9F002FC6BF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		CE41D6C91C16BFA7002FC6BF /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		CE41D6CB1C16BFAD002FC6BF /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		CE41D6CE1C16CBB5002FC6BF /* NCLoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCLoginViewController.h; sourceTree = "<group>"; };
+		CE41D6CF1C16CBB5002FC6BF /* NCLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCLoginViewController.m; sourceTree = "<group>"; };
+		CE41D6D21C16D21F002FC6BF /* NCUserConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCUserConfig.h; sourceTree = "<group>"; };
+		CE41D6D31C16D21F002FC6BF /* NCUserConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCUserConfig.m; sourceTree = "<group>"; };
+		CE95FCD81C1713DD00C53975 /* NCBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCBaseViewController.h; sourceTree = "<group>"; };
+		CE95FCD91C1713DD00C53975 /* NCBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCBaseViewController.m; sourceTree = "<group>"; };
+		CE95FCDB1C1715C800C53975 /* TDAutocompleteTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDAutocompleteTextField.h; sourceTree = "<group>"; };
+		CE95FCDC1C1715C800C53975 /* TDAutocompleteTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDAutocompleteTextField.m; sourceTree = "<group>"; };
+		CE95FCDE1C17162700C53975 /* TDNoneMenuTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDNoneMenuTextField.h; sourceTree = "<group>"; };
+		CE95FCDF1C17162700C53975 /* TDNoneMenuTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDNoneMenuTextField.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +235,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE41D6CC1C16BFAD002FC6BF /* CFNetwork.framework in Frameworks */,
+				CE41D6CA1C16BFA7002FC6BF /* CoreGraphics.framework in Frameworks */,
+				CE41D6C81C16BF9F002FC6BF /* Foundation.framework in Frameworks */,
+				CE41D6C61C16BF96002FC6BF /* AVFoundation.framework in Frameworks */,
+				CE41D6C41C16BF91002FC6BF /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -228,6 +277,7 @@
 				CE41D58F1C0F176A002FC6BF /* Assets.xcassets */,
 				CE41D5911C0F176A002FC6BF /* LaunchScreen.storyboard */,
 				CE41D5941C0F176A002FC6BF /* Info.plist */,
+				CE41D6CD1C16BFDF002FC6BF /* Frameworks */,
 				CE41D5801C0F1768002FC6BF /* Supporting Files */,
 			);
 			path = CompanyApp;
@@ -252,6 +302,14 @@
 		CE41D59B1C15A873002FC6BF /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				CE41D6B71C16BC85002FC6BF /* NCHomeViewController.h */,
+				CE41D6B81C16BC85002FC6BF /* NCHomeViewController.m */,
+				CE41D6BA1C16BC93002FC6BF /* NCMyViewController.h */,
+				CE41D6BB1C16BC93002FC6BF /* NCMyViewController.m */,
+				CE41D6BD1C16BCB6002FC6BF /* NCMessageViewController.h */,
+				CE41D6BE1C16BCB6002FC6BF /* NCMessageViewController.m */,
+				CE41D6C01C16BCC8002FC6BF /* NCLibraryViewController.h */,
+				CE41D6C11C16BCC8002FC6BF /* NCLibraryViewController.m */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -280,6 +338,7 @@
 		CE41D59F1C15A873002FC6BF /* UserModule */ = {
 			isa = PBXGroup;
 			children = (
+				CE41D6D11C16D207002FC6BF /* UserCore */,
 				CE41D5A01C15A873002FC6BF /* AccountInfo */,
 				CE41D5A11C15A873002FC6BF /* Login */,
 				CE41D5A21C15A873002FC6BF /* NameCard */,
@@ -298,6 +357,8 @@
 		CE41D5A11C15A873002FC6BF /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				CE41D6CE1C16CBB5002FC6BF /* NCLoginViewController.h */,
+				CE41D6CF1C16CBB5002FC6BF /* NCLoginViewController.m */,
 			);
 			path = Login;
 			sourceTree = "<group>";
@@ -327,6 +388,12 @@
 				CE41D5A61C15A8DE002FC6BF /* NCTabBarController.m */,
 				CE41D5A81C15A939002FC6BF /* NCTabBar.h */,
 				CE41D5A91C15A939002FC6BF /* NCTabBar.m */,
+				CE95FCD81C1713DD00C53975 /* NCBaseViewController.h */,
+				CE95FCD91C1713DD00C53975 /* NCBaseViewController.m */,
+				CE95FCDB1C1715C800C53975 /* TDAutocompleteTextField.h */,
+				CE95FCDC1C1715C800C53975 /* TDAutocompleteTextField.m */,
+				CE95FCDE1C17162700C53975 /* TDNoneMenuTextField.h */,
+				CE95FCDF1C17162700C53975 /* TDNoneMenuTextField.m */,
 			);
 			path = CustomControl;
 			sourceTree = "<group>";
@@ -392,6 +459,7 @@
 		CE41D6051C15ACD1002FC6BF /* Extern */ = {
 			isa = PBXGroup;
 			children = (
+				CE41D6A51C16B2A9002FC6BF /* BaseClass */,
 				CE41D64B1C15ACF8002FC6BF /* cocoa-aes */,
 				CE41D6061C15ACD1002FC6BF /* Category */,
 				CE41D60D1C15ACD1002FC6BF /* SDWebImage */,
@@ -407,8 +475,6 @@
 				CE41D6081C15ACD1002FC6BF /* NSDate+Fuzzy.m */,
 				CE41D6091C15ACD1002FC6BF /* NSString+MD5.h */,
 				CE41D60A1C15ACD1002FC6BF /* NSString+MD5.m */,
-				CE41D60B1C15ACD1002FC6BF /* UIDevice+WidgetHelper.h */,
-				CE41D60C1C15ACD1002FC6BF /* UIDevice+WidgetHelper.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -470,6 +536,41 @@
 				CE41D6511C15ACF8002FC6BF /* rijndael.h */,
 			);
 			path = "cocoa-aes";
+			sourceTree = "<group>";
+		};
+		CE41D6A51C16B2A9002FC6BF /* BaseClass */ = {
+			isa = PBXGroup;
+			children = (
+				CE41D6A61C16B2A9002FC6BF /* ARCHelper.h */,
+				CE41D6A71C16B2AA002FC6BF /* Base64.h */,
+				CE41D6A81C16B2AA002FC6BF /* Base64.m */,
+				CE41D6A91C16B2AA002FC6BF /* CoreDataAccess.h */,
+				CE41D6AA1C16B2AA002FC6BF /* CoreDataAccess.m */,
+				CE41D6B01C16B2AA002FC6BF /* wwanconnect.c */,
+				CE41D6B11C16B2AA002FC6BF /* wwanconnect.h */,
+			);
+			path = BaseClass;
+			sourceTree = "<group>";
+		};
+		CE41D6CD1C16BFDF002FC6BF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CE41D6CB1C16BFAD002FC6BF /* CFNetwork.framework */,
+				CE41D6C91C16BFA7002FC6BF /* CoreGraphics.framework */,
+				CE41D6C71C16BF9F002FC6BF /* Foundation.framework */,
+				CE41D6C51C16BF96002FC6BF /* AVFoundation.framework */,
+				CE41D6C31C16BF91002FC6BF /* UIKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		CE41D6D11C16D207002FC6BF /* UserCore */ = {
+			isa = PBXGroup;
+			children = (
+				CE41D6D21C16D21F002FC6BF /* NCUserConfig.h */,
+				CE41D6D31C16D21F002FC6BF /* NCUserConfig.m */,
+			);
+			path = UserCore;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -541,6 +642,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CE41D6B21C16B2AB002FC6BF /* Base64.m in Sources */,
 				CE41D6531C15ACF8002FC6BF /* NSFileManager-AES.m in Sources */,
 				CE41D5EA1C15AB74002FC6BF /* CALayer+Addition.m in Sources */,
 				CE41D5851C0F1769002FC6BF /* AppDelegate.m in Sources */,
@@ -549,6 +651,7 @@
 				CE41D5EF1C15AB74002FC6BF /* NSFileHandle+Addition.m in Sources */,
 				CE41D63B1C15ACD1002FC6BF /* SDWebImageCompat.m in Sources */,
 				CE41D6361C15ACD1002FC6BF /* NSString+MD5.m in Sources */,
+				CE41D6C21C16BCC8002FC6BF /* NCLibraryViewController.m in Sources */,
 				CE41D5FF1C15AB74002FC6BF /* UITextField+Addition.m in Sources */,
 				CE41D6481C15ACD1002FC6BF /* WKInterfaceButton+WebCache.m in Sources */,
 				CE41D6411C15ACD1002FC6BF /* UIButton+WebCache.m in Sources */,
@@ -557,6 +660,7 @@
 				CE41D63F1C15ACD1002FC6BF /* SDWebImageManager.m in Sources */,
 				CE41D5FE1C15AB74002FC6BF /* UIScreen+Addition.m in Sources */,
 				CE41D5F71C15AB74002FC6BF /* UIButton+Addtion.m in Sources */,
+				CE41D6B61C16B2AB002FC6BF /* wwanconnect.c in Sources */,
 				CE41D63C1C15ACD1002FC6BF /* SDWebImageDecoder.m in Sources */,
 				CE41D5F81C15AB74002FC6BF /* UIColor+Addition.m in Sources */,
 				CE41D5F01C15AB74002FC6BF /* NSManagedObject+Addition.m in Sources */,
@@ -564,19 +668,25 @@
 				CE41D6441C15ACD1002FC6BF /* UIImage+WebP.m in Sources */,
 				CE41D5F61C15AB74002FC6BF /* UIAlertView+Addition.m in Sources */,
 				CE41D63E1C15ACD1002FC6BF /* SDWebImageDownloaderOperation.m in Sources */,
+				CE41D6B31C16B2AB002FC6BF /* CoreDataAccess.m in Sources */,
 				CE41D5ED1C15AB74002FC6BF /* NSDate+HumanInterval.m in Sources */,
 				CE41D6381C15ACD1002FC6BF /* MKAnnotationView+WebCache.m in Sources */,
 				CE41D5821C0F1768002FC6BF /* main.m in Sources */,
+				CE41D6D41C16D21F002FC6BF /* NCUserConfig.m in Sources */,
 				CE41D6011C15AB74002FC6BF /* UIWebView+JavascriptRun.m in Sources */,
 				CE41D6451C15ACD1002FC6BF /* UIImageView+HighlightedWebCache.m in Sources */,
+				CE41D6BF1C16BCB6002FC6BF /* NCMessageViewController.m in Sources */,
 				CE41D5EC1C15AB74002FC6BF /* NSData+Addition.m in Sources */,
 				CE41D5FD1C15AB74002FC6BF /* UIImage+TDGIF.m in Sources */,
+				CE41D6D01C16CBB5002FC6BF /* NCLoginViewController.m in Sources */,
 				CE41D5EB1C15AB74002FC6BF /* NSArray+Addition.m in Sources */,
 				CE41D5F11C15AB74002FC6BF /* NSMutableArray+Addition.m in Sources */,
 				CE41D5EE1C15AB74002FC6BF /* NSDictionary+Addition.m in Sources */,
+				CE95FCDD1C1715C800C53975 /* TDAutocompleteTextField.m in Sources */,
 				CE41D6461C15ACD1002FC6BF /* UIImageView+WebCache.m in Sources */,
 				CE41D6351C15ACD1002FC6BF /* NSDate+Fuzzy.m in Sources */,
 				CE41D6541C15ACF8002FC6BF /* rijndael.c in Sources */,
+				CE95FCE01C17162700C53975 /* TDNoneMenuTextField.m in Sources */,
 				CE41D6471C15ACD1002FC6BF /* UIView+WebCacheOperation.m in Sources */,
 				CE41D5AA1C15A939002FC6BF /* NCTabBar.m in Sources */,
 				CE41D5FC1C15AB74002FC6BF /* UIImage+Addition.m in Sources */,
@@ -587,15 +697,17 @@
 				CE41D5F31C15AB74002FC6BF /* NSString+Addition.m in Sources */,
 				CE41D6421C15ACD1002FC6BF /* UIImage+GIF.m in Sources */,
 				CE41D6521C15ACF8002FC6BF /* NSData-AES.m in Sources */,
+				CE41D6BC1C16BC93002FC6BF /* NCMyViewController.m in Sources */,
 				CE41D5A71C15A8DE002FC6BF /* NCTabBarController.m in Sources */,
 				CE41D63A1C15ACD1002FC6BF /* SDImageCache.m in Sources */,
 				CE41D6391C15ACD1002FC6BF /* NSData+ImageContentType.m in Sources */,
 				CE41D5E91C15AB74002FC6BF /* CAGradientLayer+Addition.m in Sources */,
 				CE41D6401C15ACD1002FC6BF /* SDWebImagePrefetcher.m in Sources */,
 				CE41D6491C15ACD1002FC6BF /* WKInterfaceImage+WebCache.m in Sources */,
+				CE95FCDA1C1713DD00C53975 /* NCBaseViewController.m in Sources */,
+				CE41D6B91C16BC85002FC6BF /* NCHomeViewController.m in Sources */,
 				CE41D6431C15ACD1002FC6BF /* UIImage+MultiFormat.m in Sources */,
 				CE41D5F91C15AB74002FC6BF /* UIDevice+Addition.m in Sources */,
-				CE41D6371C15ACD1002FC6BF /* UIDevice+WidgetHelper.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

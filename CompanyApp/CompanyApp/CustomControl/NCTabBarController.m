@@ -9,6 +9,11 @@
 #import "NCTabBarController.h"
 #import "UIView+Addition.h"
 
+#import "NCHomeViewController.h"
+#import "NCLibraryViewController.h"
+#import "NCMessageViewController.h"
+#import "NCMyViewController.h"
+
 @interface NCTabBarController ()
 {
     NSInteger _cacheIndex;
@@ -70,13 +75,13 @@ static NCTabBarController * _currentTabarController;
     
     _currentTabarController = self;
     
-    TDHomeViewController * home= [[TDHomeViewController alloc] init];
+    NCHomeViewController * home= [[NCHomeViewController alloc] init];
     
-    TDSubViewController *subscribe = [[TDSubViewController alloc] init];
+    NCLibraryViewController *subscribe = [[NCLibraryViewController alloc] init];
     
-    TDFindViewController *find = [[TDFindViewController alloc] init];
+    NCMessageViewController *find = [[NCMessageViewController alloc] init];
     
-    TDMyViewController * userCenter = [[TDMyViewController alloc] init];
+    NCMyViewController * userCenter = [[NCMyViewController alloc] init];
     
     NSArray * array;
     array = [NSArray arrayWithObjects:home,subscribe,find,userCenter,nil];
@@ -234,18 +239,7 @@ static NCTabBarController * _currentTabarController;
 
 
 - (void)addTestButton{
-    if ([[TDConfig sharedInstance] canOpenTestMode]) {
-        UIWindow *keywindow = [[UIApplication sharedApplication] keyWindow];
-        NSUserDefaults *userdefaults = [NSUserDefaults standardUserDefaults];
-        BOOL haslosbtn = [userdefaults objectForKey:@"LoseAccountButtonDisplayState"]?[[userdefaults objectForKey:@"LoseAccountButtonDisplayState"] boolValue]:NO;
-        BOOL haspushbtn = [userdefaults objectForKey:@"LocalPushButtonDisplayState"]?[[userdefaults objectForKey:@"LocalPushButtonDisplayState"] boolValue]:NO;
-        if (haslosbtn) {
-            [keywindow addSubview:TDAPP.loseAccountButton];
-        }
-        if (haspushbtn) {
-            [keywindow addSubview:TDAPP.localPushButton];
-        }
-    }
+   
 }
 
 @end

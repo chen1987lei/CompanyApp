@@ -8,6 +8,7 @@
 
 #import "UIImage+Addition.h"
 #import <Accelerate/Accelerate.h>
+#import <AVFoundation/AVFoundation.h>
 
 CGContextRef CreateRGBABitmapContext (CGImageRef newImage)
 {
@@ -22,12 +23,10 @@ CGContextRef CreateRGBABitmapContext (CGImageRef newImage)
 	data=malloc(bitmapByteCount);
 	if(data==NULL)
 	{
-		DVoidLog(@"data=NULL");
 	}
 	colorSpace=CGColorSpaceCreateDeviceRGB();
 	if(colorSpace==NULL)
 	{
-		DVoidLog(@"NO ColorSpace!!");
         free(data);
 		return NULL;
 	}
@@ -209,7 +208,6 @@ unsigned char *RequestImagePixelData(UIImage * inImage)
     CGImageRef img = [assetImageGenerator copyCGImageAtTime:CMTimeMake(1, 1) actualTime:NULL error:&error];
     if(error)
     {
-        DLog(@"%@", error);
         return nil;
     }
     else
@@ -927,15 +925,13 @@ unsigned char *RequestImagePixelData(UIImage * inImage)
 {
     // Check pre-conditions.
     if (self.size.width < 1 || self.size.height < 1) {
-        DLog (@"*** error: invalid size: (%.2f x %.2f). Both dimensions must be >= 1: %@", self.size.width, self.size.height, self);
         return nil;
     }
     if (!self.CGImage) {
-        DLog (@"*** error: image must be backed by a CGImage: %@", self);
         return nil;
     }
     if (maskImage && !maskImage.CGImage) {
-        DLog (@"*** error: maskImage must be backed by a CGImage: %@", maskImage);
+     
         return nil;
     }
     

@@ -53,7 +53,7 @@ NSString * const GUID_NEW_KEY = @"TudouClient_GUIDNEWKEY";
 
 - (NSString *)carrier {
     if(NSClassFromString(@"CTTelephonyNetworkInfo")){
-        CTTelephonyNetworkInfo *networkInfo = [[[CTTelephonyNetworkInfo alloc] init] autorelease];
+        CTTelephonyNetworkInfo *networkInfo = [[CTTelephonyNetworkInfo alloc] init];
         CTCarrier *carrier = [networkInfo subscriberCellularProvider];     
         if ([[carrier carrierName] length] > 0) {
             return [NSString stringWithFormat:@"%@_%@%@", [carrier carrierName], [carrier mobileCountryCode]?[carrier mobileCountryCode]:@"", [carrier mobileNetworkCode]?[carrier mobileNetworkCode]:@""];
@@ -172,10 +172,10 @@ NSString * const GUID_NEW_KEY = @"TudouClient_GUIDNEWKEY";
 {
     CFUUIDRef puuid = CFUUIDCreate( nil );
     CFStringRef uuidString = CFUUIDCreateString( nil, puuid );
-    NSString * result = (NSString *)CFStringCreateCopy( NULL, uuidString);
+    NSString * result = (NSString *)CFBridgingRelease(CFStringCreateCopy( NULL, uuidString));
     CFRelease(puuid);
     CFRelease(uuidString);
-    return [result autorelease];
+    return result;
 }
 
 - (NSString *)macAddress {
@@ -251,18 +251,21 @@ NSString * const GUID_NEW_KEY = @"TudouClient_GUIDNEWKEY";
 }
 - (NSString*)netAgent{
     NSString * rtn = nil;
-    NSDictionary *proxySettings = NSMakeCollectable([(NSDictionary *)CFNetworkCopySystemProxySettings() autorelease]);
-    NSArray *proxies = NSMakeCollectable([(NSArray *)CFNetworkCopyProxiesForURL((CFURLRef)[NSURL URLWithString:@"http://www.youku.com"], (CFDictionaryRef)proxySettings) autorelease]);
-    NSDictionary *settings = [proxies objectAtIndex:0];
-    if (settings) {
-        NSString * host = [settings objectForKey:(NSString *)kCFProxyHostNameKey];
-        NSString * port = [settings objectForKey:(NSString *)kCFProxyPortNumberKey];
-        NSString * type = [settings objectForKey:(NSString *)kCFProxyTypeKey];
-        if (host) {
-            rtn = host;
-        }
-        DLog(@"host,port,type=%@,%@,%@",host,port,type);
-    }
+
+    //    NSDictionary *proxySettings = NSMakeCollectable(CFNetworkCopySystemProxySettings());
+//    
+//    NSArray *proxies = NSMakeCollectable(CFNetworkCopyProxiesForURL(( CFURLRef)[NSURL URLWithString:@"http://www.youku.com"],  proxySettings));
+//    
+//    
+//    NSDictionary *settings = [proxies objectAtIndex:0];
+//    if (settings) {
+//        NSString * host = [settings objectForKey:(NSString *)kCFProxyHostNameKey];
+//        NSString * port = [settings objectForKey:(NSString *)kCFProxyPortNumberKey];
+//        NSString * type = [settings objectForKey:(NSString *)kCFProxyTypeKey];
+//        if (host) {
+//            rtn = host;
+//        }
+//    }
     return rtn;
 }
 
@@ -285,8 +288,7 @@ NSString * const GUID_NEW_KEY = @"TudouClient_GUIDNEWKEY";
         NSString *machine = [[UIDevice currentDevice] machine];
         userAgent = [@[appName, appVersion, systemName, systemVersion, machine] componentsJoinedByString:@";"];
     });
-    return [userAgent retain];
-    DLog(@"%@",userAgent);
+    return userAgent;
 }
 
 @end
@@ -560,7 +562,7 @@ static void myClientCallback(void *refCon)
 {
 	int value = 0;
 	myInfoPtr = (MyStreamInfoPtr) StartWWAN(myClientCallback, &value);
-	DLog(@"%@", myInfoPtr ? @"Started WWAN" : @"Failed to start WWAN");
+//	DLog(@"%@", myInfoPtr ? @"Started WWAN" : @"Failed to start WWAN");
 	return (!(myInfoPtr == NULL));
 }
 
@@ -572,34 +574,32 @@ static void myClientCallback(void *refCon)
 #pragma mark Monitoring reachability
 static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkConnectionFlags flags, void* info)
 {
-	NSAutoreleasePool *pool = [NSAutoreleasePool new];
-	[(id)info performSelector:@selector(reachabilityChanged)];
-	[pool release];
+    @autoreleasepool {
+        [(__bridge id)info performSelector:@selector(reachabilityChanged)];
+    }
+	
 }
 
 - (BOOL) scheduleReachabilityWatcher: (id) watcher
 {
 	if (![watcher conformsToProtocol:@protocol(ReachabilityWatcher)]) 
 	{
-		DLog(@"Watcher must conform to ReachabilityWatcher protocol. Cannot continue.");
 		return NO;
 	}
     
 	[self pingReachabilityInternal];
     
-	SCNetworkReachabilityContext context = {0, watcher, NULL, NULL, NULL};
+	SCNetworkReachabilityContext context = {0, (__bridge void * _Nullable)(watcher), NULL, NULL, NULL};
 	if(SCNetworkReachabilitySetCallback(reachability, ReachabilityCallback, &context)) 
 	{
 		if(!SCNetworkReachabilityScheduleWithRunLoop(reachability, CFRunLoopGetCurrent(), kCFRunLoopCommonModes)) 
 		{
-			DLog(@"Error: Could not schedule reachability");
 			SCNetworkReachabilitySetCallback(reachability, NULL, NULL);
 			return NO;
 		}
 	} 
 	else 
 	{
-		DLog(@"Error: Could not set reachability callback");
 		return NO;
 	}
     
@@ -611,11 +611,11 @@ static void ReachabilityCallback(SCNetworkReachabilityRef target, SCNetworkConne
 	SCNetworkReachabilitySetCallback(reachability, NULL, NULL);
 	if (SCNetworkReachabilityUnscheduleFromRunLoop(reachability, CFRunLoopGetCurrent(), kCFRunLoopCommonModes))
     {
-		DLog(@"Unscheduled reachability");
+//		DLog(@"Unscheduled reachability");
     }
 	else
     {
-		DLog(@"Error: Could not unschedule reachability");
+//		DLog(@"Error: Could not unschedule reachability");
     }
     
 	CFRelease(reachability);

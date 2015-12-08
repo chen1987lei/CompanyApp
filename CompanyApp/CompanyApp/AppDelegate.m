@@ -9,6 +9,8 @@
 #import "AppDelegate.h"
 #import "NCTabBarController.h"
 
+#import "NCLoginViewController.h"
+
 @interface AppDelegate ()
 {
     UINavigationController *_tdNav;
@@ -20,6 +22,7 @@
 
 @implementation AppDelegate
 
+#define isLogin 1
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
@@ -35,7 +38,23 @@
     self.window.backgroundColor = [UIColor blackColor];
     self.window.rootViewController = _tdNav;
     
+    if (isLogin) {
+        [self showLoginViewController];
+    }
+    
     return YES;
+}
+
+
+-(void)showLoginViewController
+{
+    NCLoginViewController *loginview=  [[NCLoginViewController alloc] init];
+    
+    [_tdNav presentViewController:loginview animated:YES completion:^{
+        
+        
+    }];
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
