@@ -19,6 +19,11 @@
     TDAutocompleteTextField *tfLoginName;
     TDNoneMenuTextField *tfPassword;
     
+    UIView *_actionsview;
+    UIButton *_loginBtn;
+    UIButton *_findPasswordBtn ;
+    UIButton *_phoneBtn;
+    
     UIView  *_passwordline;
 }
 
@@ -34,7 +39,7 @@
     
     
     [self.view addSubview:self.scrollView];
-    
+    [self addLoginActionsView];
 }
 
 - (UIScrollView *)scrollView
@@ -57,6 +62,7 @@
         
         
         [_scrollView addSubview:self.contentView];
+        
     }
        return _scrollView;
 }
@@ -72,7 +78,7 @@
         tfLoginName.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         tfLoginName.autocorrectionType =UITextAutocorrectionTypeNo;              //不自动做拼写矫正
         tfLoginName.autocapitalizationType = UITextAutocapitalizationTypeNone;  //首字母不自动大写
-        tfLoginName.placeholder = @"";
+        tfLoginName.placeholder = @"请输入用户名";
 
         
         tfLoginName.keyboardType=UIKeyboardTypeEmailAddress;
@@ -130,6 +136,71 @@
         
     }
     return _contentView;
+}
+
+#define kMarginTopToLoginButton 25.0f
+#define kConfirmButtonHeight        45.0f
+-(void)addLoginActionsView
+{
+    _actionsview = [[UIView alloc] initWithFrame:CGRectMake(0, _contentView.bottom + 8, self.contentView.width-50, kConfirmButtonHeight+45)];
+    
+    _loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _loginBtn.frame = CGRectMake(25, 0, self.contentView.width-50, kConfirmButtonHeight);
+    _loginBtn.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    _loginBtn.adjustsImageWhenDisabled = NO;
+    _loginBtn.adjustsImageWhenHighlighted = NO;
+    _loginBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+    _loginBtn.enabled = NO;
+    
+    [_loginBtn setTitle:LocalizedString(@"登录") forState:UIControlStateNormal];
+    [_loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    [_loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
+    [_loginBtn setTitleColor:[[UIColor whiteColor] colorWithAlphaComponent:0.5] forState:UIControlStateDisabled];
+    [_loginBtn addTarget:self action:@selector(LoginButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
+    _loginBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+    _loginBtn.layer.cornerRadius = 2;
+    _loginBtn.layer.masksToBounds = YES;
+    _loginBtn.backgroundColor = RGB(255, 97, 42);
+    _loginBtn.tag = 10001;
+    
+    
+    _findPasswordBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _findPasswordBtn.frame = CGRectMake(12, _loginBtn.bottom + 15, 80, 30);
+    _findPasswordBtn.titleLabel.font = [UIFont systemFontOfSize:12.0f];
+    _findPasswordBtn.contentHorizontalAlignment = NSTextAlignmentLeft;
+    _findPasswordBtn.contentVerticalAlignment = UIControlContentVerticalAlignmentTop;
+    [_findPasswordBtn setTitle:LocalizedString(@"忘记密码") forState:UIControlStateNormal];
+    [_findPasswordBtn setTitleColor:RGB(58, 160, 235) forState:UIControlStateNormal];
+    [_findPasswordBtn setTitleColor:RGB(58, 160, 235) forState:UIControlStateHighlighted];
+    [_findPasswordBtn addTarget:self action:@selector(findPasswordButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    _phoneBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _phoneBtn.frame = CGRectMake(self.contentView.width - 102 - 25, _loginBtn.bottom + 15, 102, 30);
+    _phoneBtn.titleLabel.font = [UIFont systemFontOfSize:12.0f];
+    _phoneBtn.contentHorizontalAlignment = NSTextAlignmentRight;
+    _phoneBtn.contentVerticalAlignment = UIControlContentVerticalAlignmentTop;
+    [_phoneBtn setTitle:LocalizedString(@"短信验证登录") forState:UIControlStateNormal];
+    [_phoneBtn setTitleColor:RGB(58, 160, 235) forState:UIControlStateNormal];
+    [_phoneBtn setTitleColor:RGB(58, 160, 235) forState:UIControlStateHighlighted];
+    [_phoneBtn addTarget:self action:@selector(phoneButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
+    
+    [_actionsview addSubview:_loginBtn];
+    [_actionsview addSubview:_findPasswordBtn];
+    [_actionsview addSubview:_phoneBtn];
+    
+    [_scrollView addSubview:_actionsview];
+    
+}
+
+-(void)findPasswordButtonDidClick
+{
+    
+}
+
+-(void)phoneButtonDidClick
+{
+    
 }
 
 - (void)didReceiveMemoryWarning {
