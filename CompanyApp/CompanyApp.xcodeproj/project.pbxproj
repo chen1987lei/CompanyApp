@@ -78,10 +78,16 @@
 		CE41D6CC1C16BFAD002FC6BF /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE41D6CB1C16BFAD002FC6BF /* CFNetwork.framework */; };
 		CE41D6D01C16CBB5002FC6BF /* NCLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE41D6CF1C16CBB5002FC6BF /* NCLoginViewController.m */; };
 		CE41D6D41C16D21F002FC6BF /* NCUserConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = CE41D6D31C16D21F002FC6BF /* NCUserConfig.m */; };
+		CE794E9A1C19274500E76AEC /* TCRegisterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE794E991C19274500E76AEC /* TCRegisterManager.m */; };
+		CE794E9E1C1927B200E76AEC /* TCNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE794E9D1C1927B200E76AEC /* TCNetworkManager.m */; };
+		CE794EA11C1927DA00E76AEC /* NCNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE794EA01C1927DA00E76AEC /* NCNetworkManager.m */; };
+		CE794EA61C199A6300E76AEC /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = CE794EA51C199A6300E76AEC /* Utils.m */; };
+		CE794EA91C199A7000E76AEC /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE794EA81C199A7000E76AEC /* RegisterViewController.m */; };
 		CE95FCDA1C1713DD00C53975 /* NCBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE95FCD91C1713DD00C53975 /* NCBaseViewController.m */; };
 		CE95FCDD1C1715C800C53975 /* TDAutocompleteTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = CE95FCDC1C1715C800C53975 /* TDAutocompleteTextField.m */; };
 		CE95FCE01C17162700C53975 /* TDNoneMenuTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = CE95FCDF1C17162700C53975 /* TDNoneMenuTextField.m */; };
 		CEE733CD1C18671200343808 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEE733CC1C18671200343808 /* WebKit.framework */; };
+		CEE733D01C186CF800343808 /* NCUserNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE733CF1C186CF800343808 /* NCUserNetManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -227,6 +233,16 @@
 		CE41D6CF1C16CBB5002FC6BF /* NCLoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCLoginViewController.m; sourceTree = "<group>"; };
 		CE41D6D21C16D21F002FC6BF /* NCUserConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCUserConfig.h; sourceTree = "<group>"; };
 		CE41D6D31C16D21F002FC6BF /* NCUserConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCUserConfig.m; sourceTree = "<group>"; };
+		CE794E981C19274500E76AEC /* TCRegisterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCRegisterManager.h; sourceTree = "<group>"; };
+		CE794E991C19274500E76AEC /* TCRegisterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCRegisterManager.m; sourceTree = "<group>"; };
+		CE794E9C1C1927B200E76AEC /* TCNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCNetworkManager.h; sourceTree = "<group>"; };
+		CE794E9D1C1927B200E76AEC /* TCNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCNetworkManager.m; sourceTree = "<group>"; };
+		CE794E9F1C1927DA00E76AEC /* NCNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCNetworkManager.h; sourceTree = "<group>"; };
+		CE794EA01C1927DA00E76AEC /* NCNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCNetworkManager.m; sourceTree = "<group>"; };
+		CE794EA41C199A6300E76AEC /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		CE794EA51C199A6300E76AEC /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
+		CE794EA71C199A7000E76AEC /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
+		CE794EA81C199A7000E76AEC /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
 		CE95FCD81C1713DD00C53975 /* NCBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCBaseViewController.h; sourceTree = "<group>"; };
 		CE95FCD91C1713DD00C53975 /* NCBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCBaseViewController.m; sourceTree = "<group>"; };
 		CE95FCDB1C1715C800C53975 /* TDAutocompleteTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDAutocompleteTextField.h; sourceTree = "<group>"; };
@@ -234,6 +250,8 @@
 		CE95FCDE1C17162700C53975 /* TDNoneMenuTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDNoneMenuTextField.h; sourceTree = "<group>"; };
 		CE95FCDF1C17162700C53975 /* TDNoneMenuTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDNoneMenuTextField.m; sourceTree = "<group>"; };
 		CEE733CC1C18671200343808 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		CEE733CE1C186CF800343808 /* NCUserNetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCUserNetManager.h; sourceTree = "<group>"; };
+		CEE733CF1C186CF800343808 /* NCUserNetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCUserNetManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -284,6 +302,7 @@
 		CE41D57F1C0F1768002FC6BF /* CompanyApp */ = {
 			isa = PBXGroup;
 			children = (
+				CE794E9B1C1927A800E76AEC /* Common */,
 				CE41D5831C0F1769002FC6BF /* AppDelegate.h */,
 				CE41D5841C0F1769002FC6BF /* AppDelegate.m */,
 				CE41D5A41C15A8A4002FC6BF /* CustomControl */,
@@ -392,6 +411,8 @@
 		CE41D5A31C15A873002FC6BF /* Register */ = {
 			isa = PBXGroup;
 			children = (
+				CE794EA71C199A7000E76AEC /* RegisterViewController.h */,
+				CE794EA81C199A7000E76AEC /* RegisterViewController.m */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -403,6 +424,8 @@
 				CE41D5B11C15AB74002FC6BF /* Addtion */,
 				CE41D5AE1C15A9E4002FC6BF /* Universal.h */,
 				CE41D5AF1C15A9E4002FC6BF /* Universal.m */,
+				CE794EA41C199A6300E76AEC /* Utils.h */,
+				CE794EA51C199A6300E76AEC /* Utils.m */,
 				CE41D5A51C15A8DE002FC6BF /* NCTabBarController.h */,
 				CE41D5A61C15A8DE002FC6BF /* NCTabBarController.m */,
 				CE41D5A81C15A939002FC6BF /* NCTabBar.h */,
@@ -588,8 +611,23 @@
 			children = (
 				CE41D6D21C16D21F002FC6BF /* NCUserConfig.h */,
 				CE41D6D31C16D21F002FC6BF /* NCUserConfig.m */,
+				CEE733CE1C186CF800343808 /* NCUserNetManager.h */,
+				CEE733CF1C186CF800343808 /* NCUserNetManager.m */,
+				CE794E981C19274500E76AEC /* TCRegisterManager.h */,
+				CE794E991C19274500E76AEC /* TCRegisterManager.m */,
 			);
 			path = UserCore;
+			sourceTree = "<group>";
+		};
+		CE794E9B1C1927A800E76AEC /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				CE794E9C1C1927B200E76AEC /* TCNetworkManager.h */,
+				CE794E9D1C1927B200E76AEC /* TCNetworkManager.m */,
+				CE794E9F1C1927DA00E76AEC /* NCNetworkManager.h */,
+				CE794EA01C1927DA00E76AEC /* NCNetworkManager.m */,
+			);
+			name = Common;
 			sourceTree = "<group>";
 		};
 		FFFDA23B671C1FB66329725C /* Frameworks */ = {
@@ -726,6 +764,7 @@
 				CE41D6B61C16B2AB002FC6BF /* wwanconnect.c in Sources */,
 				CE41D63C1C15ACD1002FC6BF /* SDWebImageDecoder.m in Sources */,
 				CE41D5F81C15AB74002FC6BF /* UIColor+Addition.m in Sources */,
+				CE794E9A1C19274500E76AEC /* TCRegisterManager.m in Sources */,
 				CE41D5F01C15AB74002FC6BF /* NSManagedObject+Addition.m in Sources */,
 				CE41D5B01C15A9E4002FC6BF /* Universal.m in Sources */,
 				CE41D6441C15ACD1002FC6BF /* UIImage+WebP.m in Sources */,
@@ -733,12 +772,17 @@
 				CE41D63E1C15ACD1002FC6BF /* SDWebImageDownloaderOperation.m in Sources */,
 				CE41D6B31C16B2AB002FC6BF /* CoreDataAccess.m in Sources */,
 				CE41D5ED1C15AB74002FC6BF /* NSDate+HumanInterval.m in Sources */,
+				CE794EA11C1927DA00E76AEC /* NCNetworkManager.m in Sources */,
 				CE41D6381C15ACD1002FC6BF /* MKAnnotationView+WebCache.m in Sources */,
+				CE794EA91C199A7000E76AEC /* RegisterViewController.m in Sources */,
 				CE41D5821C0F1768002FC6BF /* main.m in Sources */,
 				CE41D6D41C16D21F002FC6BF /* NCUserConfig.m in Sources */,
+				CE794EA61C199A6300E76AEC /* Utils.m in Sources */,
 				CE41D6011C15AB74002FC6BF /* UIWebView+JavascriptRun.m in Sources */,
 				CE41D6451C15ACD1002FC6BF /* UIImageView+HighlightedWebCache.m in Sources */,
+				CEE733D01C186CF800343808 /* NCUserNetManager.m in Sources */,
 				CE41D6BF1C16BCB6002FC6BF /* NCMessageViewController.m in Sources */,
+				CE794E9E1C1927B200E76AEC /* TCNetworkManager.m in Sources */,
 				CE41D5EC1C15AB74002FC6BF /* NSData+Addition.m in Sources */,
 				CE41D5FD1C15AB74002FC6BF /* UIImage+TDGIF.m in Sources */,
 				CE41D6D01C16CBB5002FC6BF /* NCLoginViewController.m in Sources */,
