@@ -10,6 +10,8 @@
 
 @implementation NCUserConfig
 
+@synthesize accountName,sexValue,certCard,mobilenumber,validatecode,tmppasswd,invitecode;
+
 +(NCUserConfig *)sharedInstance;
 {
     static NCUserConfig *config = nil;

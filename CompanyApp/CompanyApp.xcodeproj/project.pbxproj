@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		62B6594FC101898744502DD9 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B95921F9837853F5A5511AF6 /* libPods.a */; };
+		CE37C0DC1C1AF3310047C647 /* TopNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = CE37C0DB1C1AF3310047C647 /* TopNavBar.m */; };
 		CE41D5821C0F1768002FC6BF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CE41D5811C0F1768002FC6BF /* main.m */; };
 		CE41D5851C0F1769002FC6BF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE41D5841C0F1769002FC6BF /* AppDelegate.m */; };
 		CE41D5901C0F176A002FC6BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE41D58F1C0F176A002FC6BF /* Assets.xcassets */; };
@@ -94,6 +95,8 @@
 		140E119405031267EB446A0E /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		AAD986C2F57A4C8343A3C05E /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		B95921F9837853F5A5511AF6 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE37C0DA1C1AF3310047C647 /* TopNavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopNavBar.h; sourceTree = "<group>"; };
+		CE37C0DB1C1AF3310047C647 /* TopNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopNavBar.m; sourceTree = "<group>"; };
 		CE41D57D1C0F1768002FC6BF /* CompanyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CompanyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE41D5811C0F1768002FC6BF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		CE41D5831C0F1769002FC6BF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -281,6 +284,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		CE37C0D91C1AF3310047C647 /* TopNavBar */ = {
+			isa = PBXGroup;
+			children = (
+				CE37C0DA1C1AF3310047C647 /* TopNavBar.h */,
+				CE37C0DB1C1AF3310047C647 /* TopNavBar.m */,
+			);
+			path = TopNavBar;
+			sourceTree = "<group>";
+		};
 		CE41D5741C0F1768002FC6BF = {
 			isa = PBXGroup;
 			children = (
@@ -411,6 +423,7 @@
 		CE41D5A31C15A873002FC6BF /* Register */ = {
 			isa = PBXGroup;
 			children = (
+				CE37C0D91C1AF3310047C647 /* TopNavBar */,
 				CE794EA71C199A7000E76AEC /* RegisterViewController.h */,
 				CE794EA81C199A7000E76AEC /* RegisterViewController.m */,
 			);
@@ -744,6 +757,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE41D6B21C16B2AB002FC6BF /* Base64.m in Sources */,
+				CE37C0DC1C1AF3310047C647 /* TopNavBar.m in Sources */,
 				CE41D6531C15ACF8002FC6BF /* NSFileManager-AES.m in Sources */,
 				CE41D5EA1C15AB74002FC6BF /* CALayer+Addition.m in Sources */,
 				CE41D5851C0F1769002FC6BF /* AppDelegate.m in Sources */,

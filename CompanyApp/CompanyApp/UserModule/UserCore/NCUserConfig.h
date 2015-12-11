@@ -8,7 +8,19 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NCUserConfig : NSObject
 
+
+@interface NCUserConfig : NSObject
+{
+    
+}
+
+@property(nonatomic, strong) NSString *accountName;
+@property(nonatomic, strong) NSNumber *sexValue;
+@property(nonatomic, strong) NSString *certCard;
+@property(nonatomic, strong) NSString *mobilenumber;
+@property(nonatomic, strong) NSString *validatecode;
+@property(nonatomic, strong) NSString *tmppasswd;
+@property(nonatomic, strong) NSString *invitecode;
 +(NCUserConfig *)sharedInstance;
 @end

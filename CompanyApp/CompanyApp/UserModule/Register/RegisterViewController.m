@@ -8,9 +8,15 @@
 
 #import "RegisterViewController.h"
 #import "TopNavBar.h"
+#import "Utils.h"
+
+#import "NCUserConfig.h"
+#import "TCRegisterManager.h"
 
 @interface RegisterViewController ()<UITableViewDataSource,UITableViewDelegate,TopNavBarDelegate,UITextFieldDelegate>
-
+{
+    
+}
 @property (nonatomic,assign) BOOL          isRead;
 
 @end
@@ -26,13 +32,24 @@
     return self;
 }
 
-- (void)dealloc{
+- (void)viewDidLoad
+{
+    [super viewDidLoad];
     
+    //创建导航条
+    [self createCustomNavBar];
     
-    [_registerTableView release];
-    [_topNavBar release];
+    //创建tableView
+    [self createTableView];
+
+    _pickerView = [[UIPickerView alloc] init];
+    _pickerView.delegate = self;
+    _pickerView.dataSource = self;
+    _pickerView.backgroundColor = [UIColor whiteColor];
+    _pickerView.hidden = YES;
+    _pickerView.frame = CGRectMake(0, _channelBtn.bottom, _contentField.width, 200);
+    [self.view addSubview:_pickerView];
     
-    [super dealloc];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -79,16 +96,6 @@
     
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
-    //创建导航条
-    [self createCustomNavBar];
-    
-    //创建tableView
-    [self createTableView];
-}
 
 /**
  *	@brief	创建TableView
@@ -101,7 +108,24 @@
     _registerTableView.dataSource = self;
     [self.view addSubview:_registerTableView];
     
+    UIView *footview =  [[UIView alloc] initWithFrame:CGRectMake(0, 0,_registerTableView.width , 100)];
+    
+    
+    UIButton *submitbtn = [[UIButton alloc] initWithFrame:CGRectMake(6, 28, self.view.width-12, 34)];
+    
+    [submitbtn setTitle:@"提交" forState:UIControlStateNormal];
+    
+    [footview addSubview:submitbtn];
+    [submitbtn addTarget:self action:@selector(registerButtonAction) forControlEvents:UIControlEventTouchUpInside];
+    _registerTableView.tableFooterView = footview;
 }
+
+
+-(void)registerButtonAction
+{
+    
+}
+
 
 /**
  *	@brief	创建自定义导航条
@@ -151,209 +175,183 @@
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    return 6;
+    return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (section == 2) {
-        return 2;
-    }else{
-        
-        return 1;
-    }
+    return 8;
 }
+
+//Tag_AccountTextField  = 100,    //用户名
+//Tag_SexTextField,  //性别
+//Tag_CertCardTextField,  // 身份证号
+//Tag_MobileNumberTextField, //手机号码
+//Tag_ValidateCodeTextField, // 验证码
+//Tag_TempPasswordTextField, // 设置密码
+//Tag_ConfirmPasswordTextField, //确认登录密码
+//Tag_RecommadTextField,        //企业邀请码
+
+#define offset 15.f
+#define textwidth 120.f
+#define celltop 10.f
+
+#define txtfieldHeight 20.f
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     static NSString *cellIdentifier = @"cellIdentifier";
     
-    UITableViewCell *cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier] autorelease];
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
 
-    if (indexPath.section == 0){
-        cell.imageView.image = PNGIMAGE(@"register_email@2x");
-        UITextField *textField= [[UITextField alloc] initWithFrame:CGRectMake(50.f, 12.f, 220.f, 21.f)];
-        textField.tag = Tag_EmailTextField;
-        textField.returnKeyType = UIReturnKeyDone;
-        textField.delegate = self;
-        textField.placeholder = @"邮箱,必填";
-        textField.keyboardType = UIKeyboardTypeEmailAddress;
-        [cell addSubview:textField];
-        [textField release];
+    if (indexPath.row == 0){
+//        cell.imageView.image = PNGIMAGE(@"register_email@2x");
+    
+        UILabel *label = [Utils labelWithFrame:CGRectMake(6.f, celltop, 70.f, 20.f) withTitle:@"姓   名" titleFontSize:[UIFont systemFontOfSize:10.f] textColor:[UIColor blackColor] backgroundColor:[UIColor clearColor] alignment:NSTextAlignmentLeft];
+        [cell addSubview:label];
         
-    }else if (indexPath.section == 1){
-        
-        cell.imageView.image = PNGIMAGE(@"register_user@2x");
-        UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(50.f, 12.f, 220.f, 21.f)];
+        UITextField *textField= [[UITextField alloc] initWithFrame:CGRectMake(label.right+OFF_MAX, celltop, textwidth, txtfieldHeight)];
         textField.tag = Tag_AccountTextField;
         textField.returnKeyType = UIReturnKeyDone;
         textField.delegate = self;
-        textField.placeholder = @"用户名,必填";
+        textField.placeholder = @"请输入姓名";
+        textField.keyboardType = UIKeyboardTypeEmailAddress;
         [cell addSubview:textField];
-        [textField release];
         
-    }else if (indexPath.section == 2){
+    }else if (indexPath.row == 1){
         
-        if (indexPath.row == 0) {
-            
-            cell.imageView.image = PNGIMAGE(@"register_password@2x");
-            UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(50.f, 12.f, 220.f, 21.f)];
-            textField.tag = Tag_TempPasswordTextField;
-            textField.returnKeyType = UIReturnKeyDone;
-            textField.secureTextEntry = YES;
-            textField.delegate = self;
-            textField.placeholder = @"密码,必填";
-            [cell addSubview:textField];
-            [textField release];
-            
-        }else if (indexPath.row == 1){
-            
-            cell.imageView.image = PNGIMAGE(@"register_password@2x");
-            UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(50.f, 12.f, 220.f, 21.f)];
-            textField.tag = Tag_ConfirmPasswordTextField;
-            textField.returnKeyType = UIReturnKeyDone;
-            textField.secureTextEntry = YES;
-            textField.delegate = self;
-            textField.placeholder = @"确认密码,必填";
-            [cell addSubview:textField];
-            [textField release];
-        }
+        UILabel *label = [Utils labelWithFrame:CGRectMake(6.f, 10.f, 70.f, 20.f) withTitle:@"性   别" titleFontSize:[UIFont systemFontOfSize:10.f] textColor:[UIColor blackColor] backgroundColor:[UIColor clearColor] alignment:NSTextAlignmentLeft];
+        [cell addSubview:label];
         
-    }else if (indexPath.section ==3){
+        UITextField *textField= [[UITextField alloc] initWithFrame:CGRectMake(label.right+OFF_MAX, celltop, textwidth, txtfieldHeight)];
+        textField.tag = Tag_SexTextField;
+        textField.returnKeyType = UIReturnKeyDone;
+        textField.userInteractionEnabled = NO;
+        textField.delegate = self;
+        textField.placeholder = @"请选择性别";
+        textField.keyboardType = UIKeyboardTypeEmailAddress;
+        [cell addSubview:textField];
         
-        cell.imageView.image = PNGIMAGE(@"register_recommand_people@2x");
-        UITextField *textField = [[UITextField alloc] initWithFrame:CGRectMake(50.f, 12.f, 220.f, 21.f)];
+    }else if (indexPath.row == 2){
+        
+        UILabel *label = [Utils labelWithFrame:CGRectMake(6.f, 10.f, 70.f, 20.f) withTitle:@"身份证号" titleFontSize:[UIFont systemFontOfSize:10.f] textColor:[UIColor blackColor] backgroundColor:[UIColor clearColor] alignment:NSTextAlignmentLeft];
+        [cell addSubview:label];
+        
+        UITextField *textField= [[UITextField alloc] initWithFrame:CGRectMake(label.right+OFF_MAX, celltop, textwidth, txtfieldHeight)];
+        textField.tag = Tag_CertCardTextField;
+        textField.returnKeyType = UIReturnKeyDone;
+        textField.delegate = self;
+        textField.placeholder = @"请输入身份证号";
+        textField.keyboardType = UIKeyboardTypeEmailAddress;
+        [cell addSubview:textField];
+        
+    }else if (indexPath.row ==3){
+        
+        UILabel *label = [Utils labelWithFrame:CGRectMake(6.f, 10.f, 70.f, 20.f) withTitle:@"手机号码" titleFontSize:[UIFont systemFontOfSize:10.f] textColor:[UIColor blackColor] backgroundColor:[UIColor clearColor] alignment:NSTextAlignmentLeft];
+        [cell addSubview:label];
+        
+        UITextField *textField= [[UITextField alloc] initWithFrame:CGRectMake(label.right+OFF_MAX, celltop, textwidth, txtfieldHeight)];
+        textField.tag = Tag_MobileNumberTextField;
+        textField.returnKeyType = UIReturnKeyDone;
+        textField.delegate = self;
+        textField.placeholder = @"请输入手机号";
+        textField.keyboardType = UIKeyboardTypeEmailAddress;
+        [cell addSubview:textField];
+        
+        UIButton *sendcodeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        [sendcodeBtn setTitle:@"发送验证码" forState:UIControlStateNormal];
+        sendcodeBtn.frame = CGRectMake(10.f, 0.f, 21.f, 21.f);
+
+        [sendcodeBtn addTarget:self action:@selector(sendCodeButtonClicked) forControlEvents:UIControlEventTouchUpInside];
+    
+        [cell addSubview:textField];
+        
+    }else if (indexPath.row == 4){
+        
+        UILabel *label = [Utils labelWithFrame:CGRectMake(6.f, 10.f, 70.f, 20.f) withTitle:@"验证码" titleFontSize:[UIFont systemFontOfSize:10.f] textColor:[UIColor blackColor] backgroundColor:[UIColor clearColor] alignment:NSTextAlignmentLeft];
+        [cell addSubview:label];
+        
+        UITextField *textField= [[UITextField alloc] initWithFrame:CGRectMake(label.right+OFF_MAX, celltop, textwidth, txtfieldHeight)];
+        textField.tag = Tag_ValidateCodeTextField;
+        textField.returnKeyType = UIReturnKeyDone;
+        textField.delegate = self;
+        textField.placeholder = @"请输入手机验证码";
+        textField.keyboardType = UIKeyboardTypeEmailAddress;
+        [cell addSubview:textField];
+        
+    }else if (indexPath.row == 5){
+        
+        UILabel *label = [Utils labelWithFrame:CGRectMake(6.f, 10.f, 70.f, 20.f) withTitle:@"设置密码" titleFontSize:[UIFont systemFontOfSize:10.f] textColor:[UIColor blackColor] backgroundColor:[UIColor clearColor] alignment:NSTextAlignmentLeft];
+        [cell addSubview:label];
+        
+        UITextField *textField= [[UITextField alloc] initWithFrame:CGRectMake(label.right+OFF_MAX, celltop, textwidth, txtfieldHeight)];
+        textField.tag = Tag_TempPasswordTextField;
+        textField.returnKeyType = UIReturnKeyDone;
+        textField.delegate = self;
+        textField.placeholder = @"请输入密码";
+        textField.keyboardType = UIKeyboardTypeEmailAddress;
+        [cell addSubview:textField];
+    }
+    else if (indexPath.row == 6){
+        
+        UILabel *label = [Utils labelWithFrame:CGRectMake(6.f, 10.f, 70.f, 20.f) withTitle:@"重复密码" titleFontSize:[UIFont systemFontOfSize:10.f] textColor:[UIColor blackColor] backgroundColor:[UIColor clearColor] alignment:NSTextAlignmentLeft];
+        [cell addSubview:label];
+        
+        UITextField *textField= [[UITextField alloc] initWithFrame:CGRectMake(label.right+OFF_MAX, celltop, textwidth, txtfieldHeight)];
+        textField.tag = Tag_ConfirmPasswordTextField;
+        textField.returnKeyType = UIReturnKeyDone;
+        textField.delegate = self;
+        textField.placeholder = @"请重复输入密码";
+        textField.keyboardType = UIKeyboardTypeEmailAddress;
+        [cell addSubview:textField];
+    }
+    else if (indexPath.row == 6){
+        
+        UILabel *label = [Utils labelWithFrame:CGRectMake(6.f, 10.f, 70.f, 20.f) withTitle:@"企业邀请码" titleFontSize:[UIFont systemFontOfSize:10.f] textColor:[UIColor blackColor] backgroundColor:[UIColor clearColor] alignment:NSTextAlignmentLeft];
+        [cell addSubview:label];
+        
+        UITextField *textField= [[UITextField alloc] initWithFrame:CGRectMake(label.right+OFF_MAX, celltop, textwidth, txtfieldHeight)];
         textField.tag = Tag_RecommadTextField;
         textField.returnKeyType = UIReturnKeyDone;
         textField.delegate = self;
-        textField.placeholder = @"推荐人,(可选填)";
+        textField.placeholder = @"请输入企业邀请码";
+        textField.keyboardType = UIKeyboardTypeEmailAddress;
         [cell addSubview:textField];
-        [textField release];
-    }else if (indexPath.section == 4){
-        
-        cell.imageView.image = PNGIMAGE(@"register_lbs@2x");
-        
-        UILabel *label = [Utils labelWithFrame:CGRectMake(50.f, 14.f, 200.f, 21.f) withTitle:@"来源" titleFontSize:[UIFont systemFontOfSize:14.f] textColor:[UIColor lightGrayColor] backgroundColor:[UIColor clearColor] alignment:NSTextAlignmentLeft];
-        label.tag = Tag_SourceLabel;
-        [cell addSubview:label];
-        
-        UIButton *sourceBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        sourceBtn.frame = CGRectMake(260.f, 0.f, 50.f, 44.f);
-        [sourceBtn addTarget:self action:@selector(sourceBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
-        [sourceBtn setImage:[UIImage imageNamed:@"mypoisition@2x"] forState:UIControlStateNormal];
-        [cell addSubview:sourceBtn];
-        
-    }else if (indexPath.section == 5){
-        
-        UIButton *registerBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        registerBtn.frame = CGRectMake((FSystenVersion >= 7.0)?0.f:10.f, 0.f, (FSystenVersion>=7.0)?320.f:300.f, 44.f);
-        [registerBtn addTarget:self action:@selector(registerBtnClicked:) forControlEvents:UIControlEventTouchUpInside];
-        [registerBtn setBackgroundImage:[UIImage imageNamed:@"register_btn@2x"] forState:UIControlStateNormal];
-        [registerBtn setTitle:@"提交" forState:UIControlStateNormal];
-        [registerBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        registerBtn.titleLabel.font = [UIFont systemFontOfSize:18.f];
-        [registerBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentCenter];
-        
-        [cell addSubview:registerBtn];
     }
     
     return cell;
 }
 
+-(void)sendCodeButtonClicked
+{
+    
+}
+
 #pragma mark - UITableViewDelegate
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section{
-    if (section == 0) {
-        
-        return nil;
-    }else if (section == 1){
-        
-        UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0.f, 0.f, 320.f, 21.f)];
-        footerView.backgroundColor = [UIColor clearColor];
-        UILabel *label = [Utils labelWithFrame:CGRectMake(10.f, 0.f, 300.f, 21.f) withTitle:@"注册后不可更改，3~20位字符，可包含英文、数字和“_”" titleFontSize:[UIFont systemFontOfSize:10.f] textColor:[UIColor blackColor] backgroundColor:[UIColor clearColor] alignment:NSTextAlignmentLeft];
-        [footerView addSubview:label];
-        
-        return [footerView autorelease];
-    }else if (section == 2){
-        
-        UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0.f, 0.f, 320.f, 21.f)];
-        footerView.backgroundColor = [UIColor clearColor];
-        UILabel *label = [Utils labelWithFrame:CGRectMake(10.f, 0.f, 300.f, 21.f) withTitle:@"6位字符以上，可包含数字、字母（区分大小写）" titleFontSize:[UIFont systemFontOfSize:10.f] textColor:[UIColor blackColor] backgroundColor:[UIColor clearColor] alignment:NSTextAlignmentLeft];
-        [footerView addSubview:label];
-        return [footerView autorelease];
-    }else if (section == 3){
-        
-        UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0.f, 0.f, 320.f, 21.f)];
-        footerView.backgroundColor = [UIColor clearColor];
-        UILabel *label = [Utils labelWithFrame:CGRectMake(10.f, 0.f, 300.f, 21.f) withTitle:@"请填写推荐您的好友的用户名" titleFontSize:[UIFont systemFontOfSize:10.f] textColor:[UIColor blackColor] backgroundColor:[UIColor clearColor] alignment:NSTextAlignmentLeft];
-        [footerView addSubview:label];
-        return [footerView autorelease];
-    }else if (section == 4){
-        UIView *footerView = [[UIView alloc] initWithFrame:CGRectMake(0.f, 0.f, 320.f, 21.f)];
-        footerView.backgroundColor = [UIColor clearColor];
-        
-        UIButton *isReadBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        isReadBtn.frame = CGRectMake(10.f, 0.f, 21.f, 21.f);
-        [isReadBtn setImage:[UIImage imageNamed:@"isRead_waiting_selectButton@2x"] forState:UIControlStateNormal];
-        [isReadBtn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
-        isReadBtn.tag = Tag_isReadButton;
-        [footerView addSubview:isReadBtn];
-        
-        UILabel *label1 = [Utils labelWithFrame:CGRectMake(35.f, 0.f, 70.f, 21.f) withTitle:@"我已阅读并同意" titleFontSize:[UIFont systemFontOfSize:10.f] textColor:[UIColor blackColor] backgroundColor:[UIColor clearColor] alignment:NSTextAlignmentLeft];
-        [footerView addSubview:label1];
-        
-        UIButton *servicesBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        servicesBtn.frame = CGRectMake(110.f, 0.f, 40.f, 21.f);
-        [servicesBtn setTitle:@"服务协议" forState:UIControlStateNormal];
-        [servicesBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-        servicesBtn.titleLabel.font = [UIFont systemFontOfSize:10.f];
-        [servicesBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
-        [servicesBtn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
-        servicesBtn.tag = Tag_servicesButton;
-        [footerView addSubview:servicesBtn];
-        
-        UILabel *label2 = [Utils labelWithFrame:CGRectMake(155.f, 0.f, 10.f, 21.f) withTitle:@"和" titleFontSize:[UIFont systemFontOfSize:10.f] textColor:[UIColor blackColor] backgroundColor:[UIColor clearColor] alignment:NSTextAlignmentLeft];
-        [footerView addSubview:label2];
-        
-        UIButton *privacyBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        privacyBtn.frame = CGRectMake(170.f, 0.f, 40.f, 21.f);
-        [privacyBtn setTitle:@"隐私协议" forState:UIControlStateNormal];
-        [privacyBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-        privacyBtn.titleLabel.font = [UIFont systemFontOfSize:10.f];
-        [privacyBtn setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
-        [privacyBtn addTarget:self action:@selector(buttonClicked:) forControlEvents:UIControlEventTouchUpInside];
-        privacyBtn.tag = Tag_privacyButton;
-        [footerView addSubview:privacyBtn];
-        
-        return [footerView autorelease];
-    }
     return nil;
 }
 
--(CGFloat)tableView:(UITableView*)tableView heightForHeaderInSection:(NSInteger)section
+-(CGFloat)tableView:(UITableView*)tableView heightForRowAtIndexPath:(nonnull NSIndexPath *)indexPath
 {
-    return 5.0;
+    return 36;
 }
 
-
--(CGFloat)tableView:(UITableView*)tableView heightForFooterInSection:(NSInteger)section
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (section == 0) {
-        return 5.f;
-    }else if(section == 4){
+    if (indexPath.row == 1) {
+        //show pickerview
         
-        return 30.f;
         
-    }else{
-        return 21.f;
     }
 }
 
 -(UIView*)tableView:(UITableView*)tableView viewForHeaderInSection:(NSInteger)section
 {
-    return [[[UIView alloc] initWithFrame:CGRectZero] autorelease];
+    return [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 
 #pragma mark - UIButtonClicked Method
 - (void)buttonClicked:(id)sender{
-    
+  /*
     UIButton *btn = (UIButton *)sender;
     switch (btn.tag) {
         case Tag_isReadButton:
@@ -387,7 +385,7 @@
         default:
             break;
     }
-    
+    */
 }
 #pragma mark - sourceBtnClicked Method
 - (void)sourceBtnClicked:(id)sender{
@@ -416,19 +414,14 @@
 #pragma mark checkValidityTextField Null
 - (BOOL)checkValidityTextField
 {
-    
-    if ([(UITextField *)[self.view viewWithTag:Tag_EmailTextField] text] == nil || [[(UITextField *)[self.view viewWithTag:Tag_EmailTextField] text] isEqualToString:@""]) {
-        
-        [Utils alertTitle:@"提示" message:@"邮箱不能为空" delegate:self cancelBtn:@"取消" otherBtnName:nil];
-        
-        return NO;
-    }
+    /*
     if ([(UITextField *)[self.view viewWithTag:Tag_AccountTextField] text] == nil || [[(UITextField *)[self.view viewWithTag:Tag_AccountTextField] text] isEqualToString:@""]) {
         
         [Utils alertTitle:@"提示" message:@"用户名不能为空" delegate:self cancelBtn:@"取消" otherBtnName:nil];
         
         return NO;
     }
+
     if ([(UITextField *)[self.view viewWithTag:Tag_TempPasswordTextField] text] == nil || [[(UITextField *)[self.view viewWithTag:Tag_TempPasswordTextField] text] isEqualToString:@""]) {
         
         [Utils alertTitle:@"提示" message:@"用户密码不能为空" delegate:self cancelBtn:@"取消" otherBtnName:nil];
@@ -441,7 +434,7 @@
         
         return NO;
     }
-    
+    */
     return YES;
     
 }
@@ -461,7 +454,7 @@
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField{
-    
+    /*
     switch (textField.tag) {
             
         case Tag_EmailTextField:
@@ -509,6 +502,7 @@
         default:
             break;
     }
+     */
 }
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField{
@@ -530,7 +524,7 @@
 - (void)allEditActionsResignFirstResponder{
     
     //邮箱
-    [[self.view viewWithTag:Tag_EmailTextField] resignFirstResponder];
+    [[self.view viewWithTag:Tag_AccountTextField] resignFirstResponder];
     //用户名
     [[self.view viewWithTag:Tag_AccountTextField] resignFirstResponder];
     //temp密码
@@ -547,6 +541,35 @@
     // Dispose of any resources that can be recreated.
 }
 
+#pragma mark- UIPickerViewDelegate
 
+- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
+{
+    return 40;
+}
 
+- (nullable NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    
+    NSDictionary *dict = [self.arrChannel objectAtSafeIndex:row];
+    
+    NSAttributedString *str = [[NSAttributedString alloc] initWithString:dict[@"title"]
+                                                              attributes:@{NSForegroundColorAttributeName:RGB(70, 70, 70)}
+                               ];
+    return str;
+}
+
+- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+//    NSDictionary *dict = [self.arrChannel objectAtSafeIndex:row];
+//    if (dict && !_pickerView.hidden) {
+//        _channelBtn.userInfo = dict;
+//        NSString * text = [NSString stringWithFormat:@"%@",dict[@"title"]];
+//        [_channelBtn setTitle:text forState:UIControlStateNormal];
+//        
+//        if (_tag1.text == nil || [_tag1.text length] == 0) {
+//            _tag1.text = text;
+//        }
+//    }
+}
 @end

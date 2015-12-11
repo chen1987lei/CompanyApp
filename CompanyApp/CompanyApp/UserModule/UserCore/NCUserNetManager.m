@@ -7,8 +7,10 @@
 //
 
 #import "NCUserNetManager.h"
+#import "NCUserConfig.h"
 
-#define loginurl  @""
+#define regurl  @"http://anquan.weilomo.com/Api/User/reg.html"
+#define loginurl  @"http://anquan.weilomo.com/Api/User/reg.html"
 @implementation NCUserNetManager
 
 -(id)init
@@ -35,9 +37,39 @@
     [self.requestManager.operationQueue cancelAllOperations];
 }
 
+
+-(void)registerWithMailAccount:(NCUserConfig *)user
+{
+//    NSString *account = nil;
+//    NSString *password = nil;
+    
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:regurl];
+    request.timeoutInterval = 10;
+    __weak AFHTTPRequestOperation *operation = [self.requestManager HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        [self handleLoginCompletionWithResponse:operation.response];
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        [self handleLoginError:error  response:operation.response];
+        
+    }];
+    
+    
+    [operation setQueuePriority:NSOperationQueuePriorityLow];
+    [self.requestManager.operationQueue addOperation:operation];
+    
+}
+
+
+-(void)registerWithUser:(NCUserConfig *)user;
+{
+    
+}
+
 -(void)loginWithMailAccount:(NSString *)mailAccount andPassword:(NSString *)password
 {
-
+    
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:loginurl];
     request.timeoutInterval = 10;
     __weak AFHTTPRequestOperation *operation = [self.requestManager HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
