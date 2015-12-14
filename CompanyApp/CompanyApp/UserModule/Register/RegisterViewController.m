@@ -13,7 +13,7 @@
 #import "NCUserConfig.h"
 #import "TCRegisterManager.h"
 
-@interface RegisterViewController ()<UITableViewDataSource,UITableViewDelegate,TopNavBarDelegate,UITextFieldDelegate>
+@interface RegisterViewController ()<UITableViewDataSource,UITableViewDelegate,TopNavBarDelegate,UITextFieldDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
 {
     
 }
@@ -42,15 +42,28 @@
     //创建tableView
     [self createTableView];
 
+
+}
+
+
+-(void)showPickerView
+{
     _pickerView = [[UIPickerView alloc] init];
     _pickerView.delegate = self;
     _pickerView.dataSource = self;
     _pickerView.backgroundColor = [UIColor whiteColor];
     _pickerView.hidden = YES;
-    _pickerView.frame = CGRectMake(0, _channelBtn.bottom, _contentField.width, 200);
+    _pickerView.frame = CGRectMake(0, 0, 320, 200);
     [self.view addSubview:_pickerView];
-    
 }
+
+
+-(void)dismissPickerView
+{
+    [_pickerView removeFromSuperview];
+    _pickerView = nil;
+}
+
 
 - (void)viewWillAppear:(BOOL)animated{
     
@@ -61,6 +74,20 @@
     
     [super viewDidDisappear:animated];
     
+}
+
+-(void)showContent
+{
+    
+//    NAModalSheet *sheet = [[NAModalSheet alloc] initWithViewController:vc presentationStyle:NAModalSheetPresentationStyleFadeInCentered];
+//    sheet.disableBlurredBackground = YES;
+//    sheet.cornerRadiusWhenCentered = 10.0;
+//    vc.modalSheet = sheet;
+//    vc.messageString = message == nil?@"":message;
+//    vc.openURL = [NSURL URLWithString:urlString];
+//    vc.completionBlock = completionBlock;
+//    vc.hasShowed = YES;
+//    [sheet presentWithCompletion:nil];
 }
 
 /**
@@ -550,13 +577,15 @@
 
 - (nullable NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component
 {
+ 
+    return [[NSAttributedString alloc] initWithString: @"123"];
     
-    NSDictionary *dict = [self.arrChannel objectAtSafeIndex:row];
+//    NSDictionary *dict = [self.arrChannel objectAtSafeIndex:row];
     
-    NSAttributedString *str = [[NSAttributedString alloc] initWithString:dict[@"title"]
-                                                              attributes:@{NSForegroundColorAttributeName:RGB(70, 70, 70)}
-                               ];
-    return str;
+//    NSAttributedString *str = [[NSAttributedString alloc] initWithString:dict[@"title"]
+//                                                              attributes:@{NSForegroundColorAttributeName:RGB(70, 70, 70)}
+//                               ];
+//    return str;
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component

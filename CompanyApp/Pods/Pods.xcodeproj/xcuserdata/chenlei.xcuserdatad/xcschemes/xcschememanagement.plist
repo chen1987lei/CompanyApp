@@ -7,7 +7,12 @@
 		<key>AFNetworking.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false/>
+			<true/>
+		</dict>
+		<key>JSONKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<true/>
 		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
@@ -17,12 +22,17 @@
 		<key>YYKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<false/>
+			<true/>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>616695B8121C883A239F5233FCCAE5B5</key>
+		<key>1CB0FF1BBFF767EAEF91886B0B87BF7B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6591E6A75CF8CB22BE89BF91B11EDE8F</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -32,7 +42,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D81DD804DE3B989BCC4E1D0CB936729B</key>
+		<key>CF454364988A45C0C3ECC98DF8A26394</key>
 		<dict>
 			<key>primary</key>
 			<true/>

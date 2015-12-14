@@ -8,6 +8,7 @@
 
 #import "NCHomeViewController.h"
 
+#import "NCInitial.h"
 @interface NCHomeViewController ()
 
 @end
@@ -17,6 +18,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    [[NCInitial sharedInstance] initial];
 }
 
 - (void)didReceiveMemoryWarning {

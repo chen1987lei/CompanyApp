@@ -7,8 +7,6 @@
 //
 
 #import "TCRegisterManager.h"
-#import "define.h"
-#import "TCNetworkManager.h"
 
 #import <Security/Security.h>
 #import <CommonCrypto/CommonDigest.h>
@@ -16,6 +14,8 @@
 #import <Foundation/Foundation.h>
 #import <Foundation/NSRange.h>
 #import <Foundation/NSString.h>
+
+
 #define kChosenDigestLength		CC_SHA1_DIGEST_LENGTH
 
 static TCRegisterManager *sharedInstance = nil;
@@ -48,6 +48,7 @@ static TCRegisterManager *sharedInstance = nil;
 }
 
 
+/*
 -(void)dealloc
 {
     [_accountText release];
@@ -315,5 +316,5 @@ static TCRegisterManager *sharedInstance = nil;
     selfContact.number = [TCRegisterManager sharedManager].bindingMobileNumber;
     [[TCDbOpreater shareDb]updateContact:selfContact];
 }
-
+*/
 @end

@@ -24,7 +24,7 @@
     
     UIImageView *imageView = [[UIImageView alloc] initWithFrame:frame];
     imageView.image = image;
-    return [imageView autorelease];
+    return imageView;
 }
 
 + (UILabel *)labelWithFrame:(CGRect)frame withTitle:(NSString *)title titleFontSize:(UIFont *)font textColor:(UIColor *)color backgroundColor:(UIColor *)bgColor alignment:(NSTextAlignment)textAlignment{
@@ -35,7 +35,7 @@
     label.textColor = color;
     label.backgroundColor = bgColor;
     label.textAlignment = textAlignment;
-    return [label autorelease];
+    return label;
     
 }
 
@@ -45,7 +45,7 @@
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:title message:msg delegate:aDeleagte cancelButtonTitle:cancelName otherButtonTitles:otherbuttonName, nil];
     [alert show];
-    return [alert autorelease];
+    return alert;
 }
 
 +(UIButton *)createBtnWithType:(UIButtonType)btnType frame:(CGRect)btnFrame backgroundColor:(UIColor*)bgColor{

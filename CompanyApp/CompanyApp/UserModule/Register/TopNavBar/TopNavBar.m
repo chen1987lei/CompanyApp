@@ -86,7 +86,6 @@
     UIImageView *bgImageView = [[UIImageView alloc] initWithFrame:self.backgroundImageViewFrame];
     bgImageView.image = [UIImage imageNamed:self.backgroundImageName];
     [self addSubview:bgImageView];
-    [bgImageView release];
 }
 
 /**
@@ -101,7 +100,6 @@
     label.font = [UIFont systemFontOfSize:20.f];
     label.textColor = [UIColor whiteColor];
     [self addSubview:label];
-    [label release];
     
 }
 

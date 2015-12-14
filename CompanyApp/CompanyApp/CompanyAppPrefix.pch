@@ -38,4 +38,6 @@
 #import "Marco.h"
 
 #import <YYKit/YYKit.h>
+
+#import <JSONKit.h>
 #endif

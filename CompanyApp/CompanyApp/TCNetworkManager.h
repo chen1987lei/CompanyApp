@@ -7,14 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "CinClientEvent.h"
 //#import "TCCallBacks.h"
-#import "ASIHTTPRequest.h"
-#import "AccountInfo.h"
-#import "define.h"
-#import "Utility.h"
-#import "TanzhiCore.h"
-#import "Reachability.h"
+
 
 @class CinClientCore;
 

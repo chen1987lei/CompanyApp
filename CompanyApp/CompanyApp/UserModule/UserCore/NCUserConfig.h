@@ -15,12 +15,20 @@
     
 }
 
-@property(nonatomic, strong) NSString *accountName;
+@property(nonatomic, strong) NSString *userName;
 @property(nonatomic, strong) NSNumber *sexValue;
 @property(nonatomic, strong) NSString *certCard;
 @property(nonatomic, strong) NSString *mobilenumber;
 @property(nonatomic, strong) NSString *validatecode;
 @property(nonatomic, strong) NSString *tmppasswd;
+@property(nonatomic, strong) NSString *secondpwd;
+
 @property(nonatomic, strong) NSString *invitecode;
+
+
+@property(nonatomic, strong) NSString *uuid;
+
+
+
 +(NCUserConfig *)sharedInstance;
 @end

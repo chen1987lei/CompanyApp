@@ -80,10 +80,14 @@
 		CE41D6D01C16CBB5002FC6BF /* NCLoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE41D6CF1C16CBB5002FC6BF /* NCLoginViewController.m */; };
 		CE41D6D41C16D21F002FC6BF /* NCUserConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = CE41D6D31C16D21F002FC6BF /* NCUserConfig.m */; };
 		CE794E9A1C19274500E76AEC /* TCRegisterManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE794E991C19274500E76AEC /* TCRegisterManager.m */; };
-		CE794E9E1C1927B200E76AEC /* TCNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE794E9D1C1927B200E76AEC /* TCNetworkManager.m */; };
 		CE794EA11C1927DA00E76AEC /* NCNetworkManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE794EA01C1927DA00E76AEC /* NCNetworkManager.m */; };
 		CE794EA61C199A6300E76AEC /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = CE794EA51C199A6300E76AEC /* Utils.m */; };
 		CE794EA91C199A7000E76AEC /* RegisterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE794EA81C199A7000E76AEC /* RegisterViewController.m */; };
+		CE91496D1C1EF6D80041480C /* NCInitial.m in Sources */ = {isa = PBXBuildFile; fileRef = CE91496A1C1EF6D80041480C /* NCInitial.m */; };
+		CE91496E1C1EF6D80041480C /* NCModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE91496C1C1EF6D80041480C /* NCModelManager.m */; };
+		CE9149771C1EFC5A0041480C /* NAModalSheet.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9149721C1EFC5A0041480C /* NAModalSheet.m */; };
+		CE9149781C1EFC5A0041480C /* UIImage+BoxBlur.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9149741C1EFC5A0041480C /* UIImage+BoxBlur.m */; };
+		CE9149791C1EFC5A0041480C /* UIImage+screenshot.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9149761C1EFC5A0041480C /* UIImage+screenshot.m */; };
 		CE95FCDA1C1713DD00C53975 /* NCBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE95FCD91C1713DD00C53975 /* NCBaseViewController.m */; };
 		CE95FCDD1C1715C800C53975 /* TDAutocompleteTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = CE95FCDC1C1715C800C53975 /* TDAutocompleteTextField.m */; };
 		CE95FCE01C17162700C53975 /* TDNoneMenuTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = CE95FCDF1C17162700C53975 /* TDNoneMenuTextField.m */; };
@@ -238,14 +242,22 @@
 		CE41D6D31C16D21F002FC6BF /* NCUserConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCUserConfig.m; sourceTree = "<group>"; };
 		CE794E981C19274500E76AEC /* TCRegisterManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCRegisterManager.h; sourceTree = "<group>"; };
 		CE794E991C19274500E76AEC /* TCRegisterManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCRegisterManager.m; sourceTree = "<group>"; };
-		CE794E9C1C1927B200E76AEC /* TCNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TCNetworkManager.h; sourceTree = "<group>"; };
-		CE794E9D1C1927B200E76AEC /* TCNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TCNetworkManager.m; sourceTree = "<group>"; };
 		CE794E9F1C1927DA00E76AEC /* NCNetworkManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCNetworkManager.h; sourceTree = "<group>"; };
 		CE794EA01C1927DA00E76AEC /* NCNetworkManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCNetworkManager.m; sourceTree = "<group>"; };
 		CE794EA41C199A6300E76AEC /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
 		CE794EA51C199A6300E76AEC /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		CE794EA71C199A7000E76AEC /* RegisterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterViewController.h; sourceTree = "<group>"; };
 		CE794EA81C199A7000E76AEC /* RegisterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisterViewController.m; sourceTree = "<group>"; };
+		CE9149691C1EF6D80041480C /* NCInitial.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCInitial.h; sourceTree = "<group>"; };
+		CE91496A1C1EF6D80041480C /* NCInitial.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCInitial.m; sourceTree = "<group>"; };
+		CE91496B1C1EF6D80041480C /* NCModelManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCModelManager.h; sourceTree = "<group>"; };
+		CE91496C1C1EF6D80041480C /* NCModelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCModelManager.m; sourceTree = "<group>"; };
+		CE9149711C1EFC5A0041480C /* NAModalSheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NAModalSheet.h; sourceTree = "<group>"; };
+		CE9149721C1EFC5A0041480C /* NAModalSheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NAModalSheet.m; sourceTree = "<group>"; };
+		CE9149731C1EFC5A0041480C /* UIImage+BoxBlur.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+BoxBlur.h"; sourceTree = "<group>"; };
+		CE9149741C1EFC5A0041480C /* UIImage+BoxBlur.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+BoxBlur.m"; sourceTree = "<group>"; };
+		CE9149751C1EFC5A0041480C /* UIImage+screenshot.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+screenshot.h"; sourceTree = "<group>"; };
+		CE9149761C1EFC5A0041480C /* UIImage+screenshot.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+screenshot.m"; sourceTree = "<group>"; };
 		CE95FCD81C1713DD00C53975 /* NCBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCBaseViewController.h; sourceTree = "<group>"; };
 		CE95FCD91C1713DD00C53975 /* NCBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCBaseViewController.m; sourceTree = "<group>"; };
 		CE95FCDB1C1715C800C53975 /* TDAutocompleteTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDAutocompleteTextField.h; sourceTree = "<group>"; };
@@ -314,6 +326,7 @@
 		CE41D57F1C0F1768002FC6BF /* CompanyApp */ = {
 			isa = PBXGroup;
 			children = (
+				CE91496F1C1EFC5A0041480C /* OtherLibs */,
 				CE794E9B1C1927A800E76AEC /* Common */,
 				CE41D5831C0F1769002FC6BF /* AppDelegate.h */,
 				CE41D5841C0F1769002FC6BF /* AppDelegate.m */,
@@ -352,6 +365,7 @@
 		CE41D59B1C15A873002FC6BF /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				CE9149681C1EF6D80041480C /* Core */,
 				CE41D6B71C16BC85002FC6BF /* NCHomeViewController.h */,
 				CE41D6B81C16BC85002FC6BF /* NCHomeViewController.m */,
 				CE41D6BA1C16BC93002FC6BF /* NCMyViewController.h */,
@@ -635,12 +649,42 @@
 		CE794E9B1C1927A800E76AEC /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				CE794E9C1C1927B200E76AEC /* TCNetworkManager.h */,
-				CE794E9D1C1927B200E76AEC /* TCNetworkManager.m */,
 				CE794E9F1C1927DA00E76AEC /* NCNetworkManager.h */,
 				CE794EA01C1927DA00E76AEC /* NCNetworkManager.m */,
 			);
 			name = Common;
+			sourceTree = "<group>";
+		};
+		CE9149681C1EF6D80041480C /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				CE9149691C1EF6D80041480C /* NCInitial.h */,
+				CE91496A1C1EF6D80041480C /* NCInitial.m */,
+				CE91496B1C1EF6D80041480C /* NCModelManager.h */,
+				CE91496C1C1EF6D80041480C /* NCModelManager.m */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		CE91496F1C1EFC5A0041480C /* OtherLibs */ = {
+			isa = PBXGroup;
+			children = (
+				CE9149701C1EFC5A0041480C /* NAModalSheet */,
+			);
+			path = OtherLibs;
+			sourceTree = "<group>";
+		};
+		CE9149701C1EFC5A0041480C /* NAModalSheet */ = {
+			isa = PBXGroup;
+			children = (
+				CE9149711C1EFC5A0041480C /* NAModalSheet.h */,
+				CE9149721C1EFC5A0041480C /* NAModalSheet.m */,
+				CE9149731C1EFC5A0041480C /* UIImage+BoxBlur.h */,
+				CE9149741C1EFC5A0041480C /* UIImage+BoxBlur.m */,
+				CE9149751C1EFC5A0041480C /* UIImage+screenshot.h */,
+				CE9149761C1EFC5A0041480C /* UIImage+screenshot.m */,
+			);
+			path = NAModalSheet;
 			sourceTree = "<group>";
 		};
 		FFFDA23B671C1FB66329725C /* Frameworks */ = {
@@ -770,6 +814,7 @@
 				CE41D5FF1C15AB74002FC6BF /* UITextField+Addition.m in Sources */,
 				CE41D6481C15ACD1002FC6BF /* WKInterfaceButton+WebCache.m in Sources */,
 				CE41D6411C15ACD1002FC6BF /* UIButton+WebCache.m in Sources */,
+				CE9149771C1EFC5A0041480C /* NAModalSheet.m in Sources */,
 				CE41D5F41C15AB74002FC6BF /* NSString+Color.m in Sources */,
 				CE41D6031C15AB74002FC6BF /* WKWebView+JavascriptRun.m in Sources */,
 				CE41D63F1C15ACD1002FC6BF /* SDWebImageManager.m in Sources */,
@@ -790,15 +835,16 @@
 				CE41D6381C15ACD1002FC6BF /* MKAnnotationView+WebCache.m in Sources */,
 				CE794EA91C199A7000E76AEC /* RegisterViewController.m in Sources */,
 				CE41D5821C0F1768002FC6BF /* main.m in Sources */,
+				CE91496E1C1EF6D80041480C /* NCModelManager.m in Sources */,
 				CE41D6D41C16D21F002FC6BF /* NCUserConfig.m in Sources */,
 				CE794EA61C199A6300E76AEC /* Utils.m in Sources */,
 				CE41D6011C15AB74002FC6BF /* UIWebView+JavascriptRun.m in Sources */,
 				CE41D6451C15ACD1002FC6BF /* UIImageView+HighlightedWebCache.m in Sources */,
 				CEE733D01C186CF800343808 /* NCUserNetManager.m in Sources */,
 				CE41D6BF1C16BCB6002FC6BF /* NCMessageViewController.m in Sources */,
-				CE794E9E1C1927B200E76AEC /* TCNetworkManager.m in Sources */,
 				CE41D5EC1C15AB74002FC6BF /* NSData+Addition.m in Sources */,
 				CE41D5FD1C15AB74002FC6BF /* UIImage+TDGIF.m in Sources */,
+				CE9149791C1EFC5A0041480C /* UIImage+screenshot.m in Sources */,
 				CE41D6D01C16CBB5002FC6BF /* NCLoginViewController.m in Sources */,
 				CE41D5EB1C15AB74002FC6BF /* NSArray+Addition.m in Sources */,
 				CE41D5F11C15AB74002FC6BF /* NSMutableArray+Addition.m in Sources */,
@@ -820,6 +866,8 @@
 				CE41D6521C15ACF8002FC6BF /* NSData-AES.m in Sources */,
 				CE41D6BC1C16BC93002FC6BF /* NCMyViewController.m in Sources */,
 				CE41D5A71C15A8DE002FC6BF /* NCTabBarController.m in Sources */,
+				CE91496D1C1EF6D80041480C /* NCInitial.m in Sources */,
+				CE9149781C1EFC5A0041480C /* UIImage+BoxBlur.m in Sources */,
 				CE41D63A1C15ACD1002FC6BF /* SDImageCache.m in Sources */,
 				CE41D6391C15ACD1002FC6BF /* NSData+ImageContentType.m in Sources */,
 				CE41D5E91C15AB74002FC6BF /* CAGradientLayer+Addition.m in Sources */,
@@ -931,6 +979,7 @@
 			baseConfigurationReference = AAD986C2F57A4C8343A3C05E /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
 				GCC_PREFIX_HEADER = CompanyApp/CompanyAppPrefix.pch;
 				INFOPLIST_FILE = CompanyApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -945,6 +994,7 @@
 			baseConfigurationReference = 140E119405031267EB446A0E /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
 				GCC_PREFIX_HEADER = CompanyApp/CompanyAppPrefix.pch;
 				INFOPLIST_FILE = CompanyApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
