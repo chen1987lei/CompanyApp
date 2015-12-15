@@ -7,32 +7,47 @@
 		<key>AFNetworking.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<true/>
+			<false/>
 		</dict>
 		<key>JSONKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<true/>
+			<false/>
+		</dict>
+		<key>MBProgressHUD.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Masonry.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
 		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<true/>
+			<false/>
 		</dict>
 		<key>YYKit.xcscheme</key>
 		<dict>
 			<key>isShown</key>
-			<true/>
+			<false/>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>1CB0FF1BBFF767EAEF91886B0B87BF7B</key>
+		<key>1525893666345197B68EC58244719C31</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6591E6A75CF8CB22BE89BF91B11EDE8F</key>
+		<key>30B0A48D65497D825F6FCE8E001C8DB2</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>7FE163BFF58BC61888F1F4672DFC1821</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -42,7 +57,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CF454364988A45C0C3ECC98DF8A26394</key>
+		<key>9F9954EBF37AF787FFF993646978EDD0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F56DFA9EF2BEB3A850B4248A7E515EF6</key>
 		<dict>
 			<key>primary</key>
 			<true/>

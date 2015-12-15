@@ -10,6 +10,12 @@
 #import "TDAutocompleteTextField.h"
 #import "TDNoneMenuTextField.h"
 
+#import "RegisterViewController.h"
+
+#import "NCUserConfig.h"
+#import "NCUserNetManager.h"
+
+
 #define kTextFieldHeight 45.0f
 #define kBreakLineColor         RGBS(220)
 
@@ -70,7 +76,7 @@
 - (UIImageView *)contentView
 {
     if (!_contentView) {
-        _contentView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 161, self.view.width, self.scrollView.height)];
+        _contentView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 161, self.view.width, 200)];
         _contentView.userInteractionEnabled = YES;
         
 
@@ -139,13 +145,25 @@
 }
 
 #define kMarginTopToLoginButton 25.0f
-#define kConfirmButtonHeight        45.0f
+#define kConfirmButtonHeight        34.0f
 -(void)addLoginActionsView
 {
     _actionsview = [[UIView alloc] initWithFrame:CGRectMake(0, _contentView.bottom + 8, self.contentView.width-50, kConfirmButtonHeight+45)];
     
+    _phoneBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    _phoneBtn.frame = CGRectMake(25, 5, 102, kConfirmButtonHeight);
+    _phoneBtn.titleLabel.font = [UIFont systemFontOfSize:12.0f];
+    _phoneBtn.contentHorizontalAlignment = NSTextAlignmentRight;
+    _phoneBtn.contentVerticalAlignment = UIControlContentVerticalAlignmentTop;
+    [_phoneBtn setTitle:LocalizedString(@"注册") forState:UIControlStateNormal];
+    [_phoneBtn setTitleColor:RGB(58, 160, 235) forState:UIControlStateNormal];
+    [_phoneBtn setTitleColor:RGB(58, 160, 235) forState:UIControlStateHighlighted];
+    [_phoneBtn addTarget:self action:@selector(phoneButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    
     _loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _loginBtn.frame = CGRectMake(25, 0, self.contentView.width-50, kConfirmButtonHeight);
+    _loginBtn.frame = CGRectMake(_phoneBtn.right + 6, _phoneBtn.top, _phoneBtn.width, _phoneBtn.height);
     _loginBtn.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     _loginBtn.adjustsImageWhenDisabled = NO;
     _loginBtn.adjustsImageWhenHighlighted = NO;
@@ -165,7 +183,7 @@
     
     
     _findPasswordBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _findPasswordBtn.frame = CGRectMake(12, _loginBtn.bottom + 15, 80, 30);
+    _findPasswordBtn.frame = CGRectMake(_loginBtn.right + 60, _loginBtn.bottom + 3, 42, 16);
     _findPasswordBtn.titleLabel.font = [UIFont systemFontOfSize:12.0f];
     _findPasswordBtn.contentHorizontalAlignment = NSTextAlignmentLeft;
     _findPasswordBtn.contentVerticalAlignment = UIControlContentVerticalAlignmentTop;
@@ -175,15 +193,7 @@
     [_findPasswordBtn addTarget:self action:@selector(findPasswordButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
     
     
-    _phoneBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _phoneBtn.frame = CGRectMake(self.contentView.width - 102 - 25, _loginBtn.bottom + 15, 102, 30);
-    _phoneBtn.titleLabel.font = [UIFont systemFontOfSize:12.0f];
-    _phoneBtn.contentHorizontalAlignment = NSTextAlignmentRight;
-    _phoneBtn.contentVerticalAlignment = UIControlContentVerticalAlignmentTop;
-    [_phoneBtn setTitle:LocalizedString(@"短信验证登录") forState:UIControlStateNormal];
-    [_phoneBtn setTitleColor:RGB(58, 160, 235) forState:UIControlStateNormal];
-    [_phoneBtn setTitleColor:RGB(58, 160, 235) forState:UIControlStateHighlighted];
-    [_phoneBtn addTarget:self action:@selector(phoneButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
+   
     
     [_actionsview addSubview:_loginBtn];
     [_actionsview addSubview:_findPasswordBtn];
@@ -193,6 +203,25 @@
     
 }
 
+-(void)LoginButtonDidClick
+{
+    NSString *acount = @"";
+    NSString *inputpwd = @"";
+    WS(weakself)
+ [[NCUserNetManager sharedInstance] loginWithAccount:@"" andPassword:@"" withComplate:^(NSDictionary *result, NSError *error) {
+     
+ }];
+}
+
+
+-(void)doActionWhenLoginIn
+{
+    [self.navigationController dismissViewControllerAnimated:YES completion:^{
+        
+        
+    }];
+}
+
 -(void)findPasswordButtonDidClick
 {
     
@@ -200,7 +229,8 @@
 
 -(void)phoneButtonDidClick
 {
-    
+    RegisterViewController *regview = [[RegisterViewController alloc] init];
+    [self.navigationController pushViewController:regview animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

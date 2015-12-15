@@ -31,4 +31,7 @@
 
 
 +(NCUserConfig *)sharedInstance;
+
+
+-(void)saveUserData;
 @end

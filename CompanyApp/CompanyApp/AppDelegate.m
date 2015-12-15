@@ -11,6 +11,8 @@
 
 #import "NCLoginViewController.h"
 
+#import "NCInitial.h"
+
 @interface AppDelegate ()
 {
     UINavigationController *_tdNav;
@@ -38,19 +40,35 @@
     self.window.backgroundColor = [UIColor blackColor];
     self.window.rootViewController = _tdNav;
     
+    
+    [[NCInitial sharedInstance] initial];
+    
+    
     if (isLogin) {
         [self showLoginViewController];
     }
-    
+    else
+    {
+        //先展示loadingview
+        [self refreshHomeView];
+    }
     return YES;
 }
 
 
+-(void)refreshHomeView
+{
+    [[NCInitial sharedInstance] requestHomeBannerWithComplate:^(NSDictionary *result, NSError *error) {
+        
+        
+    }];
+}
+
 -(void)showLoginViewController
 {
     NCLoginViewController *loginview=  [[NCLoginViewController alloc] init];
-    
-    [_tdNav presentViewController:loginview animated:YES completion:^{
+    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:loginview];
+    [_tdNav presentViewController:nav animated:YES completion:^{
         
         
     }];

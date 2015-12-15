@@ -10,8 +10,12 @@
 #import "TopNavBar.h"
 #import "Utils.h"
 
+#import "NAModalSheet.h"
+
 #import "NCUserConfig.h"
-#import "TCRegisterManager.h"
+#import "NCUserNetManager.h"
+
+#import "NCModelManager.h"
 
 @interface RegisterViewController ()<UITableViewDataSource,UITableViewDelegate,TopNavBarDelegate,UITextFieldDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
 {
@@ -21,6 +25,7 @@
 
 @end
 
+static BOOL hasViewLicense = NO;
 @implementation RegisterViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -42,7 +47,7 @@
     //创建tableView
     [self createTableView];
 
-
+    [self showContentwithCompletionBlock:nil];
 }
 
 
@@ -76,18 +81,23 @@
     
 }
 
--(void)showContent
+-(void)showContentwithCompletionBlock:(id)completionBlock
 {
+   NCCertificate *regcertobj   = [NCModelManager sharedInstance].regcertobj;
+    NSString *message = regcertobj.content;
     
-//    NAModalSheet *sheet = [[NAModalSheet alloc] initWithViewController:vc presentationStyle:NAModalSheetPresentationStyleFadeInCentered];
-//    sheet.disableBlurredBackground = YES;
-//    sheet.cornerRadiusWhenCentered = 10.0;
+//   title subtitle;
+    
+    NAModalSheet *sheet = [[NAModalSheet alloc] initWithViewController:self presentationStyle:NAModalSheetPresentationStyleFadeInCentered];
+    sheet.disableBlurredBackground = YES;
+    sheet.cornerRadiusWhenCentered = 10.0;
+    
 //    vc.modalSheet = sheet;
 //    vc.messageString = message == nil?@"":message;
 //    vc.openURL = [NSURL URLWithString:urlString];
 //    vc.completionBlock = completionBlock;
 //    vc.hasShowed = YES;
-//    [sheet presentWithCompletion:nil];
+    [sheet presentWithCompletion:nil];
 }
 
 /**
@@ -135,10 +145,10 @@
     _registerTableView.dataSource = self;
     [self.view addSubview:_registerTableView];
     
-    UIView *footview =  [[UIView alloc] initWithFrame:CGRectMake(0, 0,_registerTableView.width , 100)];
-    
+    UIView *footview =  [[UIView alloc] initWithFrame:CGRectMake(0, 0,_registerTableView.width , 200)];
     
     UIButton *submitbtn = [[UIButton alloc] initWithFrame:CGRectMake(6, 28, self.view.width-12, 34)];
+    [submitbtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     
     [submitbtn setTitle:@"提交" forState:UIControlStateNormal];
     
@@ -150,6 +160,25 @@
 
 -(void)registerButtonAction
 {
+    NCUserConfig *userconfig = [NCUserConfig sharedInstance];
+    userconfig.userName = @"";
+     userconfig.userName = @"";
+     userconfig.userName = @"";
+     userconfig.userName = @"";
+     userconfig.userName = @"";
+     userconfig.userName = @"";
+     userconfig.userName = @"";
+     userconfig.userName = @"";
+    
+    
+    [[NCUserNetManager sharedInstance] registerWithUser:userconfig withComplate:^(NSDictionary *result, NSError *error) {
+       
+        //注册成功
+        NCUserConfig *tmpconfig = [NCUserConfig sharedInstance];
+        tmpconfig.uuid = @"";
+        
+    }
+];
     
 }
 
@@ -234,7 +263,7 @@
         UILabel *label = [Utils labelWithFrame:CGRectMake(6.f, celltop, 70.f, 20.f) withTitle:@"姓   名" titleFontSize:[UIFont systemFontOfSize:10.f] textColor:[UIColor blackColor] backgroundColor:[UIColor clearColor] alignment:NSTextAlignmentLeft];
         [cell addSubview:label];
         
-        UITextField *textField= [[UITextField alloc] initWithFrame:CGRectMake(label.right+OFF_MAX, celltop, textwidth, txtfieldHeight)];
+        UITextField *textField= [[UITextField alloc] initWithFrame:CGRectMake(label.right+offset, celltop, textwidth, txtfieldHeight)];
         textField.tag = Tag_AccountTextField;
         textField.returnKeyType = UIReturnKeyDone;
         textField.delegate = self;
@@ -247,7 +276,7 @@
         UILabel *label = [Utils labelWithFrame:CGRectMake(6.f, 10.f, 70.f, 20.f) withTitle:@"性   别" titleFontSize:[UIFont systemFontOfSize:10.f] textColor:[UIColor blackColor] backgroundColor:[UIColor clearColor] alignment:NSTextAlignmentLeft];
         [cell addSubview:label];
         
-        UITextField *textField= [[UITextField alloc] initWithFrame:CGRectMake(label.right+OFF_MAX, celltop, textwidth, txtfieldHeight)];
+        UITextField *textField= [[UITextField alloc] initWithFrame:CGRectMake(label.right+offset , celltop, textwidth, txtfieldHeight)];
         textField.tag = Tag_SexTextField;
         textField.returnKeyType = UIReturnKeyDone;
         textField.userInteractionEnabled = NO;
@@ -261,7 +290,7 @@
         UILabel *label = [Utils labelWithFrame:CGRectMake(6.f, 10.f, 70.f, 20.f) withTitle:@"身份证号" titleFontSize:[UIFont systemFontOfSize:10.f] textColor:[UIColor blackColor] backgroundColor:[UIColor clearColor] alignment:NSTextAlignmentLeft];
         [cell addSubview:label];
         
-        UITextField *textField= [[UITextField alloc] initWithFrame:CGRectMake(label.right+OFF_MAX, celltop, textwidth, txtfieldHeight)];
+        UITextField *textField= [[UITextField alloc] initWithFrame:CGRectMake(label.right+offset, celltop, textwidth, txtfieldHeight)];
         textField.tag = Tag_CertCardTextField;
         textField.returnKeyType = UIReturnKeyDone;
         textField.delegate = self;
@@ -274,7 +303,7 @@
         UILabel *label = [Utils labelWithFrame:CGRectMake(6.f, 10.f, 70.f, 20.f) withTitle:@"手机号码" titleFontSize:[UIFont systemFontOfSize:10.f] textColor:[UIColor blackColor] backgroundColor:[UIColor clearColor] alignment:NSTextAlignmentLeft];
         [cell addSubview:label];
         
-        UITextField *textField= [[UITextField alloc] initWithFrame:CGRectMake(label.right+OFF_MAX, celltop, textwidth, txtfieldHeight)];
+        UITextField *textField= [[UITextField alloc] initWithFrame:CGRectMake(label.right+offset, celltop, textwidth, txtfieldHeight)];
         textField.tag = Tag_MobileNumberTextField;
         textField.returnKeyType = UIReturnKeyDone;
         textField.delegate = self;
@@ -295,7 +324,7 @@
         UILabel *label = [Utils labelWithFrame:CGRectMake(6.f, 10.f, 70.f, 20.f) withTitle:@"验证码" titleFontSize:[UIFont systemFontOfSize:10.f] textColor:[UIColor blackColor] backgroundColor:[UIColor clearColor] alignment:NSTextAlignmentLeft];
         [cell addSubview:label];
         
-        UITextField *textField= [[UITextField alloc] initWithFrame:CGRectMake(label.right+OFF_MAX, celltop, textwidth, txtfieldHeight)];
+        UITextField *textField= [[UITextField alloc] initWithFrame:CGRectMake(label.right+offset, celltop, textwidth, txtfieldHeight)];
         textField.tag = Tag_ValidateCodeTextField;
         textField.returnKeyType = UIReturnKeyDone;
         textField.delegate = self;
@@ -308,7 +337,7 @@
         UILabel *label = [Utils labelWithFrame:CGRectMake(6.f, 10.f, 70.f, 20.f) withTitle:@"设置密码" titleFontSize:[UIFont systemFontOfSize:10.f] textColor:[UIColor blackColor] backgroundColor:[UIColor clearColor] alignment:NSTextAlignmentLeft];
         [cell addSubview:label];
         
-        UITextField *textField= [[UITextField alloc] initWithFrame:CGRectMake(label.right+OFF_MAX, celltop, textwidth, txtfieldHeight)];
+        UITextField *textField= [[UITextField alloc] initWithFrame:CGRectMake(label.right+offset, celltop, textwidth, txtfieldHeight)];
         textField.tag = Tag_TempPasswordTextField;
         textField.returnKeyType = UIReturnKeyDone;
         textField.delegate = self;
@@ -321,7 +350,7 @@
         UILabel *label = [Utils labelWithFrame:CGRectMake(6.f, 10.f, 70.f, 20.f) withTitle:@"重复密码" titleFontSize:[UIFont systemFontOfSize:10.f] textColor:[UIColor blackColor] backgroundColor:[UIColor clearColor] alignment:NSTextAlignmentLeft];
         [cell addSubview:label];
         
-        UITextField *textField= [[UITextField alloc] initWithFrame:CGRectMake(label.right+OFF_MAX, celltop, textwidth, txtfieldHeight)];
+        UITextField *textField= [[UITextField alloc] initWithFrame:CGRectMake(label.right+offset, celltop, textwidth, txtfieldHeight)];
         textField.tag = Tag_ConfirmPasswordTextField;
         textField.returnKeyType = UIReturnKeyDone;
         textField.delegate = self;
@@ -334,7 +363,7 @@
         UILabel *label = [Utils labelWithFrame:CGRectMake(6.f, 10.f, 70.f, 20.f) withTitle:@"企业邀请码" titleFontSize:[UIFont systemFontOfSize:10.f] textColor:[UIColor blackColor] backgroundColor:[UIColor clearColor] alignment:NSTextAlignmentLeft];
         [cell addSubview:label];
         
-        UITextField *textField= [[UITextField alloc] initWithFrame:CGRectMake(label.right+OFF_MAX, celltop, textwidth, txtfieldHeight)];
+        UITextField *textField= [[UITextField alloc] initWithFrame:CGRectMake(label.right+offset, celltop, textwidth, txtfieldHeight)];
         textField.tag = Tag_RecommadTextField;
         textField.returnKeyType = UIReturnKeyDone;
         textField.delegate = self;

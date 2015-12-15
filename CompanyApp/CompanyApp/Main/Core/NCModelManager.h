@@ -43,7 +43,9 @@
     
 }
 
++(NCModelManager *)sharedInstance;
 
+@property(nonatomic,strong) NCCertificate *regcertobj;
 @property(nonatomic,strong) NSArray *modelData;
 
 @end
