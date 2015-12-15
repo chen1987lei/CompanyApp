@@ -7,8 +7,6 @@
 //
 
 #import "TDViewController.h"
-#import "TDTabBarController.h"
-#import "TDLoginViewController.h"
 
 #define kDownloadMemoryWaringMaxCount 2
 
@@ -164,11 +162,11 @@
 
 -(void)failedViewClicked
 {
-    NetworkStatus status = [NCAPP currentReachabilityStatus];
-    if (status == NotReachable) {
-        [MBProgressHUD showTextHudAddTo:self.view title:@"当前无网络连接，请检查您的网络" animated:YES afterDelayHide:1];
-        return;
-    }
+//    NetworkStatus status = [NCAPP currentReachabilityStatus];
+//    if (status == NotReachable) {
+//        [MBProgressHUD showTextHudAddTo:self.view title:@"当前无网络连接，请检查您的网络" animated:YES afterDelayHide:1];
+//        return;
+//    }
     
     [self refreshNetworkData];
 }
@@ -216,14 +214,6 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    if(self.tabBarType == TDTabBarTypeHide)
-    {
-        [[TDTabBarController currentTabBarController] hideTabBarWithAnimation:YES];
-    }
-    else if(self.tabBarType == TDTabBarTypeShow)
-    {
-        [[TDTabBarController currentTabBarController] showTabBarWithAnimation:YES];
-    }
     
     if(_titleBar)
         [self.view bringSubviewToFront:_titleBar];
@@ -266,42 +256,11 @@
 
 - (void)didReceiveMemoryWarning
 {
-    if ([self shouldHandleDownloadMemoryWarning]) {
-        [[DownloadManage shareInstance] pauseAllDownloadTask];
-        DLog(@"当前发生内存警告，暂停了所有下载的视频");
-        [self showMemoryWarningLocalNotification];
-    }
-    
-    DLog(@"[didReceiveMemoryWarning-1]%@",self);
     [super didReceiveMemoryWarning];
-    
-    if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"6.0") && [self isViewLoaded])
-    {
-        if(!self.view.window)
-        {
-            self.view = nil;
-            [self viewDidUnload];
-        }
-    }
-    NCAPP.isMemoryWarning=YES;
 }
 
 - (BOOL)shouldHandleDownloadMemoryWarning{
-    return NO;
-    if ((([UIApplication sharedApplication].applicationState != UIApplicationStateActive) &&
-         [DownloadManage shareInstance].engineIsDownloading)) {
-        //这里这样判断，是TabbarController是一直存在的，所以可以判断出来警告了几次。
-        if ([self isMemberOfClass:[TDTabBarController class]]) {
-            if (warningCount < kDownloadMemoryWaringMaxCount) {
-                warningCount++;
-                return NO;
-            }
-            else {
-                warningCount = 0;
-                return YES;
-            }
-        }
-    }
+
     return NO;
 }
 
@@ -317,7 +276,7 @@
         UIWindow * window = [[[UIApplication sharedApplication] windows] objectAtIndex:0];
         if(window.rootViewController  == self)
         {
-            [[TDTabBarController currentTabBarController] hideTabBarWithAnimation:YES];
+//            [[TDTabBarController currentTabBarController] hideTabBarWithAnimation:YES];
             [super presentModalViewController:modalViewController animated:animated];
         }
         else
@@ -342,7 +301,7 @@
     UIWindow * window = [[[UIApplication sharedApplication] windows] objectAtIndex:0];
     if(window.rootViewController  == self)
     {
-        [[TDTabBarController currentTabBarController] hideTabBarWithAnimation:YES];
+//        [[TDTabBarController currentTabBarController] hideTabBarWithAnimation:YES];
         [super presentViewController:viewControllerToPresent animated:flag completion:completion];
     }
     else
@@ -353,53 +312,6 @@
 
 - (void)dismissViewControllerAnimated: (BOOL)flag completion: (void (^)(void))completion {
     [super dismissViewControllerAnimated:flag completion:completion];
-}
-
-- (void)showLogin{
-    [self showLogin:nil];
-}
-
-- (void)showLogin:(void (^)(void))completion
-{
-    TDLoginViewController *login = [[TDLoginViewController alloc] init];
-    TDNavigationController *navLogin = [[TDNavigationController alloc] initWithRootViewController:login];
-    [navLogin setNavigationBarHidden:YES];
-    [self presentViewController:navLogin animated:YES completion:^{
-        if (completion) {
-            completion();
-        }
-    }];
-}
-
-- (void)showLandscapeLogin
-{
-    if ([self.navigationController.topViewController isKindOfClass:[TDLoginViewController class]]) {
-        return;
-    }
-    CATransition *transition2 = [CATransition animation];
-    transition2.duration = 0.25;/* 间隔时间*/
-    transition2.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];/* 动画的开始与结束的快慢*/
-    transition2.type = kCATransitionMoveIn;/* 各种动画效果*/
-    //@"cube" @"moveIn" @"reveal" @"fade"(default) @"pageCurl" @"pageUnCurl" @"suckEffect" @"rippleEffect" @"oglFlip" @“twist”
-    
-    NSString *subtype = kCATransitionFromTop;
-    if (SYSTEM_VERSION_LESS_THAN(@"8.0")) {
-        UIInterfaceOrientation orientation = [UIApplication sharedApplication].statusBarOrientation;
-        if (orientation == UIInterfaceOrientationLandscapeLeft) {
-            subtype = kCATransitionFromRight;
-        }else if (orientation == UIInterfaceOrientationLandscapeRight){
-            subtype = kCATransitionFromLeft;
-        }
-    }
-    transition2.subtype = subtype;/* 动画方向*/
-    
-    transition2.delegate = self;
-    [self.navigationController.view.layer addAnimation:transition2 forKey:nil];
-    
-    TDLoginViewController *login = [[TDLoginViewController alloc] init];
-    login.isPresentedAnimationLikelyPushIn = YES;
-    login.horizontalMode = YES;
-    [self.navigationController pushViewController:login animated:NO];
 }
 
 #pragma mark - Rotate
@@ -432,12 +344,10 @@
             UIPanGestureRecognizer *moveAnimation = [[UIPanGestureRecognizer alloc]init];
             moveAnimation.delegate = self;
             [conflictScrollView addGestureRecognizer:moveAnimation];
-            //UIPanGestureRecognizer* ges = [self screenEdgePanGestureRecognizer];
-            TDNavigationController *tdnav = (TDNavigationController *)self.navigationController;
-            [moveAnimation addTarget:tdnav.navT action:@selector(handleControllerPop:)];
-//            if (ges) {
-//                [conflictScrollView.panGestureRecognizer requireGestureRecognizerToFail:ges];
-//            }
+           
+//            TDNavigationController *tdnav = (TDNavigationController *)self.navigationController;
+//            [moveAnimation addTarget:tdnav.navT action:@selector(handleControllerPop:)];
+
         }
 //    }
 //    else{
@@ -519,17 +429,18 @@
 //网络请求相关
 -(void)showFailedHUD{
     if (![self isNetWorkAvailable]) {
-        [MBProgressHUD showTextHudAddTo:self.view title:LocalizedString(@"当前无网络连接，请检查您的网络") animated:YES afterDelayHide:1];
+//        [MBProgressHUD showTextHudAddTo:self.view title:LocalizedString(@"当前无网络连接，请检查您的网络") animated:YES afterDelayHide:1];
     }else{
-        [MBProgressHUD showTextHudAddTo:self.view title:LocalizedString(@"获取数据失败") animated:YES afterDelayHide:1];
+//        [MBProgressHUD showTextHudAddTo:self.view title:LocalizedString(@"获取数据失败") animated:YES afterDelayHide:1];
     }
 }
 - (BOOL)isNetWorkAvailable{
-    NetworkStatus netStatus = [NCAPP currentReachabilityStatus];
-    if (netStatus == NotReachable) {
-        return NO;
-    } else {
-        return YES;
-    }
+//    NetworkStatus netStatus = [NCAPP currentReachabilityStatus];
+//    if (netStatus == NotReachable) {
+//        return NO;
+//    } else {
+//        return YES;
+//    }
+    return YES;
 }
 @end

@@ -15,7 +15,6 @@
  ***************************************************************************/
 
 @class AppDelegate;
-@class UserInfo;
 
 @interface Utils : NSObject
 

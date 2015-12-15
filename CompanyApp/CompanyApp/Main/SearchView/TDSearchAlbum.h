@@ -41,6 +41,7 @@ typedef NS_ENUM(NSInteger, CateId) {
  */
 
 
+@property(nonatomic, copy)      NSString *albumid;
 @property(nonatomic, copy)      NSString            *notice;
 @property(nonatomic, copy)      NSString            *title;        //剧集名称
 

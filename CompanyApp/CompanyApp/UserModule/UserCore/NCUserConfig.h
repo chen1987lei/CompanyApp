@@ -25,7 +25,7 @@
 
 @property(nonatomic, strong) NSString *invitecode;
 
-
+@property(nonatomic, strong) NSString *uid;
 @property(nonatomic, strong) NSString *uuid;
 
 

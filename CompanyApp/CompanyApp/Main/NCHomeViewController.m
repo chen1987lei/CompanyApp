@@ -11,6 +11,9 @@
 #import "TDHomeTitleModel.h"
 
 #import "NCInitial.h"
+
+#import "NCNewsViewController.h"
+
 @interface NCHomeViewController ()<UITableViewDataSource,UITableViewDelegate,TDHomeTitleViewDelegate>
 {
     UITableView *_mainTable;
@@ -76,7 +79,7 @@
 
 -(void)addTableView
 {
-    _mainTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, 320, 300)];
+    _mainTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 300)];
     _mainTable.dataSource = self;
     _mainTable.delegate = self;
     [self.view addSubview:_mainTable];
@@ -114,12 +117,12 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 4;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSInteger count = 1;
+    NSInteger count = 4;
     
     return count;
 }
@@ -127,7 +130,7 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    switch (indexPath.section) {
+    switch (indexPath.row) {
         case 0:
         {
             static NSString *firstCellIdentifier = @"firstCell";
@@ -137,9 +140,8 @@
                 
                 cell.backgroundColor = [UIColor whiteColor];
                 
-                
+                cell.textLabel.text = @"新闻资讯";
             }
-            
             
             
             return cell;
@@ -216,6 +218,10 @@
 {
     
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
+    NCNewsViewController *newview = [[NCNewsViewController alloc] init];
+    
+    [self.navigationController pushViewController:newview animated:YES];
 }
 
 

@@ -7,14 +7,14 @@
 //
 
 #import "TDSearchSeriesPannel.h"
-#import "TDSeriesTitleView.h"
-#import "TDSearchSeriesView.h"
+//#import "TDSeriesTitleView.h"
+//#import "TDSearchSeriesView.h"
 #import "TDSearchTitleView.h"
 #import "TDSearchAlbum.h"
 #import "TDSearchAlbumVideoCell.h"
 
 #define kSearchTitleViewMarginForLeftRight 0
-@interface TDSearchSeriesPannel () <TdSearchTitleDelegate,TdSearchGridViewDelegate,UIScrollViewDelegate>{
+@interface TDSearchSeriesPannel () <TdSearchTitleDelegate,UIScrollViewDelegate>{
     
 //    CALayer *_leftDirectionIcon;
 //    CALayer *_rightDirectionIcon;
@@ -23,7 +23,7 @@
 
 @property (nonatomic, strong)TDSearchTitleView *searchTitleView;
 @property (nonatomic, strong) UIView *searchTitleViewBorder;    //康力泉：专门给searchTitleView做的背景框（用contentInset操作起来比较麻烦）
-@property (nonatomic, strong)TDSearchSeriesView *seriesView;
+//@property (nonatomic, strong)TDSearchSeriesView *seriesView;
 @property (nonatomic, strong)UILabel *seriesTitlelabel;
 @property (nonatomic,strong)NSMutableArray *totalSearchData;
 @property (nonatomic)UIButton *backBtn;
@@ -84,7 +84,7 @@
     switch (type) {
         case Direct_DianShiJu:
         case Direct_DongMan:
-            self.seriesView.seriesType = ksearchSeriesCover;
+//            self.seriesView.seriesType = ksearchSeriesCover;
             self.series_page_size = SERIES_PAGE_SIZE_COVER;
             break;
         case Direct_ZongYi:
@@ -92,10 +92,10 @@
         case Direct_JiLuPian:
             case Direct_DianYingXiLie:
             case Direct_ZiXun:
-            self.seriesView.seriesType = ksearchSeriesList;
+//            self.seriesView.seriesType = ksearchSeriesList;
             self.series_page_size = SERIES_PAGE_SIZE_LIST;
         default:
-            self.seriesView.seriesType = ksearchSeriesList;
+//            self.seriesView.seriesType = ksearchSeriesList;
             self.series_page_size = SERIES_PAGE_SIZE_LIST;
             break;
     }
@@ -106,7 +106,7 @@
     _totalSize = info.item_count;
     _descendOrder = info.is_reversed;
     [self showSeriesType:[info.cate_id integerValue]];
-    _seriesView.is_tudou = info.is_tudou;
+//    _seriesView.is_tudou = info.is_tudou;
     [self.searchTitleView createTitleWithNumber:[_totalSearchData count]
                                        PageSize:self.series_page_size
                                            desc:_descendOrder
@@ -121,8 +121,8 @@
     
     @autoreleasepool {
         NSMutableArray *pageDataSource = [self subArrayOfArray:_totalSearchData Index:page];
-        self.seriesView.searchDataSource = [pageDataSource mutableCopy];
-        [self.seriesView reloadData];
+//        self.seriesView.searchDataSource = [pageDataSource mutableCopy];
+//        [self.seriesView reloadData];
     }
 }
 
@@ -133,7 +133,7 @@
     [self.searchTitleViewBorder addSubview:self.searchTitleView];
     self.searchTitleView.frame = CGRectMake(kSearchTitleViewMarginForLeftRight, 0, self.searchTitleViewBorder.bounds.size.width - kSearchTitleViewMarginForLeftRight * 2, 35);
     CGSize size = CGSizeMake([UIScreen width],104.0/320.0*[UIScreen width]*3.0/2.0 + 7*2 + 47);
-    self.seriesView.frame = CGRectMake(5, 71, self.bounds.size.width - 10, size.height-71);
+//    self.seriesView.frame = CGRectMake(5, 71, self.bounds.size.width - 10, size.height-71);
 //    CGSize leftSize = Image(@"search_more_episode_left_icon").size;
 //    CGSize rightSize = Image(@"search_more_episode_icon").size;
 //    _leftDirectionIcon.frame = CGRectMake(kSearchMoreEpisodeIconMarginForLeftRight, 33 + (35 - leftSize.height)/2, leftSize.width, leftSize.height);
@@ -193,14 +193,14 @@
     }
 }
 
-- (TDSearchSeriesView *)seriesView {
-    if (!_seriesView) {
-        _seriesView = [[TDSearchSeriesView alloc] initWithFrame:CGRectZero];
-        _seriesView.gridViewDelegate = self;
-        [self addSubview:_seriesView];
-    }
-    return _seriesView;
-}
+//- (TDSearchSeriesView *)seriesView {
+//    if (!_seriesView) {
+//        _seriesView = [[TDSearchSeriesView alloc] initWithFrame:CGRectZero];
+//        _seriesView.gridViewDelegate = self;
+//        [self addSubview:_seriesView];
+//    }
+//    return _seriesView;
+//}
 
 -(TDSearchTitleView*)searchTitleView
 {

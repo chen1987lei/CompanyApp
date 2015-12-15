@@ -124,7 +124,6 @@
 		CE9149C21C201FEC0041480C /* TDSearchPopMessageView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9149AF1C201FEC0041480C /* TDSearchPopMessageView.m */; };
 		CE9149C31C201FEC0041480C /* TDSearchSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9149B11C201FEC0041480C /* TDSearchSegmentView.m */; };
 		CE9149C41C201FEC0041480C /* TDSearchSeriesPannel.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9149B31C201FEC0041480C /* TDSearchSeriesPannel.m */; };
-		CE9149C51C201FEC0041480C /* TDSearchSeriesView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9149B51C201FEC0041480C /* TDSearchSeriesView.m */; };
 		CE9149C61C201FEC0041480C /* TDSearchTitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9149B71C201FEC0041480C /* TDSearchTitleView.m */; };
 		CE9149C71C201FEC0041480C /* TDSearchTypeDropListView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9149B91C201FEC0041480C /* TDSearchTypeDropListView.m */; };
 		CE9149C91C201FEC0041480C /* TDSearchVideoResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE9149BD1C201FEC0041480C /* TDSearchVideoResultViewController.m */; };
@@ -136,6 +135,19 @@
 		CE95FCE01C17162700C53975 /* TDNoneMenuTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = CE95FCDF1C17162700C53975 /* TDNoneMenuTextField.m */; };
 		CEE733CD1C18671200343808 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEE733CC1C18671200343808 /* WebKit.framework */; };
 		CEE733D01C186CF800343808 /* NCUserNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE733CF1C186CF800343808 /* NCUserNetManager.m */; };
+		FA807AAE1C20A66C00A1FE42 /* NCNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA807AAD1C20A66C00A1FE42 /* NCNewsViewController.m */; };
+		FA807AB21C20A6FC00A1FE42 /* HomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA807AB11C20A6FC00A1FE42 /* HomeView.m */; };
+		FA807ABD1C20A73200A1FE42 /* MenuHrizontal.m in Sources */ = {isa = PBXBuildFile; fileRef = FA807AB41C20A73200A1FE42 /* MenuHrizontal.m */; };
+		FA807ABE1C20A73200A1FE42 /* SGFocusImageFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = FA807AB61C20A73200A1FE42 /* SGFocusImageFrame.m */; };
+		FA807ABF1C20A73200A1FE42 /* SGFocusImageItem.m in Sources */ = {isa = PBXBuildFile; fileRef = FA807AB81C20A73200A1FE42 /* SGFocusImageItem.m */; };
+		FA807AC01C20A73200A1FE42 /* CustomTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA807ABA1C20A73200A1FE42 /* CustomTableView.m */; };
+		FA807AC11C20A73200A1FE42 /* ScrollPageView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA807ABC1C20A73200A1FE42 /* ScrollPageView.m */; };
+		FA807AC71C20A74E00A1FE42 /* CircleView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA807AC41C20A74E00A1FE42 /* CircleView.m */; };
+		FA807AC81C20A74E00A1FE42 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA807AC61C20A74E00A1FE42 /* EGORefreshTableHeaderView.m */; };
+		FA807ACC1C20A78700A1FE42 /* LoadMoreCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA807ACA1C20A78700A1FE42 /* LoadMoreCell.m */; };
+		FA807ACD1C20A78700A1FE42 /* LoadMoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA807ACB1C20A78700A1FE42 /* LoadMoreCell.xib */; };
+		FA807AD11C20A7D400A1FE42 /* HomeViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA807ACF1C20A7D400A1FE42 /* HomeViewCell.m */; };
+		FA807AD21C20A7D400A1FE42 /* HomeViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA807AD01C20A7D400A1FE42 /* HomeViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -374,8 +386,6 @@
 		CE9149B11C201FEC0041480C /* TDSearchSegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDSearchSegmentView.m; sourceTree = "<group>"; };
 		CE9149B21C201FEC0041480C /* TDSearchSeriesPannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDSearchSeriesPannel.h; sourceTree = "<group>"; };
 		CE9149B31C201FEC0041480C /* TDSearchSeriesPannel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDSearchSeriesPannel.m; sourceTree = "<group>"; };
-		CE9149B41C201FEC0041480C /* TDSearchSeriesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDSearchSeriesView.h; sourceTree = "<group>"; };
-		CE9149B51C201FEC0041480C /* TDSearchSeriesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDSearchSeriesView.m; sourceTree = "<group>"; };
 		CE9149B61C201FEC0041480C /* TDSearchTitleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDSearchTitleView.h; sourceTree = "<group>"; };
 		CE9149B71C201FEC0041480C /* TDSearchTitleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDSearchTitleView.m; sourceTree = "<group>"; };
 		CE9149B81C201FEC0041480C /* TDSearchTypeDropListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDSearchTypeDropListView.h; sourceTree = "<group>"; };
@@ -397,6 +407,30 @@
 		CEE733CC1C18671200343808 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		CEE733CE1C186CF800343808 /* NCUserNetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCUserNetManager.h; sourceTree = "<group>"; };
 		CEE733CF1C186CF800343808 /* NCUserNetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCUserNetManager.m; sourceTree = "<group>"; };
+		FA807AAC1C20A66C00A1FE42 /* NCNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCNewsViewController.h; sourceTree = "<group>"; };
+		FA807AAD1C20A66C00A1FE42 /* NCNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCNewsViewController.m; sourceTree = "<group>"; };
+		FA807AB01C20A6FC00A1FE42 /* HomeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeView.h; sourceTree = "<group>"; };
+		FA807AB11C20A6FC00A1FE42 /* HomeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeView.m; sourceTree = "<group>"; };
+		FA807AB31C20A73200A1FE42 /* MenuHrizontal.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuHrizontal.h; sourceTree = "<group>"; };
+		FA807AB41C20A73200A1FE42 /* MenuHrizontal.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuHrizontal.m; sourceTree = "<group>"; };
+		FA807AB51C20A73200A1FE42 /* SGFocusImageFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGFocusImageFrame.h; sourceTree = "<group>"; };
+		FA807AB61C20A73200A1FE42 /* SGFocusImageFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGFocusImageFrame.m; sourceTree = "<group>"; };
+		FA807AB71C20A73200A1FE42 /* SGFocusImageItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SGFocusImageItem.h; sourceTree = "<group>"; };
+		FA807AB81C20A73200A1FE42 /* SGFocusImageItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SGFocusImageItem.m; sourceTree = "<group>"; };
+		FA807AB91C20A73200A1FE42 /* CustomTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTableView.h; sourceTree = "<group>"; };
+		FA807ABA1C20A73200A1FE42 /* CustomTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableView.m; sourceTree = "<group>"; };
+		FA807ABB1C20A73200A1FE42 /* ScrollPageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollPageView.h; sourceTree = "<group>"; };
+		FA807ABC1C20A73200A1FE42 /* ScrollPageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollPageView.m; sourceTree = "<group>"; };
+		FA807AC31C20A74E00A1FE42 /* CircleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CircleView.h; sourceTree = "<group>"; };
+		FA807AC41C20A74E00A1FE42 /* CircleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CircleView.m; sourceTree = "<group>"; };
+		FA807AC51C20A74E00A1FE42 /* EGORefreshTableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EGORefreshTableHeaderView.h; sourceTree = "<group>"; };
+		FA807AC61C20A74E00A1FE42 /* EGORefreshTableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EGORefreshTableHeaderView.m; sourceTree = "<group>"; };
+		FA807AC91C20A78700A1FE42 /* LoadMoreCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoadMoreCell.h; sourceTree = "<group>"; };
+		FA807ACA1C20A78700A1FE42 /* LoadMoreCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoadMoreCell.m; sourceTree = "<group>"; };
+		FA807ACB1C20A78700A1FE42 /* LoadMoreCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadMoreCell.xib; sourceTree = "<group>"; };
+		FA807ACE1C20A7D400A1FE42 /* HomeViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewCell.h; sourceTree = "<group>"; };
+		FA807ACF1C20A7D400A1FE42 /* HomeViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewCell.m; sourceTree = "<group>"; };
+		FA807AD01C20A7D400A1FE42 /* HomeViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -462,9 +496,8 @@
 				CE41D5841C0F1769002FC6BF /* AppDelegate.m */,
 				CE41D5A41C15A8A4002FC6BF /* CustomControl */,
 				CE41D59B1C15A873002FC6BF /* Main */,
-				CE41D59A1C15A873002FC6BF /* ExerciseModule */,
-				CE41D59C1C15A873002FC6BF /* NewsModule */,
-				CE41D59D1C15A873002FC6BF /* OrgModule */,
+				FA807AAA1C20A64B00A1FE42 /* ExerciseModule */,
+				FA807AAB1C20A64B00A1FE42 /* NewsModule */,
 				CE41D59E1C15A873002FC6BF /* SearchModule */,
 				CE41D59F1C15A873002FC6BF /* UserModule */,
 				CE41D58F1C0F176A002FC6BF /* Assets.xcassets */,
@@ -482,13 +515,6 @@
 				CE41D6041C15ABCE002FC6BF /* CompanyAppPrefix.pch */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		CE41D59A1C15A873002FC6BF /* ExerciseModule */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = ExerciseModule;
 			sourceTree = "<group>";
 		};
 		CE41D59B1C15A873002FC6BF /* Main */ = {
@@ -509,20 +535,6 @@
 				CE9149CF1C2021910041480C /* NCHomeSectionView.m */,
 			);
 			path = Main;
-			sourceTree = "<group>";
-		};
-		CE41D59C1C15A873002FC6BF /* NewsModule */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = NewsModule;
-			sourceTree = "<group>";
-		};
-		CE41D59D1C15A873002FC6BF /* OrgModule */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = OrgModule;
 			sourceTree = "<group>";
 		};
 		CE41D59E1C15A873002FC6BF /* SearchModule */ = {
@@ -914,8 +926,6 @@
 				CE9149B11C201FEC0041480C /* TDSearchSegmentView.m */,
 				CE9149B21C201FEC0041480C /* TDSearchSeriesPannel.h */,
 				CE9149B31C201FEC0041480C /* TDSearchSeriesPannel.m */,
-				CE9149B41C201FEC0041480C /* TDSearchSeriesView.h */,
-				CE9149B51C201FEC0041480C /* TDSearchSeriesView.m */,
 				CE9149B61C201FEC0041480C /* TDSearchTitleView.h */,
 				CE9149B71C201FEC0041480C /* TDSearchTitleView.m */,
 				CE9149B81C201FEC0041480C /* TDSearchTypeDropListView.h */,
@@ -926,6 +936,62 @@
 				CE9149BF1C201FEC0041480C /* TDSearchViewController.m */,
 			);
 			path = SearchView;
+			sourceTree = "<group>";
+		};
+		FA807AAA1C20A64B00A1FE42 /* ExerciseModule */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ExerciseModule;
+			path = CompanyApp/ExerciseModule;
+			sourceTree = SOURCE_ROOT;
+		};
+		FA807AAB1C20A64B00A1FE42 /* NewsModule */ = {
+			isa = PBXGroup;
+			children = (
+				FA807AAF1C20A6EB00A1FE42 /* NewsContent */,
+				FA807AAC1C20A66C00A1FE42 /* NCNewsViewController.h */,
+				FA807AAD1C20A66C00A1FE42 /* NCNewsViewController.m */,
+			);
+			name = NewsModule;
+			path = CompanyApp/NewsModule;
+			sourceTree = SOURCE_ROOT;
+		};
+		FA807AAF1C20A6EB00A1FE42 /* NewsContent */ = {
+			isa = PBXGroup;
+			children = (
+				FA807AC91C20A78700A1FE42 /* LoadMoreCell.h */,
+				FA807ACA1C20A78700A1FE42 /* LoadMoreCell.m */,
+				FA807ACB1C20A78700A1FE42 /* LoadMoreCell.xib */,
+				FA807ACE1C20A7D400A1FE42 /* HomeViewCell.h */,
+				FA807ACF1C20A7D400A1FE42 /* HomeViewCell.m */,
+				FA807AD01C20A7D400A1FE42 /* HomeViewCell.xib */,
+				FA807AC21C20A74E00A1FE42 /* RefreshTableHeaderView */,
+				FA807AB31C20A73200A1FE42 /* MenuHrizontal.h */,
+				FA807AB41C20A73200A1FE42 /* MenuHrizontal.m */,
+				FA807AB51C20A73200A1FE42 /* SGFocusImageFrame.h */,
+				FA807AB61C20A73200A1FE42 /* SGFocusImageFrame.m */,
+				FA807AB71C20A73200A1FE42 /* SGFocusImageItem.h */,
+				FA807AB81C20A73200A1FE42 /* SGFocusImageItem.m */,
+				FA807AB91C20A73200A1FE42 /* CustomTableView.h */,
+				FA807ABA1C20A73200A1FE42 /* CustomTableView.m */,
+				FA807ABB1C20A73200A1FE42 /* ScrollPageView.h */,
+				FA807ABC1C20A73200A1FE42 /* ScrollPageView.m */,
+				FA807AB01C20A6FC00A1FE42 /* HomeView.h */,
+				FA807AB11C20A6FC00A1FE42 /* HomeView.m */,
+			);
+			path = NewsContent;
+			sourceTree = "<group>";
+		};
+		FA807AC21C20A74E00A1FE42 /* RefreshTableHeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				FA807AC31C20A74E00A1FE42 /* CircleView.h */,
+				FA807AC41C20A74E00A1FE42 /* CircleView.m */,
+				FA807AC51C20A74E00A1FE42 /* EGORefreshTableHeaderView.h */,
+				FA807AC61C20A74E00A1FE42 /* EGORefreshTableHeaderView.m */,
+			);
+			path = RefreshTableHeaderView;
 			sourceTree = "<group>";
 		};
 		FFFDA23B671C1FB66329725C /* Frameworks */ = {
@@ -996,6 +1062,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA807AD21C20A7D400A1FE42 /* HomeViewCell.xib in Resources */,
+				FA807ACD1C20A78700A1FE42 /* LoadMoreCell.xib in Resources */,
 				CE41D5901C0F176A002FC6BF /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1060,6 +1128,7 @@
 				CE41D6361C15ACD1002FC6BF /* NSString+MD5.m in Sources */,
 				CE41D6C21C16BCC8002FC6BF /* NCLibraryViewController.m in Sources */,
 				CE41D5FF1C15AB74002FC6BF /* UITextField+Addition.m in Sources */,
+				FA807AC71C20A74E00A1FE42 /* CircleView.m in Sources */,
 				CE90E2781C20499000F1D5E1 /* EmptyView.m in Sources */,
 				CE41D6481C15ACD1002FC6BF /* WKInterfaceButton+WebCache.m in Sources */,
 				CE41D6411C15ACD1002FC6BF /* UIButton+WebCache.m in Sources */,
@@ -1076,6 +1145,7 @@
 				CE90E2A51C20508F00F1D5E1 /* TDBorderView.m in Sources */,
 				CE41D5F81C15AB74002FC6BF /* UIColor+Addition.m in Sources */,
 				CE9149C31C201FEC0041480C /* TDSearchSegmentView.m in Sources */,
+				FA807ABD1C20A73200A1FE42 /* MenuHrizontal.m in Sources */,
 				CE41D5F01C15AB74002FC6BF /* NSManagedObject+Addition.m in Sources */,
 				CE41D5B01C15A9E4002FC6BF /* Universal.m in Sources */,
 				CE90E2961C204CB100F1D5E1 /* TDBaseVerticalCellView.m in Sources */,
@@ -1090,6 +1160,7 @@
 				CE90E28A1C204BF100F1D5E1 /* TDLabel.m in Sources */,
 				CE41D5ED1C15AB74002FC6BF /* NSDate+HumanInterval.m in Sources */,
 				CE794EA11C1927DA00E76AEC /* NCNetworkManager.m in Sources */,
+				FA807ABF1C20A73200A1FE42 /* SGFocusImageItem.m in Sources */,
 				CE90E2AE1C2052B300F1D5E1 /* TDCellLayer.m in Sources */,
 				CE41D6381C15ACD1002FC6BF /* MKAnnotationView+WebCache.m in Sources */,
 				CE794EA91C199A7000E76AEC /* RegisterViewController.m in Sources */,
@@ -1106,12 +1177,14 @@
 				CE41D6BF1C16BCB6002FC6BF /* NCMessageViewController.m in Sources */,
 				CE41D5EC1C15AB74002FC6BF /* NSData+Addition.m in Sources */,
 				CE41D5FD1C15AB74002FC6BF /* UIImage+TDGIF.m in Sources */,
+				FA807AC01C20A73200A1FE42 /* CustomTableView.m in Sources */,
 				CE90E2A81C20523600F1D5E1 /* TDHomeModel.m in Sources */,
 				CE9149791C1EFC5A0041480C /* UIImage+screenshot.m in Sources */,
 				CE9149A31C201F670041480C /* TDBlurView.m in Sources */,
 				CE41D6D01C16CBB5002FC6BF /* NCLoginViewController.m in Sources */,
 				CE41D5EB1C15AB74002FC6BF /* NSArray+Addition.m in Sources */,
 				CE41D5F11C15AB74002FC6BF /* NSMutableArray+Addition.m in Sources */,
+				FA807AD11C20A7D400A1FE42 /* HomeViewCell.m in Sources */,
 				CE41D5EE1C15AB74002FC6BF /* NSDictionary+Addition.m in Sources */,
 				CE90E2601C20477B00F1D5E1 /* TDFailedView.m in Sources */,
 				CE90E2841C204A2100F1D5E1 /* SearchHistory.m in Sources */,
@@ -1128,14 +1201,18 @@
 				CE90E2691C2048F600F1D5E1 /* TDPlayerActivity.m in Sources */,
 				CE90E2751C20495B00F1D5E1 /* TDView.m in Sources */,
 				CE41D6471C15ACD1002FC6BF /* UIView+WebCacheOperation.m in Sources */,
+				FA807ACC1C20A78700A1FE42 /* LoadMoreCell.m in Sources */,
+				FA807AC11C20A73200A1FE42 /* ScrollPageView.m in Sources */,
 				CE9149CD1C2020350041480C /* TDViewController.m in Sources */,
 				CE41D5AA1C15A939002FC6BF /* NCTabBar.m in Sources */,
 				CE41D5FC1C15AB74002FC6BF /* UIImage+Addition.m in Sources */,
+				FA807AB21C20A6FC00A1FE42 /* HomeView.m in Sources */,
 				CE41D5FA1C15AB74002FC6BF /* UIFont+Addtion.m in Sources */,
 				CE41D5F21C15AB74002FC6BF /* NSNumber+Addition.m in Sources */,
+				FA807AC81C20A74E00A1FE42 /* EGORefreshTableHeaderView.m in Sources */,
+				FA807AAE1C20A66C00A1FE42 /* NCNewsViewController.m in Sources */,
 				CE41D6021C15AB74002FC6BF /* UIWebView+UIWebView_Addition.m in Sources */,
 				CE41D63D1C15ACD1002FC6BF /* SDWebImageDownloader.m in Sources */,
-				CE9149C51C201FEC0041480C /* TDSearchSeriesView.m in Sources */,
 				CE41D5F31C15AB74002FC6BF /* NSString+Addition.m in Sources */,
 				CE41D6421C15ACD1002FC6BF /* UIImage+GIF.m in Sources */,
 				CE41D6521C15ACF8002FC6BF /* NSData-AES.m in Sources */,
@@ -1148,6 +1225,7 @@
 				CE9149A21C201F670041480C /* TDBaseObject.m in Sources */,
 				CE9149781C1EFC5A0041480C /* UIImage+BoxBlur.m in Sources */,
 				CE41D63A1C15ACD1002FC6BF /* SDImageCache.m in Sources */,
+				FA807ABE1C20A73200A1FE42 /* SGFocusImageFrame.m in Sources */,
 				CE41D6391C15ACD1002FC6BF /* NSData+ImageContentType.m in Sources */,
 				CE41D5E91C15AB74002FC6BF /* CAGradientLayer+Addition.m in Sources */,
 				CE90E2721C20494A00F1D5E1 /* TDCustomSeg.m in Sources */,

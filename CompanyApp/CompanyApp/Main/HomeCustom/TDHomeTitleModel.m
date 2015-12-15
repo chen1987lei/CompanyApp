@@ -21,33 +21,7 @@
         return;
     }
     
-    if (self.selectedIcon == nil || [self.selectedIcon length] == 0) {
-        if ([[TDImageCache sharedImageCache] imageFromKey:self.icon]) {
-            self.isValid = YES;
-        }
-    }else if ([[TDImageCache sharedImageCache] imageFromKey:self.icon] &&
-        [[TDImageCache sharedImageCache] imageFromKey:self.selectedIcon]) {
-        self.isValid = YES;
-    }else {
-        //缓存 icon
-        [[TDImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:self.icon]
-                                                     options:TDWebImageRetryFailed
-                                                    progress:nil
-                                                   completed:^(UIImage *image, NSError *error, TDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
-                                                       if (image) {
-                                                           [[TDImageCache sharedImageCache] storeImage:image forKey:self.icon];
-                                                       }
-                                                   }];
-        [[TDImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:self.selectedIcon]
-                                                     options:TDWebImageRetryFailed
-                                                    progress:nil
-                                                   completed:^(UIImage *image, NSError *error, TDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
-                                                       if (image) {
-                                                           [[TDImageCache sharedImageCache] storeImage:image forKey:self.selectedIcon];
-                                                       }
-                                                   }];
 
-    }
 }
 
 @end

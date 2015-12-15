@@ -47,7 +47,7 @@ static BOOL hasViewLicense = NO;
     //创建tableView
     [self createTableView];
 
-    [self showContentwithCompletionBlock:nil];
+//    [self showContentwithCompletionBlock:nil];
 }
 
 
@@ -58,7 +58,7 @@ static BOOL hasViewLicense = NO;
     _pickerView.dataSource = self;
     _pickerView.backgroundColor = [UIColor whiteColor];
     _pickerView.hidden = YES;
-    _pickerView.frame = CGRectMake(0, 0, 320, 200);
+    _pickerView.frame = CGRectMake(0, 0, kScreenWidth, 200);
     [self.view addSubview:_pickerView];
 }
 
@@ -139,7 +139,8 @@ static BOOL hasViewLicense = NO;
  */
 - (void)createTableView{
 
-    _registerTableView = [[UITableView alloc] initWithFrame:CGRectMake(0.f, (FSystenVersion >= 7.0)?64.f:44.f, 320.f, (FSystenVersion >=7.0)?(ISIPHONE5?(568.f - 64.f):(480.f - 64.f)):(ISIPHONE5?(548.f - 44.f):(460.f - 44.f))) style:UITableViewStyleGrouped];
+    float tbwidth = self.view.width;
+    _registerTableView = [[UITableView alloc] initWithFrame:CGRectMake(0.f, (FSystenVersion >= 7.0)?64.f:44.f, tbwidth, (FSystenVersion >=7.0)?(ISIPHONE5?(568.f - 64.f):(480.f - 64.f)):(ISIPHONE5?(548.f - 44.f):(460.f - 44.f))) style:UITableViewStyleGrouped];
     _registerTableView.allowsSelection = NO;
     _registerTableView.delegate = self;
     _registerTableView.dataSource = self;
@@ -160,25 +161,40 @@ static BOOL hasViewLicense = NO;
 
 -(void)registerButtonAction
 {
-    NCUserConfig *userconfig = [NCUserConfig sharedInstance];
-    userconfig.userName = @"";
-     userconfig.userName = @"";
-     userconfig.userName = @"";
-     userconfig.userName = @"";
-     userconfig.userName = @"";
-     userconfig.userName = @"";
-     userconfig.userName = @"";
-     userconfig.userName = @"";
+    NSString *account = [(UITextField *)[self.view viewWithTag:Tag_AccountTextField] text];
+    NSString *sexval = [(UITextField *)[self.view viewWithTag:Tag_SexTextField] text];
+    
+    NSString *certcard = [(UITextField *)[self.view viewWithTag:Tag_CertCardTextField] text];
+    NSString *mobile = [(UITextField *)[self.view viewWithTag:Tag_MobileNumberTextField] text];
+    NSString *validatecode = [(UITextField *)[self.view viewWithTag:Tag_ValidateCodeTextField] text];
+    NSString *firstpwd = [(UITextField *)[self.view viewWithTag:Tag_TempPasswordTextField] text];
+    NSString *secondpwd = [(UITextField *)[self.view viewWithTag:Tag_ConfirmPasswordTextField] text];
+    NSString *recommadText = [(UITextField *)[self.view viewWithTag:Tag_RecommadTextField] text];
+    
+    NCUserConfig *user = [[NCUserConfig alloc] init];
+    user.userName = account;
+    user.sexValue = [sexval isEqualToString:@"男"]?@1:@2;
+    user.certCard = certcard;
+    user.mobilenumber = mobile;
+    user.validatecode = validatecode;
+    user.tmppasswd = firstpwd;
+    user.secondpwd = secondpwd;
+    user.invitecode = recommadText;
     
     
-    [[NCUserNetManager sharedInstance] registerWithUser:userconfig withComplate:^(NSDictionary *result, NSError *error) {
-       
-        //注册成功
-        NCUserConfig *tmpconfig = [NCUserConfig sharedInstance];
-        tmpconfig.uuid = @"";
+    [[NCUserNetManager sharedInstance] registerWithUser:user withComplate:^(NSDictionary *result, NSError *error) {
+//        code = 200;
+//        res =     {
+//            uid = 7;
+//            uuid = 3cc7c775bd5b6ff9cdb4228628686c66;
+        //注册成功，提示
+        NSString *resultstr = @"注册失败";;
+        if ([result[@"code"] integerValue] == 200) {
+            resultstr = @"注册成功";
+        }
         
-    }
-];
+        [Utils alertTitle:@"提示" message:resultstr delegate:nil cancelBtn:@"好" otherBtnName:nil];
+    }];
     
 }
 
@@ -253,13 +269,11 @@ static BOOL hasViewLicense = NO;
 #define txtfieldHeight 20.f
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    static NSString *cellIdentifier = @"cellIdentifier";
-    
-    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-
     if (indexPath.row == 0){
 //        cell.imageView.image = PNGIMAGE(@"register_email@2x");
-    
+        static NSString *cellIdentifier = @"cellIdentifier";
+        
+        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         UILabel *label = [Utils labelWithFrame:CGRectMake(6.f, celltop, 70.f, 20.f) withTitle:@"姓   名" titleFontSize:[UIFont systemFontOfSize:10.f] textColor:[UIColor blackColor] backgroundColor:[UIColor clearColor] alignment:NSTextAlignmentLeft];
         [cell addSubview:label];
         
@@ -268,11 +282,14 @@ static BOOL hasViewLicense = NO;
         textField.returnKeyType = UIReturnKeyDone;
         textField.delegate = self;
         textField.placeholder = @"请输入姓名";
-        textField.keyboardType = UIKeyboardTypeEmailAddress;
+        textField.keyboardType = UIKeyboardTypeDefault;
         [cell addSubview:textField];
         
+        return cell;
     }else if (indexPath.row == 1){
+        static NSString *cellIdentifier2 = @"cellIdentifier2";
         
+        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier2];
         UILabel *label = [Utils labelWithFrame:CGRectMake(6.f, 10.f, 70.f, 20.f) withTitle:@"性   别" titleFontSize:[UIFont systemFontOfSize:10.f] textColor:[UIColor blackColor] backgroundColor:[UIColor clearColor] alignment:NSTextAlignmentLeft];
         [cell addSubview:label];
         
@@ -285,8 +302,11 @@ static BOOL hasViewLicense = NO;
         textField.keyboardType = UIKeyboardTypeEmailAddress;
         [cell addSubview:textField];
         
+        return cell;
     }else if (indexPath.row == 2){
+        static NSString *cellIdentifier3 = @"cellIdentifier3";
         
+        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier3];
         UILabel *label = [Utils labelWithFrame:CGRectMake(6.f, 10.f, 70.f, 20.f) withTitle:@"身份证号" titleFontSize:[UIFont systemFontOfSize:10.f] textColor:[UIColor blackColor] backgroundColor:[UIColor clearColor] alignment:NSTextAlignmentLeft];
         [cell addSubview:label];
         
@@ -295,32 +315,40 @@ static BOOL hasViewLicense = NO;
         textField.returnKeyType = UIReturnKeyDone;
         textField.delegate = self;
         textField.placeholder = @"请输入身份证号";
-        textField.keyboardType = UIKeyboardTypeEmailAddress;
+        textField.keyboardType = UIKeyboardTypeNumbersAndPunctuation;
         [cell addSubview:textField];
         
+        return cell;
     }else if (indexPath.row ==3){
+        static NSString *cellIdentifier4 = @"cellIdentifier4";
         
+        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier4];
         UILabel *label = [Utils labelWithFrame:CGRectMake(6.f, 10.f, 70.f, 20.f) withTitle:@"手机号码" titleFontSize:[UIFont systemFontOfSize:10.f] textColor:[UIColor blackColor] backgroundColor:[UIColor clearColor] alignment:NSTextAlignmentLeft];
         [cell addSubview:label];
         
-        UITextField *textField= [[UITextField alloc] initWithFrame:CGRectMake(label.right+offset, celltop, textwidth, txtfieldHeight)];
+        UITextField *textField= [[UITextField alloc] initWithFrame:CGRectMake(label.right+offset, celltop, textwidth , txtfieldHeight)];
         textField.tag = Tag_MobileNumberTextField;
         textField.returnKeyType = UIReturnKeyDone;
         textField.delegate = self;
         textField.placeholder = @"请输入手机号";
-        textField.keyboardType = UIKeyboardTypeEmailAddress;
+        textField.keyboardType = UIKeyboardTypeNumberPad;
         [cell addSubview:textField];
         
         UIButton *sendcodeBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        sendcodeBtn.backgroundColor = [UIColor blueColor];
+        [sendcodeBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [sendcodeBtn setTitle:@"发送验证码" forState:UIControlStateNormal];
-        sendcodeBtn.frame = CGRectMake(10.f, 0.f, 21.f, 21.f);
+        sendcodeBtn.frame = CGRectMake(textField.right+offset , celltop, 100.f, 21.f);
 
         [sendcodeBtn addTarget:self action:@selector(sendCodeButtonClicked) forControlEvents:UIControlEventTouchUpInside];
     
-        [cell addSubview:textField];
+        [cell addSubview:sendcodeBtn];
+        return cell;
         
     }else if (indexPath.row == 4){
+        static NSString *cellIdentifier5 = @"cellIdentifier5";
         
+        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier5];
         UILabel *label = [Utils labelWithFrame:CGRectMake(6.f, 10.f, 70.f, 20.f) withTitle:@"验证码" titleFontSize:[UIFont systemFontOfSize:10.f] textColor:[UIColor blackColor] backgroundColor:[UIColor clearColor] alignment:NSTextAlignmentLeft];
         [cell addSubview:label];
         
@@ -329,10 +357,13 @@ static BOOL hasViewLicense = NO;
         textField.returnKeyType = UIReturnKeyDone;
         textField.delegate = self;
         textField.placeholder = @"请输入手机验证码";
-        textField.keyboardType = UIKeyboardTypeEmailAddress;
+        textField.keyboardType = UIKeyboardTypeNumberPad;
         [cell addSubview:textField];
-        
+         return cell;
     }else if (indexPath.row == 5){
+        static NSString *cellIdentifier6 = @"cellIdentifier6";
+        
+        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier6];
         
         UILabel *label = [Utils labelWithFrame:CGRectMake(6.f, 10.f, 70.f, 20.f) withTitle:@"设置密码" titleFontSize:[UIFont systemFontOfSize:10.f] textColor:[UIColor blackColor] backgroundColor:[UIColor clearColor] alignment:NSTextAlignmentLeft];
         [cell addSubview:label];
@@ -342,10 +373,15 @@ static BOOL hasViewLicense = NO;
         textField.returnKeyType = UIReturnKeyDone;
         textField.delegate = self;
         textField.placeholder = @"请输入密码";
-        textField.keyboardType = UIKeyboardTypeEmailAddress;
+        textField.keyboardType = UIKeyboardTypeASCIICapable;
         [cell addSubview:textField];
+        
+        return cell;
     }
     else if (indexPath.row == 6){
+        static NSString *cellIdentifier7 = @"cellIdentifier7";
+        
+        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier7];
         
         UILabel *label = [Utils labelWithFrame:CGRectMake(6.f, 10.f, 70.f, 20.f) withTitle:@"重复密码" titleFontSize:[UIFont systemFontOfSize:10.f] textColor:[UIColor blackColor] backgroundColor:[UIColor clearColor] alignment:NSTextAlignmentLeft];
         [cell addSubview:label];
@@ -355,10 +391,14 @@ static BOOL hasViewLicense = NO;
         textField.returnKeyType = UIReturnKeyDone;
         textField.delegate = self;
         textField.placeholder = @"请重复输入密码";
-        textField.keyboardType = UIKeyboardTypeEmailAddress;
+        textField.keyboardType = UIKeyboardTypeASCIICapable;
         [cell addSubview:textField];
+        return cell;
     }
-    else if (indexPath.row == 6){
+    else if (indexPath.row == 7){
+        static NSString *cellIdentifier8 = @"cellIdentifier8";
+        
+        UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier8];
         
         UILabel *label = [Utils labelWithFrame:CGRectMake(6.f, 10.f, 70.f, 20.f) withTitle:@"企业邀请码" titleFontSize:[UIFont systemFontOfSize:10.f] textColor:[UIColor blackColor] backgroundColor:[UIColor clearColor] alignment:NSTextAlignmentLeft];
         [cell addSubview:label];
@@ -368,16 +408,31 @@ static BOOL hasViewLicense = NO;
         textField.returnKeyType = UIReturnKeyDone;
         textField.delegate = self;
         textField.placeholder = @"请输入企业邀请码";
-        textField.keyboardType = UIKeyboardTypeEmailAddress;
+        textField.keyboardType = UIKeyboardTypeASCIICapable;
         [cell addSubview:textField];
+        return cell;
     }
-    
-    return cell;
+    return nil;
 }
 
 -(void)sendCodeButtonClicked
 {
-    
+ 
+    NSString *mobile = [(UITextField *)[self.view viewWithTag:Tag_MobileNumberTextField] text];
+    [[NCUserNetManager sharedInstance] getValidateCodeWithPhone:mobile toRegister:YES withComplate:^(NSDictionary *result, NSError *error) {
+//        code = 200;
+//        res =     {
+//            code = 618199;
+//        };
+        if ([result[@"code"] integerValue] == 200) {
+            
+            NSString *regcode = result[@"res"][@"code"];
+            
+            NSString *msgstr = [NSString stringWithFormat:@"已经发送验证码: %@", regcode];
+            [Utils alertTitle:@"提示" message:msgstr delegate:nil cancelBtn:@"好" otherBtnName:nil];
+            
+        }
+    }];
 }
 
 #pragma mark - UITableViewDelegate

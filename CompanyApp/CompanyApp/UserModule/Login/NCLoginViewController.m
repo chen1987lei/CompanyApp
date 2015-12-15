@@ -14,7 +14,7 @@
 
 #import "NCUserConfig.h"
 #import "NCUserNetManager.h"
-
+#import "Utils.h"
 
 #define kTextFieldHeight 45.0f
 #define kBreakLineColor         RGBS(220)
@@ -62,7 +62,7 @@
         [_scrollView addSubview:line];
         
         
-        UIImageView *iconview = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 320, 161)];
+        UIImageView *iconview = [[UIImageView alloc] initWithFrame:CGRectMake(10, 0, 300, 161)];
         
         [_scrollView addSubview:iconview];
         
@@ -152,12 +152,16 @@
     
     _phoneBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     _phoneBtn.frame = CGRectMake(25, 5, 102, kConfirmButtonHeight);
-    _phoneBtn.titleLabel.font = [UIFont systemFontOfSize:12.0f];
+    
+    _phoneBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     _phoneBtn.contentHorizontalAlignment = NSTextAlignmentRight;
     _phoneBtn.contentVerticalAlignment = UIControlContentVerticalAlignmentTop;
     [_phoneBtn setTitle:LocalizedString(@"注册") forState:UIControlStateNormal];
     [_phoneBtn setTitleColor:RGB(58, 160, 235) forState:UIControlStateNormal];
     [_phoneBtn setTitleColor:RGB(58, 160, 235) forState:UIControlStateHighlighted];
+    
+    
+    _phoneBtn.backgroundColor = RGB(255, 97, 42);
     [_phoneBtn addTarget:self action:@selector(phoneButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
     
     
@@ -168,12 +172,13 @@
     _loginBtn.adjustsImageWhenDisabled = NO;
     _loginBtn.adjustsImageWhenHighlighted = NO;
     _loginBtn.titleLabel.font = [UIFont systemFontOfSize:14];
-    _loginBtn.enabled = NO;
+//    _loginBtn.enabled = NO;
     
     [_loginBtn setTitle:LocalizedString(@"登录") forState:UIControlStateNormal];
     [_loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
     [_loginBtn setTitleColor:[[UIColor whiteColor] colorWithAlphaComponent:0.5] forState:UIControlStateDisabled];
+    
     [_loginBtn addTarget:self action:@selector(LoginButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
     _loginBtn.titleLabel.font = [UIFont systemFontOfSize:14];
     _loginBtn.layer.cornerRadius = 2;
@@ -193,11 +198,10 @@
     [_findPasswordBtn addTarget:self action:@selector(findPasswordButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
     
     
-   
     
+    [_actionsview addSubview:_phoneBtn];
     [_actionsview addSubview:_loginBtn];
     [_actionsview addSubview:_findPasswordBtn];
-    [_actionsview addSubview:_phoneBtn];
     
     [_scrollView addSubview:_actionsview];
     
@@ -205,12 +209,34 @@
 
 -(void)LoginButtonDidClick
 {
-    NSString *acount = @"";
-    NSString *inputpwd = @"";
+    NSString *acount = tfLoginName.text;
+    NSString *inputpwd = tfPassword.text;
     WS(weakself)
- [[NCUserNetManager sharedInstance] loginWithAccount:@"" andPassword:@"" withComplate:^(NSDictionary *result, NSError *error) {
-     
- }];
+     [[NCUserNetManager sharedInstance] loginWithAccount:acount andPassword:inputpwd withComplate:^(NSDictionary *result, NSError *error) {
+
+         
+         if ([result[@"code"] integerValue] == 200) {
+             NCUserConfig *user =  [NCUserConfig sharedInstance];
+             user.mobilenumber = acount;
+             user.uid = result[@"res"][@"uid"];
+             user.uuid = result[@"res"][@"uuid"];
+             
+             [weakself doActionWhenLoginIn];
+         }
+         else
+         {
+             NSString *msg = result[@"msg"];
+             if (msg) {
+                 
+                 [Utils alertTitle:@"提示" message:msg delegate:nil cancelBtn:@"好" otherBtnName:nil];
+             }
+             else
+             {
+                 NSString *resultstr = @"登陆失败";;
+                 [Utils alertTitle:@"提示" message:resultstr delegate:nil cancelBtn:@"好" otherBtnName:nil];
+             }
+         }
+     }];
 }
 
 

@@ -11,7 +11,7 @@
 @implementation NCUserConfig
 
 @synthesize userName,sexValue,certCard,mobilenumber,validatecode,tmppasswd, secondpwd,invitecode;
-@synthesize uuid;
+@synthesize uid, uuid;
 
 
 +(NCUserConfig *)sharedInstance;

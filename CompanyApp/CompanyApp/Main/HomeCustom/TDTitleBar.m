@@ -7,10 +7,11 @@
 //
 
 #import "TDTitleBar.h"
+#import "Universal.h"
 
 int sSTATUS_BAR_HEIGHT = 0;     //状态栏，在init方法中调用
 int sVIEW_TOP_MARGIN = 0;       //上边的距离
-int sSTATUS_BAR_MARGIN_TOP=20;  //非ios7下是20
+//int sSTATUS_BAR_MARGIN_TOP=20;  //非ios7下是20
 static NSInteger itemFontSize = 15;
 
 #define topOffset ((sSTATUS_BAR_HEIGHT) + (44 - (TitleBar_Btn_Width) ) / 2.0) //上边距. 排除顶部20

@@ -14,6 +14,7 @@
 
 #endif /* CompanyAppPrefix_pch */
 
+
 #define FSystenVersion            ([[[UIDevice currentDevice] systemVersion] floatValue])
 #define DSystenVersion            ([[[UIDevice currentDevice] systemVersion] doubleValue])
 #define SSystemVersion            ([[UIDevice currentDevice] systemVersion])
@@ -31,7 +32,7 @@
 #define ISIPHONE5                 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
 
 
-#define NCAPP  ((AppDelegate*) [UIApplication sharedApplication].delegate)
+#define NCAPP  (AppDelegate*)[UIApplication sharedApplication].delegate
 
 #ifdef __OBJC__
 #import <UIKit/UIKit.h>
@@ -39,6 +40,8 @@
 #import "Universal.h"
 #import "Addition.h"
 #import "Marco.h"
+
+#import "AppDelegate.h"
 
 #import <MBProgressHUD.h>
 #import <YYKit/YYKit.h>

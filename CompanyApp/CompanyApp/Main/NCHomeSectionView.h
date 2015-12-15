@@ -13,5 +13,5 @@
     
 }
 
-//@property(non)
+@property(nonatomic,strong) NSString *secTitle;
 @end

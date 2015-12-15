@@ -9,8 +9,8 @@
 #import "TDHttpCore.h"
 #import <AFNetworkActivityIndicatorManager.h>
 
-//#import "TDStringRequestOperation.h"
-//#import "TDJSONRequestOperation.h"
+#import "TDStringRequestOperation.h"
+#import "TDJSONRequestOperation.h"
 //#import "TDXMLRequestOperation.h"
 #import <AFNetworking.h>
 
@@ -162,7 +162,7 @@ NSString * const TDNetworkingErrorDomain = @"TDNetworkingErrorDomain";
     TDJSONRequestOperation *operation = [TDJSONRequestOperation JSONRequestOperationWithRequest:request success:^(NSURLRequest *request, NSHTTPURLResponse *response, id json) {
         [[AFNetworkActivityIndicatorManager sharedManager] decrementActivityCount];
         if (success) {
-            DLog(@"\n[getRequestWithPath-success]url: %@ statusCode: %ld", request.URL, (long)response.statusCode);
+//            DLog(@"\n[getRequestWithPath-success]url: %@ statusCode: %ld", request.URL, (long)response.statusCode);
             if ([json isKindOfClass:[NSDictionary class]]) {
                 success(json,request,response);
             } else {
@@ -171,7 +171,7 @@ NSString * const TDNetworkingErrorDomain = @"TDNetworkingErrorDomain";
         }
     } failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error, id json) {
         [[AFNetworkActivityIndicatorManager sharedManager] decrementActivityCount];
-        DLog(@"\n[getRequestWithPath-error]url: %@ statusCode: %ld", request.URL, (long)response.statusCode);
+//        DLog(@"\n[getRequestWithPath-error]url: %@ statusCode: %ld", request.URL, (long)response.statusCode);
         NSInteger requestErrorType = [wSelf erroeTypeFromStatusCode:response.statusCode];
         if ([json isKindOfClass:[NSDictionary class]]) {
             //status=failed, code=400, desc=login first
@@ -244,27 +244,14 @@ NSString * const TDNetworkingErrorDomain = @"TDNetworkingErrorDomain";
 #pragma mark - tools
 -(NSDictionary *)combineParams:(NSDictionary *)param{
     NSMutableDictionary *params = [NSMutableDictionary dictionaryWithDictionary:param];
-    [params setObject:[TDConfig sharedInstance].pid forKey:@"pid"];
-    [params setObject:[TDConfig sharedInstance].guid forKey:@"guid"];
-    NSUserDefaults * userDefault = [NSUserDefaults standardUserDefaults];
+  
+       NSUserDefaults * userDefault = [NSUserDefaults standardUserDefaults];
     NSString *version = [userDefault objectForKey:@"version"];
     if (version) {
         [params setObject:version forKey:@"ver"];
     }
-    NSString *network = [TDAPP currentReachabilityStatus] == ReachableViaWWAN ? @"WWAN" : @"WIFI";
-    //解决某些时刻可能出现崩溃问题
-    //[[Reachability reachabilityForInternetConnection] currentReachabilityStatus] == ReachableViaWWAN ? @"WWAN" : @"WIFI";
-    [params setObject:network forKey:@"network"]; //联网方式，必选参数。
     params[@"operator"] = [[UIDevice currentDevice] carrier]?[[UIDevice currentDevice] carrier]:@"";
-    if ([YKIndentifier VendorUDID]) {
-        [params setObject:[[YKIndentifier VendorUDID] copy] forKey:@"vdid"];
-    }
-    if ([YKIndentifier OpenUDID]) {
-        [params setObject:[[YKIndentifier OpenUDID] copy] forKey:@"ouid"];
-    }
-    if ([[[UIDevice currentDevice] getIDFA] isNotBlankString]) {
-        [params setObject:[[UIDevice currentDevice] getIDFA] forKey:@"idfa"];
-    }
+ 
     return params;
 }
 /**
@@ -307,7 +294,7 @@ NSString * const TDNetworkingErrorDomain = @"TDNetworkingErrorDomain";
 {
     NSDictionary *dict = response.allHeaderFields;
     if (dict[@"server-time"]) {
-        [TDConfig sharedInstance].serverTime = [dict[@"server-time"] integerValue];
+//        [TDConfig sharedInstance].serverTime = [dict[@"server-time"] integerValue];
     }
 }
 /**
@@ -316,16 +303,16 @@ NSString * const TDNetworkingErrorDomain = @"TDNetworkingErrorDomain";
  *  @return NSInteger
  */
 - (NSInteger)timeout{
-    TDConfig *config = [TDConfig sharedInstance];
-    if (config.timeoutOnWifi != 0 && config.timeoutOnNonWifi != 0) {
-        if (TDAPP.currentReachabilityStatus==ReachableViaWiFi) {
-            return config.timeoutOnWifi;
-        }else if(TDAPP.currentReachabilityStatus==ReachableViaWWAN){
-            return config.timeoutOnNonWifi;
-        }else{
-            return kTimeout;
-        }
-    }
+//    TDConfig *config = [TDConfig sharedInstance];
+//    if (config.timeoutOnWifi != 0 && config.timeoutOnNonWifi != 0) {
+//        if (TDAPP.currentReachabilityStatus==ReachableViaWiFi) {
+//            return config.timeoutOnWifi;
+//        }else if(TDAPP.currentReachabilityStatus==ReachableViaWWAN){
+//            return config.timeoutOnNonWifi;
+//        }else{
+//            return kTimeout;
+//        }
+//    }
     return kTimeout;
 }
 

@@ -12,7 +12,7 @@
 
 #define regcodeurl  @"http://anquan.weilomo.com/Api/User/send.html"
 #define regurl  @"http://anquan.weilomo.com/Api/User/reg.html"
-#define loginurl  @"http://anquan.weilomo.com/Api/User/reg.html"
+#define loginurl  @"http://anquan.weilomo.com/Api/User/login.html"
 #define recoveryurl  @"http://anquan.weilomo.com/Api/User/pwd.html"
 #define newpwdurl  @"http://anquan.weilomo.com/Api/User/newspwd.html"
 
@@ -130,7 +130,7 @@ withComplate:(void (^)(NSDictionary *result
     }
     
     [params addEntriesFromDictionary: [NCInitial getBaseParams]];
-    NSMutableURLRequest *request = [self.requestManager.requestSerializer requestWithMethod:@"POST" URLString:regcodeurl
+    NSMutableURLRequest *request = [self.requestManager.requestSerializer requestWithMethod:@"POST" URLString:regurl
                                                                                  parameters:params error:nil];
     
     request.timeoutInterval = 10;
@@ -164,7 +164,7 @@ withComplate:(void (^)(NSDictionary *result
     [params addEntriesFromDictionary: [NCInitial getBaseParams]];
     
     
-    NSMutableURLRequest *request = [self.requestManager.requestSerializer requestWithMethod:@"POST" URLString:regcodeurl
+    NSMutableURLRequest *request = [self.requestManager.requestSerializer requestWithMethod:@"POST" URLString:loginurl
                                                                                  parameters:params error:nil];
     
     request.timeoutInterval = 10;
@@ -182,6 +182,9 @@ withComplate:(void (^)(NSDictionary *result
         completeBlock(nil, error);
         
     }];
+    
+    [operation setQueuePriority:NSOperationQueuePriorityLow];
+    [self.requestManager.operationQueue addOperation:operation];
 }
 
 -(void)recoveryWithAccount:(NSString *)account andPassword:(NSString *)password secondPassword:(NSString *)secondpwd andValidateCode:(NSString *)validatecode  withComplate:(void (^)(NSDictionary *result, NSError *error))completeBlock;
@@ -216,7 +219,9 @@ withComplate:(void (^)(NSDictionary *result
         
     }];
     
-}
+    
+    [operation setQueuePriority:NSOperationQueuePriorityLow];
+    [self.requestManager.operationQueue addOperation:operation];}
 
 
 -(void)requestUserInfoWithComplate:(void (^)(NSDictionary *result, NSError *error))completeBlock;
@@ -248,6 +253,9 @@ withComplate:(void (^)(NSDictionary *result
         completeBlock(nil, error);
         
     }];
+    
+    [operation setQueuePriority:NSOperationQueuePriorityLow];
+    [self.requestManager.operationQueue addOperation:operation];
 }
 
 
@@ -283,7 +291,10 @@ withComplate:(void (^)(NSDictionary *result
         completeBlock(nil, error);
         
     }];
-
+    
+    
+    [operation setQueuePriority:NSOperationQueuePriorityLow];
+    [self.requestManager.operationQueue addOperation:operation];
 }
 
 @end
