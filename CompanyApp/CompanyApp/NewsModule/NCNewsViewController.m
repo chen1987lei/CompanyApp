@@ -87,7 +87,7 @@
 //初始化数据
 -(void)initCommonData{
     
-    [[NCInitial sharedInstance] requestNewsListData:@"2" withPageFrom:1 withOnePageCount:10 WithComplate:^(NSDictionary *result, NSError *error) {
+    [[NCInitial sharedInstance] requestNewsListData:_newsID withPageFrom:1 withOnePageCount:10 WithComplate:^(NSDictionary *result, NSError *error) {
         
         NSInteger code = [result[@"code"] integerValue];
         if (code == 200) {

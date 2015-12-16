@@ -9,5 +9,10 @@
 #import "TDViewController.h"
 
 @interface NCNewsViewController : TDViewController
+{
+    
+}
+
+@property(nonatomic,copy) NSString *newsID;
 
 @end

@@ -367,15 +367,23 @@ enum TAG_HomeView_SECTION{
         case TAG_HomeView_SECTION1:
         {
             NCNewsViewController *newview = [[NCNewsViewController alloc] init];
-            
+            newview.newsID = @"2";
             [self.navigationController pushViewController:newview animated:YES];
         }
             break;
         case TAG_HomeView_SECTION2:
-            
+        {
+            NCNewsViewController *newview = [[NCNewsViewController alloc] init];
+            newview.newsID = @"3";
+            [self.navigationController pushViewController:newview animated:YES];
+        }
             break;
         case TAG_HomeView_SECTION3:
-            
+        {
+            NCNewsViewController *newview = [[NCNewsViewController alloc] init];
+            newview.newsID = @"4";
+            [self.navigationController pushViewController:newview animated:YES];
+        }
             break;
         case TAG_HomeView_SECTION4:
             
@@ -388,7 +396,11 @@ enum TAG_HomeView_SECTION{
 {
     switch (secview.tag) {
         case TAG_HomeView_SECTION1:
-            
+        {
+            NCNewsViewController *newview = [[NCNewsViewController alloc] init];
+            newview.newsID = @"3";
+            [self.navigationController pushViewController:newview animated:YES];
+        }
             break;
         case TAG_HomeView_SECTION2:
             
@@ -408,7 +420,11 @@ enum TAG_HomeView_SECTION{
 {
     switch (secview.tag) {
         case TAG_HomeView_SECTION1:
-            
+        {
+            NCNewsViewController *newview = [[NCNewsViewController alloc] init];
+            newview.newsID = @"4";
+            [self.navigationController pushViewController:newview animated:YES];
+        }
             break;
         case TAG_HomeView_SECTION2:
             

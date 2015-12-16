@@ -85,7 +85,7 @@
 //    }
 }
 
--(void)didClickNewURlString:(TDHomeModel *)model
+-(void)didClickNewsModel:(TDHomeModel *)model
 {
     if ([_actiondelegate respondsToSelector:@selector(homeViewDidClickNews:)]) {
         [_actiondelegate homeViewDidClickNews:model];
