@@ -19,20 +19,20 @@
         [self.contentView addSubview:_Headerphoto];
     
         //名字
-        _nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(60, 5, 200, 25)];
+        _nameLabel = [[UILabel alloc]initWithFrame:CGRectMake(60, 5, 200, 20)];
         _nameLabel.backgroundColor  = [UIColor clearColor];
         _nameLabel.font = [UIFont systemFontOfSize:15];
         [self.contentView addSubview:_nameLabel];
         
         //简介
-        _IntroductionLabel = [[UILabel alloc]initWithFrame:CGRectMake(60, 28, 240, 25)];
+        _IntroductionLabel = [[UILabel alloc]initWithFrame:CGRectMake(60, 25, 240, 20)];
         _IntroductionLabel.backgroundColor  = [UIColor clearColor];
         _IntroductionLabel.textColor = [UIColor lightGrayColor];
         _IntroductionLabel.font = [UIFont systemFontOfSize:13];
         [self.contentView addSubview:_IntroductionLabel];
         
         //网络
-        _networkLabel = [[UILabel alloc]initWithFrame:CGRectMake(290, 5, 50, 25)];
+        _networkLabel = [[UILabel alloc]initWithFrame:CGRectMake(60, 45, 200, 25)];
         _networkLabel.backgroundColor  = [UIColor clearColor];
         _networkLabel.textColor = [UIColor lightGrayColor];
         _networkLabel.font = [UIFont systemFontOfSize:13];

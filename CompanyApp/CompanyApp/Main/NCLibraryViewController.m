@@ -71,13 +71,16 @@
             cell = [[MainCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
             
             cell.selectionStyle = UITableViewCellSelectionStyleGray;
+            
+            cell.Headerphoto.layer.masksToBounds = YES;
+            cell.Headerphoto.layer.cornerRadius = 20;
         }
         
         cell.Headerphoto.image =Image(@"exampleProfile");
 // [UIImage imageNamed:[NSString stringWithFormat:@"%d.png",arc4random()%11]];
             cell.nameLabel.text = @"名字";
-            cell.IntroductionLabel.text = @"工作三年，建筑安全员";
-            cell.networkLabel.text = @"2G";
+            cell.IntroductionLabel.text = @"工作三年";
+            cell.networkLabel.text = @"建筑安全员";
         
 //        if (indexPath.row == dataArray.count-1) {
 //            cell.imageLine.image = nil;
