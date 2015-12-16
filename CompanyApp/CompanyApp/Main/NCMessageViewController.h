@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface NCMessageViewController : UIViewController
+#import "TDViewController.h"
+@interface NCMessageViewController : TDViewController
 
 @end

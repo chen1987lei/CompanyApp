@@ -182,7 +182,7 @@ enum TAG_HomeView_SECTION{
 #define kCellHeight 120
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return kCellHeight+20;
+    return kCellHeight;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
