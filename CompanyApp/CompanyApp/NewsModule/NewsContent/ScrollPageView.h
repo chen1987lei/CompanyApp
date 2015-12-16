@@ -9,8 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "CustomTableView.h"
 
+@class TDHomeModel;
+
 @protocol ScrollPageViewDelegate <NSObject>
 -(void)didScrollPageViewChangedPage:(NSInteger)aPage;
+
+-(void)didClickNewsModel:(TDHomeModel *)model;
 @end
 
 @interface ScrollPageView : UIView<UIScrollViewDelegate,CustomTableViewDataSource,CustomTableViewDelegate>
@@ -32,4 +36,6 @@
 -(void)freshContentTableAtIndex:(NSInteger)aIndex;
 #pragma mark 改变TableView上面滚动栏的内容
 -(void)changeHeaderContentWithCustomTable:(CustomTableView *)aTableContent;
+
+-(void)loadListData:(NSArray *)listData;
 @end

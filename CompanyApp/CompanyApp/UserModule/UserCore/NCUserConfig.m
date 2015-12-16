@@ -13,6 +13,12 @@
 @synthesize userName,sexValue,certCard,mobilenumber,validatecode,tmppasswd, secondpwd,invitecode;
 @synthesize uid, uuid;
 
++(BOOL)haslogin
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    BOOL hasuuid = [userDefaults stringForKey:@"useruuid"]?YES:NO;
+    return hasuuid;
+}
 
 +(NCUserConfig *)sharedInstance;
 {
@@ -22,6 +28,14 @@
         static dispatch_once_t onceToken;
         dispatch_once(&onceToken, ^{
             config = [[NCUserConfig alloc] init];
+            NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+          
+            NSString *uid = [userDefaults stringForKey:@"useruid"];
+            NSString *uuid = [userDefaults stringForKey:@"useruuid"];
+            config.uuid = uuid;
+            config.uid = uid;
+            
+            
         });
     }
     
@@ -32,6 +46,7 @@
 {
     self = [super init];
     if (self) {
+        
         
     }
     return self;

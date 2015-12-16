@@ -1,6 +1,6 @@
 platform :ios, '7.0'
 pod "AFNetworking", "~> 2.6"
-pod "YYKit"
 pod "JSONKit"
 pod "Masonry"
 pod "MBProgressHUD"
+pod "SDWebImage"

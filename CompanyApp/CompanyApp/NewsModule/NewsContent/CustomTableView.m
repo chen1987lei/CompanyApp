@@ -98,19 +98,21 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row == mRowCount) {
         if ([_delegate respondsToSelector:@selector(loadData:FromView:)]) {
-            [_delegate loadData:^(int aAddedRowCount) {
-                NSInteger vNewRowCount = aAddedRowCount;
-                if (vNewRowCount > 0) {
-                    NSMutableArray *indexPaths = [NSMutableArray array];
-                    for (int lIndex = mRowCount; lIndex < mRowCount + vNewRowCount; lIndex++) {
-                        [indexPaths addObject:[NSIndexPath indexPathForRow:lIndex inSection:0]];
-                    }
-                    [tableView beginUpdates];
-                    [tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
-                    [tableView endUpdates];
-                    [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionNone animated:YES];
-                }
-            }FromView:self];
+            
+//            [_delegate loadData:^(int aAddedRowCount) {
+//                NSInteger vNewRowCount = aAddedRowCount;
+//                if (vNewRowCount > 0) {
+//                    NSMutableArray *indexPaths = [NSMutableArray array];
+//                    for (int lIndex = mRowCount; lIndex < mRowCount + vNewRowCount; lIndex++) {
+//                        [indexPaths addObject:[NSIndexPath indexPathForRow:lIndex inSection:0]];
+//                    }
+//                    [tableView beginUpdates];
+//                    [tableView insertRowsAtIndexPaths:indexPaths withRowAnimation:UITableViewRowAnimationFade];
+//                    [tableView endUpdates];
+//                    [tableView scrollToRowAtIndexPath:indexPath atScrollPosition:UITableViewScrollPositionNone animated:YES];
+//                }
+//            }FromView:self];
+            
         }
     }else{
         if ([_delegate respondsToSelector:@selector(didSelectedRowAthIndexPath:IndexPath: FromView:)]) {

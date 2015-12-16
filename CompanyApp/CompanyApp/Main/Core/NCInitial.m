@@ -152,7 +152,13 @@
 {
     NSMutableDictionary *params =  [NSMutableDictionary dictionary];
     [params addEntriesFromDictionary: [NCInitial getBaseParams]];
-    
+  
+    if (![NCUserConfig haslogin]) {
+        return;
+    }
+   NCUserConfig *currentUser = [NCUserConfig sharedInstance];
+    [params setObject:currentUser.uid forKey:@"uid"];
+    [params setObject:currentUser.uuid forKey:@"uuid"];
     
     NSMutableURLRequest *request = [self.requestManager.requestSerializer requestWithMethod:@"POST" URLString:kHomeBannerURL
                                                                                  parameters:params error:nil];
@@ -239,6 +245,13 @@
     [params setObject:@"1" forKey:@"uid"];
     [params setObject:user.uuid forKey:@"uuid"];
     [params addEntriesFromDictionary: [NCInitial getBaseParams]];
+    
+    if (![NCUserConfig haslogin]) {
+        return;
+    }
+    NCUserConfig *currentUser = [NCUserConfig sharedInstance];
+    [params setObject:currentUser.uid forKey:@"uid"];
+    [params setObject:currentUser.uuid forKey:@"uuid"];
     
     
     NSMutableURLRequest *request = [self.requestManager.requestSerializer requestWithMethod:@"POST" URLString:kNewsListURL

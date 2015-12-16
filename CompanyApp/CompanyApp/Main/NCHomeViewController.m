@@ -14,13 +14,28 @@
 
 #import "NCNewsViewController.h"
 
-@interface NCHomeViewController ()<UITableViewDataSource,UITableViewDelegate,TDHomeTitleViewDelegate>
+#import "TDBannerCollectionView.h"
+
+#import "NCHomeSectionView.h"
+#import "TDHomePosterBannerModel.h"
+
+#import "NCNewsViewController.h"
+
+enum TAG_HomeView_SECTION{
+    
+    TAG_HomeView_SECTION1  = 1,
+    TAG_HomeView_SECTION2,
+    TAG_HomeView_SECTION3,
+    TAG_HomeView_SECTION4
+};
+
+@interface NCHomeViewController ()<UITableViewDataSource,UITableViewDelegate,TDHomeTitleViewDelegate,NCHomeSectionViewDelegate>
 {
     UITableView *_mainTable;
     
     NSMutableArray *_arrHomeTitle;
 }
-
+@property(nonatomic,strong) TDBannerCollectionView *postbannerview;
 @property (nonatomic,strong) TDHomeTitleView *titleView;
 @end
 
@@ -36,11 +51,66 @@
     
     [self addTableView];
     [self.view addSubview:self.titleView];
+    [self.view addSubview:self.postbannerview];
     
-    _mainTable.frame = CGRectMake(0, _titleView.height, [UIScreen width], self.view.height-_titleView.height);//内存警告时用
+    
+    _mainTable.frame = CGRectMake(0, self.postbannerview.bottom, [UIScreen width], self.view.height-_titleView.height);//内存警告时用
     
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self requestBannerData];
+}
+
+-(void)requestBannerData
+{
+    WS(weakself)
+    [[NCInitial sharedInstance] requestHomeBannerWithComplate:^(NSDictionary *result, NSError *error) {
+        
+        NSInteger code = [result[@"code"] integerValue];
+        if (code == 200) {
+            NSArray *res = result[@"res"];
+            [weakself refreshHomeBannerViewData:res];
+        }
+        else
+        {
+            NSString *msg = result[@"msg"];
+            [Utils alertTitle:@"提示" message:msg delegate:nil cancelBtn:@"好" otherBtnName:nil];
+        }
+        
+    }];
+}
+
+-(void)refreshHomeBannerViewData:(NSArray *)bannerData
+{
+    NSMutableArray *headTemp = [NSMutableArray array];
+    for (NSDictionary *dic in bannerData) {
+        TDHomePosterBannerModel *home=[[TDHomePosterBannerModel alloc] init];
+        
+//        img = "http://anquan.weilomo.com/Uploads/2015/1210/thumb/710x200/566976a6dad62.jpg";
+//        title = "d\U7b2c\U4e09\U4e2a";
+//        url = "http://www.baidu,com";
+        
+        home.imageUrl=dic[@"img"];
+        home.title= dic[@"title"];
+        //        home.skipInfo= dic[@"url"];
+        [headTemp addObject:home];
+    }
+    
+    [self.postbannerview refreshPosterBanner:headTemp];
+}
+
+#define leftoff 8
+-(TDBannerCollectionView *)postbannerview
+{
+    if (!_postbannerview) {
+        _postbannerview=[[TDBannerCollectionView alloc] initWithFrame:CGRectMake(leftoff, self.titleView.bottom, kScreenWidth-2*leftoff, 100)];
+    }
+    return _postbannerview;
+}
 
 -(TDHomeTitleView *)titleView{
     if (!_titleView) {
@@ -109,10 +179,10 @@
 }
 */
 
-
+#define kCellHeight 120
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    return 88;
+    return kCellHeight+20;
 }
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -127,6 +197,12 @@
     return count;
 }
 
+-(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIView *footview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, tableView.width, 8)];
+    
+    return footview;
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -137,12 +213,22 @@
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:firstCellIdentifier];
             if (!cell) {
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:firstCellIdentifier];
+                cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 
                 cell.backgroundColor = [UIColor whiteColor];
                 
-                cell.textLabel.text = @"新闻资讯";
+                
+                NCHomeSectionView *secview = [[NCHomeSectionView alloc] initWithFrame:CGRectMake(0, 0, tableView.width, kCellHeight)];
+                secview.actiondelegate = self;
+//                secview.backgroundColor = [UIColor ];
+                secview.tag = TAG_HomeView_SECTION1;
+                [secview.leftImageButton setTitle:@"资讯" forState:UIControlStateNormal];
+                [secview.firstButton setTitle:@"安全新闻" forState:UIControlStateNormal];
+                [secview.secondButton setTitle:@"安全政策" forState:UIControlStateNormal];
+                [secview.moreButton setTitle:@"安全动态" forState:UIControlStateNormal];
+                
+                [cell.contentView addSubview:secview];
             }
-            
             
             return cell;
         }
@@ -150,14 +236,23 @@
             break;
         case 1:
         {
-            static NSString *kCellIdentifier = @"Cell";
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
+            static NSString *kCellIdentifier2 = @"Cell2";
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier2];
             if (!cell) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@""];
-                
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifier2];
+                                cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 cell.backgroundColor = [UIColor whiteColor];
+                
+                NCHomeSectionView *secview = [[NCHomeSectionView alloc] initWithFrame:CGRectMake(0, 0, tableView.width, 66)];
+                secview.actiondelegate = self;
+                secview.tag = TAG_HomeView_SECTION2;
+                [secview.leftImageButton setTitle:@"培训学习" forState:UIControlStateNormal];
+                [secview.firstButton setTitle:@"练习" forState:UIControlStateNormal];
+                [secview.secondButton setTitle:@"资料库" forState:UIControlStateNormal];
+                [secview.moreButton setTitle:@"安全动态" forState:UIControlStateNormal];
+                
+                [cell.contentView addSubview:secview];
             }
-            
             
             
             return cell;
@@ -165,27 +260,45 @@
             break;
         case 2:
         {
-            static NSString *kCellIdentifier = @"Cell";
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
+            static NSString *kCellIdentifier3 = @"Cell3";
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier3];
             if (!cell) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@""];
-                
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifier3];
+                                cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 cell.backgroundColor = [UIColor whiteColor];
+                NCHomeSectionView *secview = [[NCHomeSectionView alloc] initWithFrame:CGRectMake(0, 0, tableView.width, 66)];
+                
+                secview.actiondelegate = self;
+                secview.tag = TAG_HomeView_SECTION3;
+                [secview.leftImageButton setTitle:@"考试报名" forState:UIControlStateNormal];
+                [secview.firstButton setTitle:@"报名" forState:UIControlStateNormal];
+                [secview.secondButton setTitle:@"考试公告" forState:UIControlStateNormal];
+                [secview.moreButton setTitle:@"更多" forState:UIControlStateNormal];
+                
+                [cell.contentView addSubview:secview];
             }
-            
-            
             
             return cell;
         }
             break;
         case 3:
         {
-            static NSString *kCellIdentifier = @"Cell";
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
+            static NSString *kCellIdentifier4 = @"Cell4";
+            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier4];
             if (!cell) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@""];
-                
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifier4];
+                                cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 cell.backgroundColor = [UIColor whiteColor];
+                
+                NCHomeSectionView *secview = [[NCHomeSectionView alloc] initWithFrame:CGRectMake(0, 0, tableView.width, 66)];
+                secview.actiondelegate = self;
+                secview.tag = TAG_HomeView_SECTION4;
+                [secview.leftImageButton setTitle:@"认证查询" forState:UIControlStateNormal];
+                [secview.firstButton setTitle:@"个人证书查询" forState:UIControlStateNormal];
+                [secview.secondButton setTitle:@"认证机构查询" forState:UIControlStateNormal];
+                [secview.moreButton setTitle:@"更多" forState:UIControlStateNormal];
+                
+                [cell.contentView addSubview:secview];
             }
             
             return cell;
@@ -205,6 +318,8 @@
     return cell;
 }
 
+
+
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
@@ -219,24 +334,94 @@
     
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
-    NCNewsViewController *newview = [[NCNewsViewController alloc] init];
-    
-    [self.navigationController pushViewController:newview animated:YES];
+
 }
 
 
 
 - (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (!tableView.isEditing) {
-        return UITableViewCellEditingStyleDelete;
-    }
-    return UITableViewCellEditingStyleDelete | UITableViewCellEditingStyleInsert;
+    return UITableViewCellEditingStyleNone;
+    
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     
     
+}
+
+-(void)searchBarDidClick
+{
+    //进搜索
+    
+}
+
+-(void)homeSectionLeftButtonAction:(NCHomeSectionView *)secview
+{
+
+}
+
+-(void)homeSectionFisrtButtonAction:(NCHomeSectionView *)secview
+{
+    switch (secview.tag) {
+        case TAG_HomeView_SECTION1:
+        {
+            NCNewsViewController *newview = [[NCNewsViewController alloc] init];
+            
+            [self.navigationController pushViewController:newview animated:YES];
+        }
+            break;
+        case TAG_HomeView_SECTION2:
+            
+            break;
+        case TAG_HomeView_SECTION3:
+            
+            break;
+        case TAG_HomeView_SECTION4:
+            
+            break;
+        default:
+            break;
+    }
+}
+-(void)homeSectionSecondButtonAction:(NCHomeSectionView *)secview
+{
+    switch (secview.tag) {
+        case TAG_HomeView_SECTION1:
+            
+            break;
+        case TAG_HomeView_SECTION2:
+            
+            break;
+        case TAG_HomeView_SECTION3:
+            
+            break;
+        case TAG_HomeView_SECTION4:
+            
+            break;
+        default:
+            break;
+    }
+}
+
+-(void)homeSectionMoreButtonAction:(NCHomeSectionView *)secview
+{
+    switch (secview.tag) {
+        case TAG_HomeView_SECTION1:
+            
+            break;
+        case TAG_HomeView_SECTION2:
+            
+            break;
+        case TAG_HomeView_SECTION3:
+            
+            break;
+        case TAG_HomeView_SECTION4:
+            
+            break;
+        default:
+            break;
+    }
 }
 
 

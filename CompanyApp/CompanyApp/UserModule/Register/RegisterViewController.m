@@ -41,6 +41,10 @@ static BOOL hasViewLicense = NO;
 {
     [super viewDidLoad];
     
+    self.title = @"注册";
+    
+    self.view.backgroundColor = [UIColor whiteColor];
+    
     //创建导航条
     [self createCustomNavBar];
     
@@ -299,6 +303,7 @@ static BOOL hasViewLicense = NO;
         textField.userInteractionEnabled = NO;
         textField.delegate = self;
         textField.placeholder = @"请选择性别";
+        textField.text = @"男";
         textField.keyboardType = UIKeyboardTypeEmailAddress;
         [cell addSubview:textField];
         
@@ -405,6 +410,7 @@ static BOOL hasViewLicense = NO;
         
         UITextField *textField= [[UITextField alloc] initWithFrame:CGRectMake(label.right+offset, celltop, textwidth, txtfieldHeight)];
         textField.tag = Tag_RecommadTextField;
+        textField.font = [UIFont systemFontOfSize:12];
         textField.returnKeyType = UIReturnKeyDone;
         textField.delegate = self;
         textField.placeholder = @"请输入企业邀请码";

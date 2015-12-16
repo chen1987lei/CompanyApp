@@ -7,6 +7,11 @@
 //
 
 #import "NCMyViewController.h"
+#import "RKCardView.h"
+
+#define BUFFERX 20 //distance from side to the card (higher makes thinner card)
+#define BUFFERY 40 //distance from top to the card (higher makes shorter card)
+
 
 @interface NCMyViewController ()
 
@@ -17,6 +22,33 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.view.backgroundColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1];
+    RKCardView* cardView= [[RKCardView alloc]initWithFrame:CGRectMake(BUFFERX, BUFFERY, self.view.frame.size.width-2*BUFFERX, self.view.frame.size.height-2*BUFFERY)];
+    
+    cardView.coverImageView.image = Image(@"exampleCover");
+    cardView.profileImageView.image = Image(@"exampleProfile");
+    
+    cardView.titleLabel.text = @"Richard Kim";
+    //    [cardView addBlur];
+    //    [cardView addShadow];
+    [self.view addSubview:cardView];
+
+    
+    UIButton *btn = [[UIButton alloc] initWithFrame:CGRectMake(100, 400, kScreenWidth- 100*2, 40)];
+    [btn setTitle:@"退出登录" forState:UIControlStateNormal];
+    [btn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+    [btn addTarget:self action:@selector(logoutAction) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btn];
+}
+
+-(void)logoutAction
+{
+    NSUserDefaults *defal = [NSUserDefaults standardUserDefaults];
+    [defal removeObjectForKey:@"useruid"];
+      [defal removeObjectForKey:@"useruuid"];
+    [defal synchronize];
+    exit(0);
 }
 
 - (void)didReceiveMemoryWarning {

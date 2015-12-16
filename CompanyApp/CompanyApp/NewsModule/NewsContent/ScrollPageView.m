@@ -9,6 +9,9 @@
 #import "ScrollPageView.h"
 #import "HomeViewCell.h"
 
+#import "TDHomeModel.h"
+
+#import "NewsWebViewController.h"
 @implementation ScrollPageView
 
 - (id)initWithFrame:(CGRect)frame
@@ -49,8 +52,8 @@
         CustomTableView *vCustomTableView = [[CustomTableView alloc] initWithFrame:CGRectMake(kScreenWidth * i, 0, kScreenWidth, self.frame.size.height)];
         vCustomTableView.delegate = self;
         vCustomTableView.dataSource = self;
-        //为table添加嵌套HeadderView
-        [self addLoopScrollowView:vCustomTableView];
+        
+        
         [_scrollView addSubview:vCustomTableView];
         [_contentItems addObject:vCustomTableView];
     }
@@ -77,54 +80,8 @@
     [vTableContentView forceToFreshData];
 }
 
-#pragma mark 添加HeaderView
--(void)addLoopScrollowView:(CustomTableView *)aTableView {
-    //添加一张默认图片
-    SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithDict:@{@"image": [NSString stringWithFormat:@"girl%d",2]} tag:-1];
-    SGFocusImageFrame *bannerView = [[SGFocusImageFrame alloc] initWithFrame:CGRectMake(0, -105, kScreenWidth, 105) delegate:aTableView imageItems:@[item] isAuto:YES];
-    aTableView.homeTableView.tableHeaderView = bannerView;
-    
-}
 
 #pragma mark 改变TableView上面滚动栏的内容
--(void)changeHeaderContentWithCustomTable:(CustomTableView *)aTableContent{
-    int length = 4;
-    NSMutableArray *tempArray = [NSMutableArray array];
-    for (int i = 0 ; i < length; i++)
-    {
-        NSDictionary *dict = [NSDictionary dictionaryWithObjectsAndKeys:
-                              [NSString stringWithFormat:@"title%d",i],@"title" ,
-                              [NSString stringWithFormat:@"girl%d",(i + 1)],@"image",
-                              nil];
-        [tempArray addObject:dict];
-    }
-    
-    NSMutableArray *itemArray = [NSMutableArray arrayWithCapacity:length+2];
-    //添加最后一张图 用于循环
-    if (length > 1)
-    {
-        NSDictionary *dict = [tempArray objectAtIndex:length-1];
-        SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithDict:dict tag:-1];
-        [itemArray addObject:item];
-    }
-    for (int i = 0; i < length; i++)
-    {
-        NSDictionary *dict = [tempArray objectAtIndex:i];
-        SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithDict:dict tag:i];
-        [itemArray addObject:item];
-        
-    }
-    //添加第一张图 用于循环
-    if (length >1)
-    {
-        NSDictionary *dict = [tempArray objectAtIndex:0];
-        SGFocusImageItem *item = [[SGFocusImageItem alloc] initWithDict:dict tag:length];
-        [itemArray addObject:item];
-    }
-    
-    SGFocusImageFrame *vFocusFrame = (SGFocusImageFrame *)aTableContent.homeTableView.tableHeaderView;
-    [vFocusFrame changeImageViewsContent:itemArray];
-}
 
 #pragma mark - UIScrollViewDelegate
 - (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
@@ -165,10 +122,16 @@
     HomeViewCell *vCell = [aTableView dequeueReusableCellWithIdentifier:vCellIdentify];
     if (vCell == nil) {
         vCell = [[[NSBundle mainBundle] loadNibNamed:@"HomeViewCell" owner:self options:nil] lastObject];
+       
     }
     
-    NSInteger vNewIndex = aIndexPath.row % 4 + 1;
-    vCell.headerImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"new%d",vNewIndex]];
+    TDHomeModel *model = [aView.tableInfoArray objectAtIndex:aIndexPath.row];
+    
+    [vCell.headerImageView sd_setImageWithURL: [NSURL URLWithString: model.imageUrl]];
+    
+    vCell.titleLabel.text = model.title;
+    vCell.subTitleLabel.text = model.subTitle;
+    vCell.dateLabel.text = @"25分钟前";
     return vCell;
 }
 
@@ -179,6 +142,16 @@
 }
 
 -(void)didSelectedRowAthIndexPath:(UITableView *)aTableView IndexPath:(NSIndexPath *)aIndexPath FromView:(CustomTableView *)aView{
+    
+    
+    TDHomeModel *model = [aView.tableInfoArray objectAtIndex:aIndexPath.row];
+    
+    if ([_delegate respondsToSelector:@selector(didClickNewsModel:)]) {
+        [_delegate didClickNewsModel:model];
+    }
+    
+
+    
 }
 
 -(void)loadData:(void(^)(int aAddedRowCount))complete FromView:(CustomTableView *)aView{
@@ -194,7 +167,18 @@
     //    });
 }
 
+-(void)loadListData:(NSArray *)listData
+{
+    CustomTableView *vTableContentView =(CustomTableView *)[_contentItems objectAtIndex:0];
+    
+    vTableContentView.tableInfoArray = [NSMutableArray arrayWithArray: listData];
+    [vTableContentView.homeTableView reloadData];
+    
+}
+
 -(void)refreshData:(void(^)())complete FromView:(CustomTableView *)aView{
+    
+    return;
     double delayInSeconds = 1.0;
     dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
     dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
@@ -202,8 +186,7 @@
         for (int i = 0; i < 4; i++) {
             [aView.tableInfoArray addObject:@"0"];
         }
-        //改变header显示图片
-        [self changeHeaderContentWithCustomTable:aView];
+        
         if (complete) {
             complete();
         }

@@ -12,7 +12,7 @@
 #import "NCLoginViewController.h"
 
 #import "NCInitial.h"
-
+#import "NCUserConfig.h"
 @interface AppDelegate ()
 {
     UINavigationController *_tdNav;
@@ -44,7 +44,7 @@
     [[NCInitial sharedInstance] initial];
     
     
-    if (isLogin) {
+    if (![NCUserConfig haslogin]) {
         [self showLoginViewController];
     }
     else

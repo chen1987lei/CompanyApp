@@ -245,7 +245,15 @@ withComplate:(void (^)(NSDictionary *result
 //{"code":200,"res":{"id":"1","name":"路浩","sex":"1","card":"123456789123456789123","phone":"18669482003","img":"http://anquan.io/Uploads2015/1213/thumb/90x90/t_200x200_566cea1e0dd4d.jpg","addv":"0","code":"100001"}}
         
         NSDictionary *dict = [operation.responseData objectFromJSONData];
-        
+        NSInteger retcode = [dict[@"code"] integerValue];
+        if (retcode == 200) {
+            NSDictionary *resdata = dict[@"res"];
+            
+            NCUserConfig *user = [NCUserConfig sharedInstance] ;
+            user.userName =resdata[@"name"];
+             user.sexValue =resdata[@"sex"];
+                    user.sexValue =resdata[@"sex"];
+        }
         completeBlock(dict, nil);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {

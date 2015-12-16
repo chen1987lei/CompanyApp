@@ -303,9 +303,9 @@ static NSInteger itemFontSize = 15;
 -(void)setTitleBarTudouColor
 {
     if (MY_IOS_VERSION_7) {
-        [self setBlurTintColor:kBlurTintColoriOS7];
+        [self setBlurTintColor:[UIColor blueColor]];
     }else{
-        self.backgroundColor = kBlurTintColor;
+        self.backgroundColor = [UIColor blueColor];
     }
     _titleLabel.leftTitleLabel.textColor = [UIColor whiteColor];
     

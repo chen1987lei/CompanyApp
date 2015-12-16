@@ -27,6 +27,8 @@
         }
         [mItemInfoArray removeAllObjects];
         [self createMenuItems:aItemsArray];
+        
+        self.backgroundColor = [UIColor whiteColor];
     }
     return self;
 }
@@ -44,11 +46,12 @@
         [vButton setBackgroundImage:[UIImage imageNamed:vNormalImageStr] forState:UIControlStateNormal];
         [vButton setBackgroundImage:[UIImage imageNamed:vHeligtImageStr] forState:UIControlStateSelected];
         [vButton setTitle:vTitleStr forState:UIControlStateNormal];
-        [vButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [vButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [vButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
         [vButton setTag:i];
         [vButton addTarget:self action:@selector(menuButtonClicked:) forControlEvents:UIControlEventTouchUpInside];
         [vButton setFrame:CGRectMake(menuWidth, 0, vButtonWidth, self.frame.size.height)];
+        
         [mScrollView addSubview:vButton];
         [mButtonArray addObject:vButton];
         

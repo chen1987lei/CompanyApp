@@ -8,10 +8,26 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NCHomeSectionView : NSObject
+@class NCHomeSectionView;
+@protocol NCHomeSectionViewDelegate <NSObject>
+
+-(void)homeSectionLeftButtonAction:(NCHomeSectionView *)secview;
+-(void)homeSectionFisrtButtonAction:(NCHomeSectionView *)secview;
+-(void)homeSectionSecondButtonAction:(NCHomeSectionView *)secview;
+
+-(void)homeSectionMoreButtonAction:(NCHomeSectionView *)secview;
+@end
+@interface NCHomeSectionView : UIView
 {
     
 }
+@property(nonatomic,assign ) id<NCHomeSectionViewDelegate> actiondelegate;
 
-@property(nonatomic,strong) NSString *secTitle;
+@property(nonatomic,strong) UIButton *leftImageButton;
+@property(nonatomic,strong) UIButton *firstButton;
+@property(nonatomic,strong) UIButton *secondButton;
+@property(nonatomic,strong) UIButton *moreButton;
+
+-(instancetype) initWithFrame:(CGRect)frame;
+
 @end

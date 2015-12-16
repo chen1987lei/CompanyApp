@@ -43,7 +43,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    
+    self.title = @"登录";
     [self.view addSubview:self.scrollView];
     [self addLoginActionsView];
 }
@@ -76,7 +76,7 @@
 - (UIImageView *)contentView
 {
     if (!_contentView) {
-        _contentView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 161, self.view.width, 200)];
+        _contentView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 161, self.view.width, 120)];
         _contentView.userInteractionEnabled = YES;
         
 
@@ -84,9 +84,8 @@
         tfLoginName.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         tfLoginName.autocorrectionType =UITextAutocorrectionTypeNo;              //不自动做拼写矫正
         tfLoginName.autocapitalizationType = UITextAutocapitalizationTypeNone;  //首字母不自动大写
-        tfLoginName.placeholder = @"请输入用户名";
+        tfLoginName.placeholder = @"请输入手机号";
 
-        
         tfLoginName.keyboardType=UIKeyboardTypeEmailAddress;
         tfLoginName.clearButtonMode = UITextFieldViewModeWhileEditing;
         tfLoginName.returnKeyType = UIReturnKeyDone;
@@ -145,39 +144,43 @@
 }
 
 #define kMarginTopToLoginButton 25.0f
-#define kConfirmButtonHeight        34.0f
+#define kConfirmButtonHeight        40.0f
 -(void)addLoginActionsView
 {
-    _actionsview = [[UIView alloc] initWithFrame:CGRectMake(0, _contentView.bottom + 8, self.contentView.width-50, kConfirmButtonHeight+45)];
+    _actionsview = [[UIView alloc] initWithFrame:CGRectMake(25, _contentView.bottom + 8, self.contentView.width-50, kConfirmButtonHeight+30)];
+    
+    float btnwidth = (_actionsview.width - 20)/2;
     
     _phoneBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _phoneBtn.frame = CGRectMake(25, 5, 102, kConfirmButtonHeight);
-    
+    _phoneBtn.frame = CGRectMake(0, 5, btnwidth, kConfirmButtonHeight);
+    _phoneBtn.backgroundColor = [UIColor whiteColor];
     _phoneBtn.titleLabel.font = [UIFont systemFontOfSize:14];
-    _phoneBtn.contentHorizontalAlignment = NSTextAlignmentRight;
-    _phoneBtn.contentVerticalAlignment = UIControlContentVerticalAlignmentTop;
     [_phoneBtn setTitle:LocalizedString(@"注册") forState:UIControlStateNormal];
-    [_phoneBtn setTitleColor:RGB(58, 160, 235) forState:UIControlStateNormal];
-    [_phoneBtn setTitleColor:RGB(58, 160, 235) forState:UIControlStateHighlighted];
+    
+    [_phoneBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+ 
+    [_phoneBtn setTitleColor:[UIColor blueColor] forState:UIControlStateDisabled];
     
     
     _phoneBtn.backgroundColor = RGB(255, 97, 42);
     [_phoneBtn addTarget:self action:@selector(phoneButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
     
     
-    
     _loginBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _loginBtn.frame = CGRectMake(_phoneBtn.right + 6, _phoneBtn.top, _phoneBtn.width, _phoneBtn.height);
+    _loginBtn.frame = CGRectMake(_phoneBtn.right + 10, _phoneBtn.top, _phoneBtn.width, _phoneBtn.height);
     _loginBtn.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     _loginBtn.adjustsImageWhenDisabled = NO;
     _loginBtn.adjustsImageWhenHighlighted = NO;
     _loginBtn.titleLabel.font = [UIFont systemFontOfSize:14];
 //    _loginBtn.enabled = NO;
+    _loginBtn.backgroundColor = [UIColor blueColor];
     
     [_loginBtn setTitle:LocalizedString(@"登录") forState:UIControlStateNormal];
     [_loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [_loginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateHighlighted];
     [_loginBtn setTitleColor:[[UIColor whiteColor] colorWithAlphaComponent:0.5] forState:UIControlStateDisabled];
+    
+    
     
     [_loginBtn addTarget:self action:@selector(LoginButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
     _loginBtn.titleLabel.font = [UIFont systemFontOfSize:14];
@@ -188,11 +191,11 @@
     
     
     _findPasswordBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    _findPasswordBtn.frame = CGRectMake(_loginBtn.right + 60, _loginBtn.bottom + 3, 42, 16);
+    _findPasswordBtn.frame = CGRectMake(_loginBtn.right - 70 , _loginBtn.bottom + 10, 70, 25);
     _findPasswordBtn.titleLabel.font = [UIFont systemFontOfSize:12.0f];
     _findPasswordBtn.contentHorizontalAlignment = NSTextAlignmentLeft;
     _findPasswordBtn.contentVerticalAlignment = UIControlContentVerticalAlignmentTop;
-    [_findPasswordBtn setTitle:LocalizedString(@"忘记密码") forState:UIControlStateNormal];
+    [_findPasswordBtn setTitle:LocalizedString(@"忘记密码?") forState:UIControlStateNormal];
     [_findPasswordBtn setTitleColor:RGB(58, 160, 235) forState:UIControlStateNormal];
     [_findPasswordBtn setTitleColor:RGB(58, 160, 235) forState:UIControlStateHighlighted];
     [_findPasswordBtn addTarget:self action:@selector(findPasswordButtonDidClick) forControlEvents:UIControlEventTouchUpInside];
@@ -220,6 +223,11 @@
              user.mobilenumber = acount;
              user.uid = result[@"res"][@"uid"];
              user.uuid = result[@"res"][@"uuid"];
+             
+        	NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+             [userDefaults setObject:user.uid forKey:@"useruid"];
+             [userDefaults setObject:user.uuid forKey:@"useruuid"];
+             [userDefaults synchronize];
              
              [weakself doActionWhenLoginIn];
          }

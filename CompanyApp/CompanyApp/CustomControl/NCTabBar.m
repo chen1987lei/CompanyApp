@@ -69,23 +69,24 @@
             NCTabBarItem *item = [[NCTabBarItem alloc] init];
             switch (i) {
                 case 0:
-                    item.title = @"首页";
-//                    item.image = Image(@"ic_tab_home");
-//                    item.selectedImage = Image(@"ic_tab_home_select");
+//                    item.title = @"首页";
+                    item.image = Image(@"sy_sy_xz");
+                    item.selectedImage = Image(@"sy_sy_xz");
                     break;
                 case 1:
-                    item.title = @"人才库";
-//                    item.image = Image(@"ic_tab_rss");
-//                    item.selectedImage = Image(@"ic_tab_rss_select");
+//                    item.title = @"人才库";
+                    item.image = Image(@"sy_rck_wxz");
+                    item.selectedImage = Image(@"sy_rck_xz");
                     break;
                 case 2:
-                    item.title = @"消息";
-//                    item.image = Image(@"ic_tab_discover");
-//                    item.selectedImage = Image(@"ic_tab_discover_select");
+//                    item.title = @"消息";
+                    item.image = Image(@"sy_xx_wxz");
+                    item.selectedImage = Image(@"sy_xx_xz");
                     break;
                 case 3:
-                    item.title = @"我";
-   
+//                    item.title = @"我";
+                    item.image = Image(@"sy_w_wxz");
+                    item.selectedImage = Image(@"sy_w_xz");
                     break;
                 default:
                     break;
@@ -140,7 +141,7 @@
         iconView.layer.cornerRadius = 0.5;
         
         iconView.frame = CGRectMake((itemLayerWidth+iconBetweenWidth) * i + (itemLayerWidth-item.image.size.width)/2.0,
-                                    4,
+                                    10,
                                     item.image.size.width,
                                     item.image.size.height);
         item.iconView = iconView;

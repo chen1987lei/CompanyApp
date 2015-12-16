@@ -43,8 +43,8 @@ static NSInteger kMaxItemCount = 5;
         UIView *view=[[UIView alloc] initWithFrame:_searchBar.bounds];
         view.layer.masksToBounds = YES;
         view.layer.cornerRadius = 2;
-        view.backgroundColor = RGB(229, 91, 0);
-        view.layer.borderColor=RGB(229, 91, 0).CGColor;
+        view.backgroundColor = [UIColor whiteColor];
+        view.layer.borderColor= [UIColor whiteColor].CGColor;
         view.layer.borderWidth=1;
         [_searchBar addSubview:view];
         WS(weakSelf)

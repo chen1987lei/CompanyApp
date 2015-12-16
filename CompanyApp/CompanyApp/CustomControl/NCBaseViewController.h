@@ -12,5 +12,5 @@
 
 @property (nonatomic, strong) UIView *titleBar;
 @property (nonatomic, assign) float titleBarHeight;
-
+-(void)showTitleBar;
 @end

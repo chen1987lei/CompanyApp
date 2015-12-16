@@ -27,75 +27,27 @@
 -(void)commInit{
     NSArray *vButtonItemArray = @[@{NOMALKEY: @"normal.png",
                                     HEIGHTKEY:@"helight.png",
-                                    TITLEKEY:@"头条",
-                                    TITLEWIDTH:[NSNumber numberWithFloat:60]
+                                    TITLEKEY:@"安全新闻",
+                                    TITLEWIDTH:[NSNumber numberWithFloat:100]
                                     },
                                   @{NOMALKEY: @"normal.png",
                                     HEIGHTKEY:@"helight.png",
-                                    TITLEKEY:@"推荐",
-                                    TITLEWIDTH:[NSNumber numberWithFloat:60]
+                                    TITLEKEY:@"安全政策",
+                                    TITLEWIDTH:[NSNumber numberWithFloat:100]
                                     },
                                   @{NOMALKEY: @"normal",
                                     HEIGHTKEY:@"helight",
-                                    TITLEKEY:@"娱乐",
-                                    TITLEWIDTH:[NSNumber numberWithFloat:60]
+                                    TITLEKEY:@"安全动态",
+                                    TITLEWIDTH:[NSNumber numberWithFloat:100]
                                     },
-                                  @{NOMALKEY: @"normal",
-                                    HEIGHTKEY:@"helight",
-                                    TITLEKEY:@"体育",
-                                    TITLEWIDTH:[NSNumber numberWithFloat:60]
-                                    },
-                                  @{NOMALKEY: @"normal",
-                                    HEIGHTKEY:@"helight",
-                                    TITLEKEY:@"科技",
-                                    TITLEWIDTH:[NSNumber numberWithFloat:60]
-                                    },
-                                  @{NOMALKEY: @"normal",
-                                    HEIGHTKEY:@"helight",
-                                    TITLEKEY:@"轻松一刻",
-                                    TITLEWIDTH:[NSNumber numberWithFloat:40*2]
-                                    },
-                                  @{NOMALKEY: @"normal",
-                                    HEIGHTKEY:@"helight",
-                                    TITLEKEY:@"新闻",
-                                    TITLEWIDTH:[NSNumber numberWithFloat:60]
-                                    },
-                                  @{NOMALKEY: @"normal",
-                                    HEIGHTKEY:@"helight",
-                                    TITLEKEY:@"美女",
-                                    TITLEWIDTH:[NSNumber numberWithFloat:60]
-                                    },
-                                  @{NOMALKEY: @"normal",
-                                    HEIGHTKEY:@"helight",
-                                    TITLEKEY:@"帅哥",
-                                    TITLEWIDTH:[NSNumber numberWithFloat:60]
-                                    },
-                                  @{NOMALKEY: @"normal",
-                                    HEIGHTKEY:@"helight",
-                                    TITLEKEY:@"帅哥",
-                                    TITLEWIDTH:[NSNumber numberWithFloat:60]
-                                    },
-                                  @{NOMALKEY: @"normal",
-                                    HEIGHTKEY:@"helight",
-                                    TITLEKEY:@"帅哥",
-                                    TITLEWIDTH:[NSNumber numberWithFloat:60]
-                                    },
-                                  @{NOMALKEY: @"normal",
-                                    HEIGHTKEY:@"helight",
-                                    TITLEKEY:@"帅哥",
-                                    TITLEWIDTH:[NSNumber numberWithFloat:60]
-                                    },
-                                  @{NOMALKEY: @"normal",
-                                    HEIGHTKEY:@"helight",
-                                    TITLEKEY:@"帅哥",
-                                    TITLEWIDTH:[NSNumber numberWithFloat:60]
-                                    },
+                                 
                                   ];
     
     if (mMenuHriZontal == nil) {
         mMenuHriZontal = [[MenuHrizontal alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, MENUHEIHT) ButtonItems:vButtonItemArray];
         mMenuHriZontal.delegate = self;
     }
+    
     //初始化滑动列表
     if (mScrollPageView == nil) {
         mScrollPageView = [[ScrollPageView alloc] initWithFrame:CGRectMake(0, MENUHEIHT, self.frame.size.width, self.frame.size.height - MENUHEIHT)];
@@ -109,6 +61,11 @@
     [self addSubview:mMenuHriZontal];
 }
 
+-(void)loadData:(NSArray *)newslist
+{
+    [mScrollPageView loadListData:newslist];
+    
+}
 #pragma mark 内存相关
 
 #pragma mark - 其他辅助功能
@@ -126,6 +83,14 @@
         //刷新当页数据
         [mScrollPageView freshContentTableAtIndex:aPage];
 //    }
+}
+
+-(void)didClickNewURlString:(TDHomeModel *)model
+{
+    if ([_actiondelegate respondsToSelector:@selector(homeViewDidClickNews:)]) {
+        [_actiondelegate homeViewDidClickNews:model];
+    }
+    
 }
 
 

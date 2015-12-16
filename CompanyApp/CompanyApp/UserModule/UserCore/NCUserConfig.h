@@ -29,7 +29,7 @@
 @property(nonatomic, strong) NSString *uuid;
 
 
-
++(BOOL)haslogin;
 +(NCUserConfig *)sharedInstance;
 
 
