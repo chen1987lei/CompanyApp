@@ -137,6 +137,7 @@
 		FA807ACD1C20A78700A1FE42 /* LoadMoreCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA807ACB1C20A78700A1FE42 /* LoadMoreCell.xib */; };
 		FA807AD11C20A7D400A1FE42 /* HomeViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA807ACF1C20A7D400A1FE42 /* HomeViewCell.m */; };
 		FA807AD21C20A7D400A1FE42 /* HomeViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA807AD01C20A7D400A1FE42 /* HomeViewCell.xib */; };
+		FAA063A51C21EA8A00E2C7DD /* MainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FAA063A41C21EA8A00E2C7DD /* MainCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -397,6 +398,8 @@
 		FA807ACE1C20A7D400A1FE42 /* HomeViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewCell.h; sourceTree = "<group>"; };
 		FA807ACF1C20A7D400A1FE42 /* HomeViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewCell.m; sourceTree = "<group>"; };
 		FA807AD01C20A7D400A1FE42 /* HomeViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeViewCell.xib; sourceTree = "<group>"; };
+		FAA063A31C21EA8A00E2C7DD /* MainCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainCell.h; sourceTree = "<group>"; };
+		FAA063A41C21EA8A00E2C7DD /* MainCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -521,6 +524,8 @@
 				CE41D6BB1C16BC93002FC6BF /* NCMyViewController.m */,
 				CE41D6BD1C16BCB6002FC6BF /* NCMessageViewController.h */,
 				CE41D6BE1C16BCB6002FC6BF /* NCMessageViewController.m */,
+				FAA063A31C21EA8A00E2C7DD /* MainCell.h */,
+				FAA063A41C21EA8A00E2C7DD /* MainCell.m */,
 				CE41D6C01C16BCC8002FC6BF /* NCLibraryViewController.h */,
 				CE41D6C11C16BCC8002FC6BF /* NCLibraryViewController.m */,
 				CE9149CE1C2021910041480C /* NCHomeSectionView.h */,
@@ -1171,6 +1176,7 @@
 				CE9149A21C201F670041480C /* TDBaseObject.m in Sources */,
 				CE9149781C1EFC5A0041480C /* UIImage+BoxBlur.m in Sources */,
 				FA807ABE1C20A73200A1FE42 /* SGFocusImageFrame.m in Sources */,
+				FAA063A51C21EA8A00E2C7DD /* MainCell.m in Sources */,
 				CE41D5E91C15AB74002FC6BF /* CAGradientLayer+Addition.m in Sources */,
 				CE90E2721C20494A00F1D5E1 /* TDCustomSeg.m in Sources */,
 				CE90E2631C20478D00F1D5E1 /* TDHud.m in Sources */,

@@ -66,7 +66,6 @@
             UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:firstCellIdentifier];
             if (!cell) {
                 cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:firstCellIdentifier];
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
                 
                 cell.backgroundColor = [UIColor whiteColor];
             }
