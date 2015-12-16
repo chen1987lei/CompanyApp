@@ -72,8 +72,8 @@
             
             cell.selectionStyle = UITableViewCellSelectionStyleGray;
             
-            cell.Headerphoto.layer.masksToBounds = YES;
-            cell.Headerphoto.layer.cornerRadius = 20;
+            cell.Headerphoto.clipsToBounds = YES;
+            cell.Headerphoto.layer.cornerRadius = cell.Headerphoto.frame.size.width/2;
         }
         
         cell.Headerphoto.image =Image(@"exampleProfile");
