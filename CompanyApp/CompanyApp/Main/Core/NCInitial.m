@@ -21,7 +21,9 @@
 
 
 
+#define kMessageCenterURL @"http://anquan.weilomo.com/Api/Message/list.html"
 
+#define kMessageContentURL @"http://anquan.weilomo.com/Api/Message/info.html"
 
 
 @interface NCInitial()
@@ -192,7 +194,7 @@
     
     NCUserConfig *user = [NCUserConfig sharedInstance];
     NSMutableDictionary *params =  [NSMutableDictionary dictionary];
-    [params setObject:@"1" forKey:@"uid"];
+    [params setObject:user.uid forKey:@"uid"];
     [params setObject:user.uuid forKey:@"uuid"];
     
         [params addEntriesFromDictionary: [NCInitial getBaseParams]];
@@ -232,6 +234,9 @@
           withOnePageCount:(NSInteger)onepageCount
               WithComplate:(void (^)(NSDictionary *result, NSError *error))completeBlock;
 {
+    if (![NCUserConfig haslogin]) {
+        return;
+    }
     
     NCUserConfig *user = [NCUserConfig sharedInstance];
     NSMutableDictionary *params =  [NSMutableDictionary dictionary];
@@ -242,17 +247,11 @@
     [params setObject:[NSNumber numberWithInteger:onepageCount] forKey:@"pagenum"];
     
     
-    [params setObject:@"1" forKey:@"uid"];
+    [params setObject:user.uid forKey:@"uid"];
     [params setObject:user.uuid forKey:@"uuid"];
     [params addEntriesFromDictionary: [NCInitial getBaseParams]];
     
-    if (![NCUserConfig haslogin]) {
-        return;
-    }
-    NCUserConfig *currentUser = [NCUserConfig sharedInstance];
-    [params setObject:currentUser.uid forKey:@"uid"];
-    [params setObject:currentUser.uuid forKey:@"uuid"];
-    
+
     
     NSMutableURLRequest *request = [self.requestManager.requestSerializer requestWithMethod:@"POST" URLString:kNewsListURL
                                                                                  parameters:params error:nil];
@@ -321,5 +320,85 @@
     [operation setQueuePriority:NSOperationQueuePriorityLow];
     [self.requestManager.operationQueue addOperation:operation];
 }
+
+-(void)requestServerMessageData:(NSInteger )page withPageNumber:(NSInteger)pagenum
+                   WithComplate:(void (^)(NSDictionary *result, NSError *error))completeBlock;
+{
+    NCUserConfig *user = [NCUserConfig sharedInstance];
+    NSMutableDictionary *params =  [NSMutableDictionary dictionary];
+    
+    NSString *pagestr = [NSString stringWithFormat:@"%ld",(long)page ];
+    [params setObject:pagestr forKey:@"page"];
+    NSString *pagenumstr = [NSString stringWithFormat:@"%ld",(long)pagenum ];
+    [params setObject:pagenumstr forKey:@"pagenum"];
+    
+    [params setObject:user.uid forKey:@"uid"];
+    [params setObject:user.uuid forKey:@"uuid"];
+    [params addEntriesFromDictionary: [NCInitial getBaseParams]];
+    
+    
+    NSMutableURLRequest *request = [self.requestManager.requestSerializer requestWithMethod:@"POST" URLString:kMessageCenterURL
+                                                                                 parameters:params error:nil];
+    
+    request.timeoutInterval = 10;
+    
+    WS(weakself)
+    __weak AFHTTPRequestOperation *operation = [self.requestManager HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//{"code":200,"res":[{"title":"版本更新2.0","id":"1"},{"title":"成绩公布","id":"2"}]}
+        
+        NSDictionary *dict = [operation.responseData objectFromJSONData];
+        
+        completeBlock(dict, nil);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        completeBlock(nil, error);
+        
+    }];
+    
+    [operation setQueuePriority:NSOperationQueuePriorityLow];
+    [self.requestManager.operationQueue addOperation:operation];
+}
+
+
+-(void)requestMessageContentData:(NSString *)msgid
+                   WithComplate:(void (^)(NSDictionary *result, NSError *error))completeBlock;
+{
+    NCUserConfig *user = [NCUserConfig sharedInstance];
+    NSMutableDictionary *params =  [NSMutableDictionary dictionary];
+    
+    [params setObject:msgid forKey:@"id"];
+    
+    [params setObject:user.uid forKey:@"uid"];
+    [params setObject:user.uuid forKey:@"uuid"];
+    [params addEntriesFromDictionary: [NCInitial getBaseParams]];
+    
+    
+    NSMutableURLRequest *request = [self.requestManager.requestSerializer requestWithMethod:@"POST" URLString:kMessageContentURL
+                                                                                 parameters:params error:nil];
+    
+    request.timeoutInterval = 10;
+    
+    WS(weakself)
+    __weak AFHTTPRequestOperation *operation = [self.requestManager HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
+//{"code":200,"res":{"title":"版本更新2.0","id":"1","content":"系统有的更新请及时更新","time":"2015-12-10"}}
+        
+        NSDictionary *dict = [operation.responseData objectFromJSONData];
+        
+        completeBlock(dict, nil);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        completeBlock(nil, error);
+        
+    }];
+    
+    [operation setQueuePriority:NSOperationQueuePriorityLow];
+    [self.requestManager.operationQueue addOperation:operation];
+}
+
+
+
+
 
 @end

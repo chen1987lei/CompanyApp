@@ -57,7 +57,6 @@
 		CE41D6B31C16B2AB002FC6BF /* CoreDataAccess.m in Sources */ = {isa = PBXBuildFile; fileRef = CE41D6AA1C16B2AA002FC6BF /* CoreDataAccess.m */; };
 		CE41D6B61C16B2AB002FC6BF /* wwanconnect.c in Sources */ = {isa = PBXBuildFile; fileRef = CE41D6B01C16B2AA002FC6BF /* wwanconnect.c */; };
 		CE41D6B91C16BC85002FC6BF /* NCHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE41D6B81C16BC85002FC6BF /* NCHomeViewController.m */; };
-		CE41D6BC1C16BC93002FC6BF /* NCMyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE41D6BB1C16BC93002FC6BF /* NCMyViewController.m */; };
 		CE41D6BF1C16BCB6002FC6BF /* NCMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE41D6BE1C16BCB6002FC6BF /* NCMessageViewController.m */; };
 		CE41D6C21C16BCC8002FC6BF /* NCLibraryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE41D6C11C16BCC8002FC6BF /* NCLibraryViewController.m */; };
 		CE41D6C41C16BF91002FC6BF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE41D6C31C16BF91002FC6BF /* UIKit.framework */; };
@@ -122,6 +121,7 @@
 		CE95FCDA1C1713DD00C53975 /* NCBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE95FCD91C1713DD00C53975 /* NCBaseViewController.m */; };
 		CE95FCDD1C1715C800C53975 /* TDAutocompleteTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = CE95FCDC1C1715C800C53975 /* TDAutocompleteTextField.m */; };
 		CE95FCE01C17162700C53975 /* TDNoneMenuTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = CE95FCDF1C17162700C53975 /* TDNoneMenuTextField.m */; };
+		CED8B6311C22DA71009C5349 /* NCMyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CED8B6301C22DA71009C5349 /* NCMyViewController.m */; };
 		CEE733CD1C18671200343808 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEE733CC1C18671200343808 /* WebKit.framework */; };
 		CEE733D01C186CF800343808 /* NCUserNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE733CF1C186CF800343808 /* NCUserNetManager.m */; };
 		FA807AAE1C20A66C00A1FE42 /* NCNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA807AAD1C20A66C00A1FE42 /* NCNewsViewController.m */; };
@@ -246,8 +246,6 @@
 		CE41D6B11C16B2AA002FC6BF /* wwanconnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wwanconnect.h; sourceTree = "<group>"; };
 		CE41D6B71C16BC85002FC6BF /* NCHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCHomeViewController.h; sourceTree = "<group>"; };
 		CE41D6B81C16BC85002FC6BF /* NCHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCHomeViewController.m; sourceTree = "<group>"; };
-		CE41D6BA1C16BC93002FC6BF /* NCMyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCMyViewController.h; sourceTree = "<group>"; };
-		CE41D6BB1C16BC93002FC6BF /* NCMyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCMyViewController.m; sourceTree = "<group>"; };
 		CE41D6BD1C16BCB6002FC6BF /* NCMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCMessageViewController.h; sourceTree = "<group>"; };
 		CE41D6BE1C16BCB6002FC6BF /* NCMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCMessageViewController.m; sourceTree = "<group>"; };
 		CE41D6C01C16BCC8002FC6BF /* NCLibraryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCLibraryViewController.h; sourceTree = "<group>"; };
@@ -371,6 +369,8 @@
 		CE95FCDC1C1715C800C53975 /* TDAutocompleteTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDAutocompleteTextField.m; sourceTree = "<group>"; };
 		CE95FCDE1C17162700C53975 /* TDNoneMenuTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TDNoneMenuTextField.h; sourceTree = "<group>"; };
 		CE95FCDF1C17162700C53975 /* TDNoneMenuTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TDNoneMenuTextField.m; sourceTree = "<group>"; };
+		CED8B62F1C22DA71009C5349 /* NCMyViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCMyViewController.h; sourceTree = "<group>"; };
+		CED8B6301C22DA71009C5349 /* NCMyViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCMyViewController.m; sourceTree = "<group>"; };
 		CEE733CC1C18671200343808 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		CEE733CE1C186CF800343808 /* NCUserNetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCUserNetManager.h; sourceTree = "<group>"; };
 		CEE733CF1C186CF800343808 /* NCUserNetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCUserNetManager.m; sourceTree = "<group>"; };
@@ -520,8 +520,6 @@
 				CE9149681C1EF6D80041480C /* Core */,
 				CE41D6B71C16BC85002FC6BF /* NCHomeViewController.h */,
 				CE41D6B81C16BC85002FC6BF /* NCHomeViewController.m */,
-				CE41D6BA1C16BC93002FC6BF /* NCMyViewController.h */,
-				CE41D6BB1C16BC93002FC6BF /* NCMyViewController.m */,
 				CE41D6BD1C16BCB6002FC6BF /* NCMessageViewController.h */,
 				CE41D6BE1C16BCB6002FC6BF /* NCMessageViewController.m */,
 				FAA063A31C21EA8A00E2C7DD /* MainCell.h */,
@@ -575,6 +573,8 @@
 		CE41D5A21C15A873002FC6BF /* NameCard */ = {
 			isa = PBXGroup;
 			children = (
+				CED8B62F1C22DA71009C5349 /* NCMyViewController.h */,
+				CED8B6301C22DA71009C5349 /* NCMyViewController.m */,
 			);
 			path = NameCard;
 			sourceTree = "<group>";
@@ -992,7 +992,6 @@
 				TargetAttributes = {
 					CE41D57C1C0F1768002FC6BF = {
 						CreatedOnToolsVersion = 7.1;
-						DevelopmentTeam = FYGFFCNJTZ;
 					};
 				};
 			};
@@ -1071,6 +1070,7 @@
 				CE90E2811C204A0B00F1D5E1 /* TDStringRequestOperation.m in Sources */,
 				CE90E2AB1C2052A600F1D5E1 /* TDCustomCell.m in Sources */,
 				CE90E26C1C20491700F1D5E1 /* TDSearchBarViewController.m in Sources */,
+				CED8B6311C22DA71009C5349 /* NCMyViewController.m in Sources */,
 				CE41D6531C15ACF8002FC6BF /* NSFileManager-AES.m in Sources */,
 				CE042AA11C21AB1C0032AADA /* NCModifyPWDViewController.m in Sources */,
 				CE41D5EA1C15AB74002FC6BF /* CALayer+Addition.m in Sources */,
@@ -1170,7 +1170,6 @@
 				CE9149C71C201FEC0041480C /* TDSearchTypeDropListView.m in Sources */,
 				CE9149C41C201FEC0041480C /* TDSearchSeriesPannel.m in Sources */,
 				CE9149A41C201F670041480C /* TDHomeTitleModel.m in Sources */,
-				CE41D6BC1C16BC93002FC6BF /* NCMyViewController.m in Sources */,
 				CE41D5A71C15A8DE002FC6BF /* NCTabBarController.m in Sources */,
 				CE91496D1C1EF6D80041480C /* NCInitial.m in Sources */,
 				CE9149A21C201F670041480C /* TDBaseObject.m in Sources */,

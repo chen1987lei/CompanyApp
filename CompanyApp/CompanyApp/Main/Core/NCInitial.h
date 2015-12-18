@@ -31,6 +31,9 @@ WithComplate:(void (^)(NSDictionary *result, NSError *error))completeBlock;
 withOnePageCount:(NSInteger)onepageCount
               WithComplate:(void (^)(NSDictionary *result, NSError *error))completeBlock;
 
--(void)requestCategoryData:(NSString *)cagID
+
+-(void)requestServerMessageData:(NSInteger )page withPageNumber:(NSInteger)pagenum
               WithComplate:(void (^)(NSDictionary *result, NSError *error))completeBlock;
+
+
 @end

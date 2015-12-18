@@ -13,10 +13,14 @@
 #define regcodeurl  @"http://anquan.weilomo.com/Api/User/send.html"
 #define regurl  @"http://anquan.weilomo.com/Api/User/reg.html"
 #define loginurl  @"http://anquan.weilomo.com/Api/User/login.html"
+
 #define recoveryurl  @"http://anquan.weilomo.com/Api/User/pwd.html"
-#define newpwdurl  @"http://anquan.weilomo.com/Api/User/newspwd.html"
 
 #define userinfourl  @"http://anquan.weilomo.com/Api/User/info.html"
+
+#define newpwdurl  @"http://anquan.weilomo.com/Api/User/newspwd.html"
+#define kUserNewNameUrl  @"http://anquan.weilomo.com/Api/User/name.html"
+#define kUserNewSexURL  @"http://anquan.weilomo.com/Api/User/sex.html"
 
 
 
@@ -288,8 +292,7 @@ withComplate:(void (^)(NSDictionary *result
     
     WS(weakself)
     __weak AFHTTPRequestOperation *operation = [self.requestManager HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        //        {"code":200,"res":{"uid":"6","uuid":"d6670616bebb04b770124f55d345aad4"}}/
+
         NSDictionary *dict = [operation.responseData objectFromJSONData];
         
         completeBlock(dict, nil);
@@ -304,5 +307,77 @@ withComplate:(void (^)(NSDictionary *result
     [operation setQueuePriority:NSOperationQueuePriorityLow];
     [self.requestManager.operationQueue addOperation:operation];
 }
+
+
+-(void)modifyAccountName:(NSString *)newname withComplate:(void (^)(NSDictionary *result, NSError *error))completeBlock;
+{
+    NCUserConfig *user = [NCUserConfig sharedInstance];
+    NSMutableDictionary *params =  [NSMutableDictionary dictionary];
+    [params setObject:@"1" forKey:@"uid"];
+    [params setObject:user.uuid forKey:@"uuid"];
+    
+    [params setObject:newname forKey:@"name"];
+    
+    [params addEntriesFromDictionary: [NCInitial getBaseParams]];
+    
+    
+    NSMutableURLRequest *request = [self.requestManager.requestSerializer requestWithMethod:@"POST" URLString:kUserNewNameUrl
+                                                                                 parameters:params error:nil];
+    
+    request.timeoutInterval = 10;
+    
+    WS(weakself)
+    __weak AFHTTPRequestOperation *operation = [self.requestManager HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSDictionary *dict = [operation.responseData objectFromJSONData];
+        
+        completeBlock(dict, nil);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        completeBlock(nil, error);
+        
+    }];
+    
+    
+    [operation setQueuePriority:NSOperationQueuePriorityLow];
+    [self.requestManager.operationQueue addOperation:operation];
+}
+
+
+-(void)modifyAccountSex:(NSString *)sexstr   withComplate:(void (^)(NSDictionary *result, NSError *error))completeBlock;
+{
+    NCUserConfig *user = [NCUserConfig sharedInstance];
+    NSMutableDictionary *params =  [NSMutableDictionary dictionary];
+    [params setObject:@"1" forKey:@"uid"];
+    [params setObject:user.uuid forKey:@"uuid"];
+    
+    [params setObject:sexstr forKey:@"sex"];
+    
+    [params addEntriesFromDictionary: [NCInitial getBaseParams]];
+    
+    NSMutableURLRequest *request = [self.requestManager.requestSerializer requestWithMethod:@"POST" URLString:kUserNewSexURL
+                                                                                 parameters:params error:nil];
+    
+    request.timeoutInterval = 10;
+    WS(weakself)
+    __weak AFHTTPRequestOperation *operation = [self.requestManager HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSDictionary *dict = [operation.responseData objectFromJSONData];
+        
+        completeBlock(dict, nil);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        completeBlock(nil, error);
+        
+    }];
+    
+    
+    [operation setQueuePriority:NSOperationQueuePriorityLow];
+    [self.requestManager.operationQueue addOperation:operation];
+}
+
+
 
 @end

@@ -11,6 +11,7 @@
 #import "TDNoneMenuTextField.h"
 
 #import "RegisterViewController.h"
+#import "NCRecoveryPWDViewController.h"
 
 #import "NCUserConfig.h"
 #import "NCUserNetManager.h"
@@ -258,7 +259,8 @@
 
 -(void)findPasswordButtonDidClick
 {
-    
+    NCRecoveryPWDViewController *fview = [[NCRecoveryPWDViewController alloc] init];
+    [self.navigationController pushViewController:fview animated:YES];
 }
 
 -(void)phoneButtonDidClick
