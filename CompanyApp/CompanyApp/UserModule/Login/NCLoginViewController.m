@@ -63,6 +63,7 @@
         [_scrollView addSubview:line];
         
         
+        
         UIImageView *iconview = [[UIImageView alloc] initWithFrame:CGRectMake(10, 0, 300, 161)];
         
         [_scrollView addSubview:iconview];
@@ -213,8 +214,13 @@
 
 -(void)LoginButtonDidClick
 {
-    NSString *acount = tfLoginName.text;
-    NSString *inputpwd = tfPassword.text;
+    NSString *acount = [tfLoginName.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSString *inputpwd = [tfPassword.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    if(acount.length ==0 || inputpwd.length ==0)
+    {
+        [Utils alertTitle:@"提示" message:@"请输入用户名和密码" delegate:nil cancelBtn:@"好" otherBtnName:nil];
+        return;
+    }
     WS(weakself)
      [[NCUserNetManager sharedInstance] loginWithAccount:acount andPassword:inputpwd withComplate:^(NSDictionary *result, NSError *error) {
 
@@ -277,7 +283,7 @@
 #pragma mark -UITextFieldDelegate
 - (BOOL)textFieldShouldReturn:(UITextField *)textField
 {
-    [self resignFirstResponder];
+    [self LoginButtonDidClick];
     return YES;
 }
 

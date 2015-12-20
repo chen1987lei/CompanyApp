@@ -11,6 +11,7 @@
 @implementation NCUserConfig
 
 @synthesize userName,sexValue,certCard,mobilenumber,validatecode,tmppasswd, secondpwd,invitecode;
+@synthesize photourl,addv;
 @synthesize uid, uuid;
 
 +(BOOL)haslogin

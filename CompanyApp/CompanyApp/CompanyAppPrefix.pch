@@ -44,6 +44,7 @@
 #import "Addition.h"
 #import "Marco.h"
 
+#import "NCInitial.h"
 #import "AppDelegate.h"
 #import "Utils.h"
 #import <MBProgressHUD.h>

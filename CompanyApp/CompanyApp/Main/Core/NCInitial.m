@@ -25,6 +25,11 @@
 
 #define kMessageContentURL @"http://anquan.weilomo.com/Api/Message/info.html"
 
+#define kCorpListUrl @"http://anquan.weilomo.com/Api/Organ/list.html"
+#define  kCorpInfoUrl @"http://anquan.weilomo.com/Api/Organ/info.html"
+@implementation NCBaseModel
+
+@end
 
 @interface NCInitial()
 {
@@ -70,7 +75,59 @@
     return dict;
 }
 
--(void)initial
+
+-(NCBaseModel *)parseData:(id)mdData andParentModel:(NCBaseModel *)parent
+{
+    if([mdData isKindOfClass:[NSArray class]])
+    {
+        //只可能是childmodel
+        NSArray *arr = (NSArray *)mdData;
+        NSMutableArray *tmparr = [NSMutableArray new];
+        for(NSDictionary *dict in arr)
+        {
+            NCBaseModel *mb = [[NCBaseModel alloc] init];
+            mb.modelName = dict[@"name"];
+            if(dict[@"id"])
+                mb.modelId = dict[@"id"];
+            if(dict[@"top"])
+                mb.topValue = dict[@"top"];
+            if(dict[@"content"])
+                mb.content = dict[@"content"];
+            
+            [tmparr addObject:tmparr];
+        }
+        if (parent == nil) {
+            parent =  [[NCBaseModel alloc] init];
+        }
+        parent.childSectionData = tmparr;
+        return parent;
+    }
+    else if([mdData isKindOfClass:[NSDictionary class]])
+    {
+        if (parent == nil) {
+            parent =  [[NCBaseModel alloc] init];
+        }
+        NSDictionary *dict = (NSDictionary *)mdData;
+        parent.modelName =  dict[@"name"];
+        if(dict[@"id"])
+            parent.modelId = dict[@"id"];
+        if(dict[@"top"])
+            parent.topValue = dict[@"top"];
+        if(dict[@"child"])
+        {
+            id child = dict[@"child"];
+            parent = [self parseData:child  andParentModel:parent];
+        }
+        return parent;
+    }
+    else
+    {
+        return nil;
+    }
+                                     
+}
+
+-(void)initialWithComplate:(void (^)(BOOL succeed, NSError *error))completeBlock
 {
     WS(weakself);
     
@@ -80,31 +137,183 @@
             if (code == 200) {
                 NSDictionary *res = dict[@"res"];
                 
+                
+                //不同model
                 NSDictionary *signup_cate = res[@"signup_cate"];
+                NSDictionary *signcitycate = signup_cate[@"city_cate"];
+                
+                NCBaseModel *signData =  [[NCBaseModel alloc] init];
+                signData.modelName = @"signup_cate";
+                
+                NSMutableArray *signchild = [NSMutableArray new];
+                NCBaseModel *signCityData =  [[NCBaseModel alloc] init];
+                signCityData.modelName = @"city_cate";
+                NSMutableArray *tmparr = [NSMutableArray new];
+                for (NSDictionary *tmpdict in signcitycate) {
+ 
+                    NCBaseModel *child =  [[NCBaseModel alloc] init];
+                    child.modelId = tmpdict[@"id"];
+                    child.modelName = tmpdict[@"name"];
+                    [tmparr addObject:child];
+                }
+                signCityData.childSectionData = tmparr;
+                [signchild addObject:signCityData];
+                
+                NSDictionary *signindustrycate = signup_cate[@"industry_cate"];
+                NCBaseModel *signIndustryData =  [[NCBaseModel alloc] init];
+                signIndustryData.modelName = @"industry_cate";
+                tmparr = [NSMutableArray new];
+                for (NSDictionary *tmpdict in signindustrycate) {
+                    
+                    NCBaseModel *child =  [[NCBaseModel alloc] init];
+                    child.modelId = tmpdict[@"id"];
+                    child.modelName = tmpdict[@"name"];
+                    [tmparr addObject:child];
+                }
+                signIndustryData.childSectionData = tmparr;
+                [signchild addObject:signIndustryData];
+                
+                signData.childSectionData = tmparr;
+                weakself.signup_cateData = signData;
+                
+                
                 
                 NSDictionary *collection_cate = res[@"collection_cate"];
+                NCBaseModel *collectionModel =  [[NCBaseModel alloc] init];
+                collectionModel.modelName = @"collection_cate";
+                NSMutableArray *collectionchild = [NSMutableArray new];
+                for (NSDictionary *tmpdict in collection_cate) {
+                    
+                    NCBaseModel *child =  [[NCBaseModel alloc] init];
+                    child.modelId = tmpdict[@"id"];
+                    child.modelName = tmpdict[@"name"];
+                    [collectionchild addObject:child];
+                }
+                collectionModel.childSectionData = collectionchild;
+                weakself.collectionData = collectionModel;
+                
+                
                 
                 NSDictionary *talents_cate = res[@"talents_cate"];
+                NCBaseModel *talentModel =  [[NCBaseModel alloc] init];
+                talentModel.modelName = @"talents_cate";
+                NSMutableArray *talentchild = [NSMutableArray new];
+                
+                NSDictionary *talentsAge_cate = talents_cate[@"age_cate"];
+                NCBaseModel *talentAgeModel =  [[NCBaseModel alloc] init];
+                talentAgeModel.modelName = @"age_cate";
+                tmparr = [NSMutableArray new];
+                for (NSDictionary *tmpdict in talentsAge_cate) {
+                    
+                    NCBaseModel *child =  [[NCBaseModel alloc] init];
+                    child.modelId = tmpdict[@"id"];
+                    child.modelName = tmpdict[@"name"];
+                    [tmparr addObject:child];
+                }
+                talentAgeModel.childSectionData = tmparr;
+                [talentchild addObject:talentAgeModel];
+                
+                  NSDictionary *talentCity_cate = talents_cate[@"city_cate"];
+                NCBaseModel *talentCityModel =  [[NCBaseModel alloc] init];
+                      talentCityModel.modelName = @"city_cate";
+                tmparr = [NSMutableArray new];
+                for (NSDictionary *tmpdict in talentCity_cate) {
+                    
+                    NCBaseModel *child =  [[NCBaseModel alloc] init];
+                    child.modelId = tmpdict[@"id"];
+                    child.modelName = tmpdict[@"name"];
+                    [tmparr addObject:child];
+                }
+                talentCityModel.childSectionData = tmparr;
+                
+                talentModel.childSectionData = talentchild;
+                weakself.talents_cateData = collectionModel;
+                
                 
 
+                NSArray *index_cate = res[@"index_cate"];
+                NCBaseModel *indexModel =  [[NCBaseModel alloc] init];
+                indexModel.modelName = @"index_cate";
+                
+                tmparr = [NSMutableArray new];
+                for (NSDictionary *tmpdict in  index_cate) {
+                    NCBaseModel *tmpmodel =  [[NCBaseModel alloc] init];
+                    tmpmodel.modelId = tmpdict[@"id"];
+                    tmpmodel.modelName = tmpdict[@"name"];
+ 
+                    NSArray *sschild = tmpdict[@"child"];
+                    NSMutableArray *tmparr2 = [NSMutableArray new];
+                    if (sschild) {
+                        for (NSDictionary *tmpdict2 in  sschild)
+                        {
+                            NCBaseModel *tmpmodel2 =  [[NCBaseModel alloc] init];
+                            tmpmodel2.modelId = tmpdict2[@"id"];
+                            tmpmodel2.modelName = tmpdict2[@"name"];
+                            [tmparr2 addObject:tmpmodel2];
+                        }
+                    }
+                    tmpmodel.childSectionData = tmparr2;
+                    [tmparr addObject:tmpmodel];
+                }
+                
+                indexModel.childSectionData = tmparr;
+                weakself.indexData = indexModel;
+                    
+                
 
-                NSDictionary *index_cate = res[@"index_cate"];
-                 NSDictionary *index_search_cate = res[@"index_search_cate"];
+                tmparr = [NSMutableArray new];
+                NSDictionary *index_search_cate = res[@"index_search_cate"];
+                NCBaseModel *index_searchModel = [self parseData:index_search_cate andParentModel:nil];
+                index_searchModel.modelName = @"index_search_cate";
+                
+                
+                index_searchModel.childSectionData = tmparr;
+                weakself.indexSearchData  = index_searchModel;
+                
+                
                 
                 NSDictionary *certificate_search_cate = res[@"certificate_search_cate"];
+                NCBaseModel *certificate_searchModel =  [[NCBaseModel alloc] init];
+                certificate_searchModel.modelName = @"certificate_search_cate";
+                NSMutableArray *certificate_searchchild = [NSMutableArray new];
+                for (NSDictionary *dict in certificate_search_cate) {
+                    
+                    NCBaseModel *child =  [[NCBaseModel alloc] init];
+                    child.modelId = dict[@"id"];
+                    child.modelName = dict[@"name"];
+                    [certificate_searchchild addObject:child];
+                }
+                certificate_searchModel.childSectionData = certificate_searchchild;
+                weakself.certificate_searchData = certificate_searchModel;
               
                 NSDictionary *organization_search_cate = res[@"organization_search_cate"];
+                NCBaseModel *organization_searchModel =  [self parseData:organization_search_cate andParentModel:nil];
+                organization_searchModel.modelName = @"organization_search_cate";
+                weakself.organization_searchData = organization_searchModel;
+                
                 
                 NSDictionary *reg_certificate = res[@"reg_certificate"];
-                
+                NCBaseModel *reg_certificateModel = [self parseData:reg_certificate  andParentModel:nil];
+                reg_certificateModel.modelName = @"reg_certificate";
                 
                 
                 NSDictionary *resume_certificate = res[@"resume_certificate"];
+                NCBaseModel *resume_certificateModel =
+                [self parseData:resume_certificate  andParentModel:nil];
+                resume_certificateModel.modelName = @"resume_certificate";
+                weakself.reg_certificateData = resume_certificateModel;
+                
                 
                 NSDictionary *practice_cate = res[@"practice_cate"];
+                NCBaseModel *practice_catehModel =  [self parseData:practice_cate  andParentModel:nil];
+                practice_catehModel.modelName = @"certificate_search_cate";
+                weakself.practiceData = practice_catehModel;
                 
-                
-                
+                completeBlock(YES,nil);
+            }
+            else
+            {
+                 completeBlock(NO,error);
             }
         }
     }];
@@ -282,6 +491,58 @@
     [self.requestManager.operationQueue addOperation:operation];
 }
 
+-(void)requestPracticeLibraryData:(NSString *)cagID withPageFrom:(NSInteger)startpage
+          withOnePageCount:(NSInteger)onepageCount
+              WithComplate:(void (^)(NSDictionary *result, NSError *error))completeBlock;
+{
+    if (![NCUserConfig haslogin]) {
+        return;
+    }
+    
+    NCUserConfig *user = [NCUserConfig sharedInstance];
+    NSMutableDictionary *params =  [NSMutableDictionary dictionary];
+    [params setObject:cagID forKey:@"cid"];
+    
+    [params setObject:[NSNumber numberWithInteger:startpage] forKey:@"page"];
+    
+    [params setObject:[NSNumber numberWithInteger:onepageCount] forKey:@"pagenum"];
+    
+    
+    [params setObject:user.uid forKey:@"uid"];
+    [params setObject:user.uuid forKey:@"uuid"];
+    [params addEntriesFromDictionary: [NCInitial getBaseParams]];
+    
+    
+    
+    NSMutableURLRequest *request = [self.requestManager.requestSerializer requestWithMethod:@"POST" URLString:kNewsListURL
+                                                                                 parameters:params error:nil];
+    
+    
+    //    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:
+    //                   [NSURL URLWithString: kInitialURL ]];
+    
+    request.timeoutInterval = 10;
+    
+    WS(weakself)
+    __weak AFHTTPRequestOperation *operation = [self.requestManager HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        //            {"code":200,"res":[{"id":"12","name":"个人证书查询","fid":"7","top":"99"},{"id":"13","name":"认证机构查询","fid":"7","top":"99"}]}
+        
+        
+        NSDictionary *dict = [operation.responseData objectFromJSONData];
+        
+        completeBlock(dict, nil);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        completeBlock(nil, error);
+        
+    }];
+    
+    [operation setQueuePriority:NSOperationQueuePriorityLow];
+    [self.requestManager.operationQueue addOperation:operation];
+}
+
 
 -(void)requestNewsContentData:(NSString *)newsID
               WithComplate:(void (^)(NSDictionary *result, NSError *error))completeBlock;
@@ -399,6 +660,83 @@
 
 
 
-
+-(void)requestCorpListData:(NSString *)area page:(NSInteger )page withPageNumber:(NSInteger)pagenum
+              WithComplate:(void (^)(NSDictionary *result, NSError *error))completeBlock;
+{
+    
+    NCUserConfig *user = [NCUserConfig sharedInstance];
+    NSMutableDictionary *params =  [NSMutableDictionary dictionary];
+    
+    if (area) {
+        
+        [params setObject:area forKey:@"area"];
+    }
+    
+    [params setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
+    [params setObject:[NSNumber numberWithInteger:pagenum]  forKey:@"pagenum"];
+    
+    [params setObject:user.uid forKey:@"uid"];
+    [params setObject:user.uuid forKey:@"uuid"];
+    [params addEntriesFromDictionary: [NCInitial getBaseParams]];
+    
+    
+    NSMutableURLRequest *request = [self.requestManager.requestSerializer requestWithMethod:@"POST" URLString:kCorpListUrl
+                                                                                 parameters:params error:nil];
+    
+    request.timeoutInterval = 10;
+    
+    WS(weakself)
+    __weak AFHTTPRequestOperation *operation = [self.requestManager HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        //{"code":200,"res":{"title":"版本更新2.0","id":"1","content":"系统有的更新请及时更新","time":"2015-12-10"}}
+        
+        NSDictionary *dict = [operation.responseData objectFromJSONData];
+        
+        completeBlock(dict, nil);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        completeBlock(nil, error);
+        
+    }];
+    
+    [operation setQueuePriority:NSOperationQueuePriorityLow];
+    [self.requestManager.operationQueue addOperation:operation];
+}
+-(void)requestCorpInfo:(NSString *)corpId
+          WithComplate:(void (^)(NSDictionary *result, NSError *error))completeBlock;
+{
+    
+    NCUserConfig *user = [NCUserConfig sharedInstance];
+    NSMutableDictionary *params =  [NSMutableDictionary dictionary];
+    
+    [params setObject:corpId forKey:@"id"];
+    
+    [params setObject:user.uid forKey:@"uid"];
+    [params setObject:user.uuid forKey:@"uuid"];
+    [params addEntriesFromDictionary: [NCInitial getBaseParams]];
+    
+    
+    NSMutableURLRequest *request = [self.requestManager.requestSerializer requestWithMethod:@"POST" URLString:kCorpInfoUrl
+                                                                                 parameters:params error:nil];
+    
+    request.timeoutInterval = 10;
+    
+    WS(weakself)
+    __weak AFHTTPRequestOperation *operation = [self.requestManager HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        //{"code":200,"res":{"title":"版本更新2.0","id":"1","content":"系统有的更新请及时更新","time":"2015-12-10"}}
+        
+        NSDictionary *dict = [operation.responseData objectFromJSONData];
+        
+        completeBlock(dict, nil);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        completeBlock(nil, error);
+        
+    }];
+    
+    [operation setQueuePriority:NSOperationQueuePriorityLow];
+    [self.requestManager.operationQueue addOperation:operation];
+}
 
 @end

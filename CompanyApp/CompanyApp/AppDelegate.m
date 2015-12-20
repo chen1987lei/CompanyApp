@@ -33,16 +33,27 @@
     self.window.backgroundColor = [UIColor blackColor];
     [self.window makeKeyAndVisible];
     
+  
+    UIViewController *launchview = [[UIViewController alloc] init];
+    self.window.rootViewController = launchview;
     
+    WS(weakself)
+    [[NCInitial sharedInstance] initialWithComplate:^(BOOL succeed, NSError *error) {
+       
+        [weakself showMainView];
+    }];
+
+
+    return YES;
+}
+
+-(void)showMainView
+{
     self.tabBarController = [[NCTabBarController alloc] initWithNibName:nil bundle:nil];
     _tdNav = [[UINavigationController alloc] initWithRootViewController:self.tabBarController];
     _tdNav.navigationBarHidden = YES;
     self.window.backgroundColor = [UIColor blackColor];
     self.window.rootViewController = _tdNav;
-    
-    
-    [[NCInitial sharedInstance] initial];
-    
     
     if (![NCUserConfig haslogin]) {
         [self showLoginViewController];
@@ -52,9 +63,7 @@
         //先展示loadingview
         [self refreshHomeView];
     }
-    return YES;
 }
-
 
 -(void)refreshHomeView
 {

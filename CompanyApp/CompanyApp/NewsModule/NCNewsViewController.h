@@ -13,6 +13,6 @@
     
 }
 
-@property(nonatomic,copy) NSString *newsID;
-
+@property(nonatomic,strong) NCBaseModel *currentModel;
+@property(nonatomic,strong) NSArray *childData;
 @end

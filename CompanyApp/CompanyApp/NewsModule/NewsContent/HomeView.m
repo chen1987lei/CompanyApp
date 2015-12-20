@@ -18,26 +18,27 @@
     self = [super initWithFrame:frame];
     if (self) {
         // Initialization code
-        [self commInit];
+//        [self commInit];
     }
     return self;
 }
 
 #pragma mark UI初始化
 -(void)commInit{
+   
     NSArray *vButtonItemArray = @[@{NOMALKEY: @"normal.png",
                                     HEIGHTKEY:@"helight.png",
-                                    TITLEKEY:@"安全新闻",
+                                    TITLEKEY: _menuItemArray[0],
                                     TITLEWIDTH:[NSNumber numberWithFloat:100]
                                     },
                                   @{NOMALKEY: @"normal.png",
                                     HEIGHTKEY:@"helight.png",
-                                    TITLEKEY:@"安全政策",
+                                    TITLEKEY: _menuItemArray[1],
                                     TITLEWIDTH:[NSNumber numberWithFloat:100]
                                     },
                                   @{NOMALKEY: @"normal",
                                     HEIGHTKEY:@"helight",
-                                    TITLEKEY:@"安全动态",
+                                    TITLEKEY: _menuItemArray[2],
                                     TITLEWIDTH:[NSNumber numberWithFloat:100]
                                     },
                                  
@@ -55,7 +56,7 @@
     }
     [mScrollPageView setContentOfTables:vButtonItemArray.count];
     //默认选中第一个button
-    [mMenuHriZontal clickButtonAtIndex:0];
+    [mMenuHriZontal clickButtonAtIndex:_baseChIndex];
     //-------
     [self addSubview:mScrollPageView];
     [self addSubview:mMenuHriZontal];
@@ -78,11 +79,16 @@
 #pragma mark ScrollPageViewDelegate
 -(void)didScrollPageViewChangedPage:(NSInteger)aPage{
     NSLog(@"CurrentPage:%d",aPage);
+    _baseChIndex = aPage;
     [mMenuHriZontal changeButtonStateAtIndex:aPage];
 //    if (aPage == 3) {
         //刷新当页数据
         [mScrollPageView freshContentTableAtIndex:aPage];
 //    }
+    
+    if ([_actiondelegate respondsToSelector:@selector(homeViewDidChangeChannel:)]) {
+        [_actiondelegate homeViewDidChangeChannel:aPage];
+    }
 }
 
 -(void)didClickNewsModel:(TDHomeModel *)model

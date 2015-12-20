@@ -28,6 +28,7 @@
 
 //登录
 -(void)loginWithAccount:(NSString *)account andPassword:(NSString *)password  withComplate:(void (^)(NSDictionary *result, NSError *error))completeBlock;
+-(void)requestUserInfoWithComplate:(void (^)(NSDictionary *result, NSError *error))completeBlock;
 
 //找回密码
 -(void)recoveryWithAccount:(NSString *)account andPassword:(NSString *)password secondPassword:(NSString *)secondpwd andValidateCode:(NSString *)validatecode  withComplate:(void (^)(NSDictionary *result, NSError *error))completeBlock;
@@ -36,5 +37,10 @@
 /// 修改密码
 -(void)modifyAccountPwd:(NSString *)password newPwd:(NSString *)newpwd secondPassword:(NSString *)secondpwd   withComplate:(void (^)(NSDictionary *result, NSError *error))completeBlock;
 
+-(void)modifyAccountName:(NSString *)newname withComplate:(void (^)(NSDictionary *result, NSError *error))completeBlock;
+
+-(void)modifyAccountSex:(NSString *)sexstr   withComplate:(void (^)(NSDictionary *result, NSError *error))completeBlock;
+
+-(void)doUserFavoriteAction:(NSString *)nid andCategory:(NSString *)category  WithComplate:(void (^)(NSDictionary *result, NSError *error))completeBlock;;
 
 @end

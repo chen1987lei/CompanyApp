@@ -16,10 +16,11 @@
 #import "NCUserNetManager.h"
 
 #import "NCModelManager.h"
-
+#import "NCInitial.h"
 @interface RegisterViewController ()<UITableViewDataSource,UITableViewDelegate,TopNavBarDelegate,UITextFieldDelegate,UIPickerViewDataSource,UIPickerViewDelegate>
 {
-    
+    UIButton *_sextextButton;
+    UIToolbar *_myToolbar;
 }
 @property (nonatomic,assign) BOOL          isRead;
 
@@ -60,24 +61,47 @@ static BOOL hasViewLicense = NO;
     _pickerView = [[UIPickerView alloc] init];
     _pickerView.delegate = self;
     _pickerView.dataSource = self;
+    _pickerView.showsSelectionIndicator = YES;
     _pickerView.backgroundColor = [UIColor whiteColor];
-    _pickerView.hidden = YES;
-    _pickerView.frame = CGRectMake(0, 0, kScreenWidth, 200);
+    _pickerView.frame = CGRectMake(0, kScreenHeight-200, kScreenWidth, 200);
+  
+    _myToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, _pickerView.top, kScreenWidth, 44)];
+
+    UIBarButtonItem *cc = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(sexSelectCancel)];
+    UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
+    UIBarButtonItem *bb = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(sexSelectDone)];
+    NSArray *items = [NSArray arrayWithObjects:cc,space,bb,nil];
+    [_myToolbar setItems:items];
+
     [self.view addSubview:_pickerView];
+    [self.view addSubview:_myToolbar];
+    
 }
 
+-(void)sexSelectCancel
+{
+    [self dismissPickerView];
+}
+
+-(void)sexSelectDone
+{
+    [self dismissPickerView];
+}
 
 -(void)dismissPickerView
 {
     [_pickerView removeFromSuperview];
     _pickerView = nil;
+    
+    [_myToolbar removeFromSuperview];
+    _myToolbar = nil;
 }
 
 
 - (void)viewWillAppear:(BOOL)animated{
     
     [super viewWillAppear:animated];
-    
+//    [self showGuideContent];
 }
 - (void)viewDidDisappear:(BOOL)animated{
     
@@ -85,13 +109,14 @@ static BOOL hasViewLicense = NO;
     
 }
 
--(void)showContentwithCompletionBlock:(id)completionBlock
+-(void)showGuideContent
 {
-   NCCertificate *regcertobj   = [NCModelManager sharedInstance].regcertobj;
-    NSString *message = regcertobj.content;
+    NCBaseModel *model = [NCInitial sharedInstance].reg_certificateData;
+//    NCCertificate *regcertobj = [[NCCertificate alloc] init];
+    
+//    NSString *message = regcertobj.content;
     
 //   title subtitle;
-    
     NAModalSheet *sheet = [[NAModalSheet alloc] initWithViewController:self presentationStyle:NAModalSheetPresentationStyleFadeInCentered];
     sheet.disableBlurredBackground = YES;
     sheet.cornerRadiusWhenCentered = 10.0;
@@ -166,7 +191,8 @@ static BOOL hasViewLicense = NO;
 -(void)registerButtonAction
 {
     NSString *account = [(UITextField *)[self.view viewWithTag:Tag_AccountTextField] text];
-    NSString *sexval = [(UITextField *)[self.view viewWithTag:Tag_SexTextField] text];
+    NSString *sexval = _sextextButton.titleLabel.text;
+
     
     NSString *certcard = [(UITextField *)[self.view viewWithTag:Tag_CertCardTextField] text];
     NSString *mobile = [(UITextField *)[self.view viewWithTag:Tag_MobileNumberTextField] text];
@@ -295,18 +321,18 @@ static BOOL hasViewLicense = NO;
         
         UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier2];
         UILabel *label = [Utils labelWithFrame:CGRectMake(6.f, 10.f, 70.f, 20.f) withTitle:@"性   别" titleFontSize:[UIFont systemFontOfSize:10.f] textColor:[UIColor blackColor] backgroundColor:[UIColor clearColor] alignment:NSTextAlignmentLeft];
+        label.userInteractionEnabled = NO;
         [cell addSubview:label];
         
-        UITextField *textField= [[UITextField alloc] initWithFrame:CGRectMake(label.right+offset , celltop, textwidth, txtfieldHeight)];
-        textField.tag = Tag_SexTextField;
-        textField.returnKeyType = UIReturnKeyDone;
-        textField.userInteractionEnabled = NO;
-        textField.delegate = self;
-        textField.placeholder = @"请选择性别";
-        textField.text = @"男";
-        textField.keyboardType = UIKeyboardTypeEmailAddress;
-        [cell addSubview:textField];
         
+        UIButton *sexButton = [[UIButton alloc] initWithFrame:CGRectMake(label.right+offset , celltop, textwidth, txtfieldHeight)];
+        [sexButton addTarget:self action:@selector(showPickerView)  forControlEvents:UIControlEventTouchUpInside];
+        sexButton.titleLabel.textAlignment = NSTextAlignmentLeft;
+//        sexButton.tag = Tag_SexTextField;
+        [sexButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+        [sexButton setTitle:@"男" forState:UIControlStateNormal];
+        _sextextButton = sexButton;
+        [cell addSubview:sexButton];
         return cell;
     }else if (indexPath.row == 2){
         static NSString *cellIdentifier3 = @"cellIdentifier3";
@@ -453,11 +479,8 @@ static BOOL hasViewLicense = NO;
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if (indexPath.row == 1) {
-        //show pickerview
-        
-        
-    }
+    [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    
 }
 
 -(UIView*)tableView:(UITableView*)tableView viewForHeaderInSection:(NSInteger)section
@@ -659,17 +682,29 @@ static BOOL hasViewLicense = NO;
 }
 
 #pragma mark- UIPickerViewDelegate
-
-- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
+- (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component;
 {
-    return 40;
+    return 2;
 }
 
-- (nullable NSAttributedString *)pickerView:(UIPickerView *)pickerView attributedTitleForRow:(NSInteger)row forComponent:(NSInteger)component
+-(NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView
 {
- 
-    return [[NSAttributedString alloc] initWithString: @"123"];
-    
+    return 1;
+}
+- (CGFloat)pickerView:(UIPickerView *)pickerView rowHeightForComponent:(NSInteger)component
+{
+    return 20;
+}
+
+- (nullable NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    if (row ==0) {
+        return @"女";
+    }
+    else
+    {
+      return @"男";
+    }
 //    NSDictionary *dict = [self.arrChannel objectAtSafeIndex:row];
     
 //    NSAttributedString *str = [[NSAttributedString alloc] initWithString:dict[@"title"]
@@ -680,15 +715,15 @@ static BOOL hasViewLicense = NO;
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
-//    NSDictionary *dict = [self.arrChannel objectAtSafeIndex:row];
-//    if (dict && !_pickerView.hidden) {
-//        _channelBtn.userInfo = dict;
-//        NSString * text = [NSString stringWithFormat:@"%@",dict[@"title"]];
-//        [_channelBtn setTitle:text forState:UIControlStateNormal];
-//        
-//        if (_tag1.text == nil || [_tag1.text length] == 0) {
-//            _tag1.text = text;
-//        }
-//    }
+    NSString *sexstr = nil;
+    if (row ==0) {
+        sexstr = @"女";
+    }
+    else
+    {
+        sexstr = @"男";
+    }
+    
+    [_sextextButton setTitle:sexstr forState:UIControlStateNormal];
 }
 @end

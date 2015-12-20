@@ -22,7 +22,7 @@
 #define kUserNewNameUrl  @"http://anquan.weilomo.com/Api/User/name.html"
 #define kUserNewSexURL  @"http://anquan.weilomo.com/Api/User/sex.html"
 
-
+#define kUserFavoriteURL  @"http://anquan.weilomo.com/Api/News/favorite.html"
 
 @interface NCUserNetManager()
 {
@@ -199,7 +199,7 @@ withComplate:(void (^)(NSDictionary *result
     [params setObject:account forKey:@"tel"];
     [params setObject:validatecode forKey:@"code"];
     [params setObject:password forKey:@"pwd"];
-    [params setObject:secondpwd forKey:@"pwd"];
+    [params setObject:secondpwd forKey:@"pwd2"];
     
     [params addEntriesFromDictionary: [NCInitial getBaseParams]];
     
@@ -230,6 +230,11 @@ withComplate:(void (^)(NSDictionary *result
 
 -(void)requestUserInfoWithComplate:(void (^)(NSDictionary *result, NSError *error))completeBlock;
 {
+    if(![NCUserConfig haslogin])
+    {
+        completeBlock(nil,nil);
+        return;
+    }
     NCUserConfig *user = [NCUserConfig sharedInstance];
     NSMutableDictionary *params =  [NSMutableDictionary dictionary];
     [params setObject:@"1" forKey:@"uid"];
@@ -256,7 +261,12 @@ withComplate:(void (^)(NSDictionary *result
             NCUserConfig *user = [NCUserConfig sharedInstance] ;
             user.userName =resdata[@"name"];
              user.sexValue =resdata[@"sex"];
-                    user.sexValue =resdata[@"sex"];
+            user.certCard =resdata[@"card"];
+            user.mobilenumber =resdata[@"phone"];
+            user.photourl =resdata[@"img"];
+            
+            user.addv =resdata[@"addv"];
+            user.invitecode =resdata[@"code"];
         }
         completeBlock(dict, nil);
         
@@ -269,6 +279,54 @@ withComplate:(void (^)(NSDictionary *result
     [operation setQueuePriority:NSOperationQueuePriorityLow];
     [self.requestManager.operationQueue addOperation:operation];
 }
+
+
+-(void)doUserFavoriteAction:(NSString *)nid andCategory:(NSString *)category  WithComplate:(void (^)(NSDictionary *result, NSError *error))completeBlock;
+{
+    if(![NCUserConfig haslogin])
+    {
+        completeBlock(nil,nil);
+        return;
+    }
+    NCUserConfig *user = [NCUserConfig sharedInstance];
+    NSMutableDictionary *params =  [NSMutableDictionary dictionary];
+    [params setObject:@"1" forKey:@"uid"];
+    [params setObject:user.uuid forKey:@"uuid"];
+ 
+    [params setObject:nid forKey:@"nid"];
+    [params setObject:category forKey:@"class"];
+    
+    [params addEntriesFromDictionary: [NCInitial getBaseParams]];
+    
+    
+    NSMutableURLRequest *request = [self.requestManager.requestSerializer requestWithMethod:@"POST" URLString:kUserFavoriteURL
+                                                                                 parameters:params error:nil];
+    
+    request.timeoutInterval = 10;
+    
+    WS(weakself)
+    __weak AFHTTPRequestOperation *operation = [self.requestManager HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        //{"code":200,"res":{"id":"1","name":"路浩","sex":"1","card":"123456789123456789123","phone":"18669482003","img":"http://anquan.io/Uploads2015/1213/thumb/90x90/t_200x200_566cea1e0dd4d.jpg","addv":"0","code":"100001"}}
+        
+        NSDictionary *dict = [operation.responseData objectFromJSONData];
+        NSInteger retcode = [dict[@"code"] integerValue];
+        if (retcode == 200) {
+          
+            //收藏成功
+        }
+        completeBlock(dict, nil);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        completeBlock(nil, error);
+        
+    }];
+    
+    [operation setQueuePriority:NSOperationQueuePriorityLow];
+    [self.requestManager.operationQueue addOperation:operation];
+}
+
 
 
 -(void)modifyAccountPwd:(NSString *)password newPwd:(NSString *)newpwd secondPassword:(NSString *)secondpwd   withComplate:(void (^)(NSDictionary *result, NSError *error))completeBlock;

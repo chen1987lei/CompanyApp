@@ -21,6 +21,18 @@
 
 #import "NCNewsViewController.h"
 
+#import "NCPracticeViewController.h"
+
+#import "NCPracticeLibraryController.h"
+
+#import "DropDownListView.h"
+
+#import "NCCorpListViewController.h"
+
+#import "NCTestEnrollViewController.h"
+#import "NCTestNoticeViewController.h"
+
+
 enum TAG_HomeView_SECTION{
     
     TAG_HomeView_SECTION1  = 1,
@@ -29,11 +41,16 @@ enum TAG_HomeView_SECTION{
     TAG_HomeView_SECTION4
 };
 
-@interface NCHomeViewController ()<UITableViewDataSource,UITableViewDelegate,TDHomeTitleViewDelegate,NCHomeSectionViewDelegate>
+@interface NCHomeViewController ()<UITableViewDataSource,UITableViewDelegate,TDHomeTitleViewDelegate,NCHomeSectionViewDelegate,
+DropDownChooseDelegate,DropDownChooseDelegate>
 {
     UITableView *_mainTable;
     
     NSMutableArray *_arrHomeTitle;
+    
+    NSArray *_arrSectionData;
+    
+    NSMutableArray *chooseArray ;
 }
 @property(nonatomic,strong) TDBannerCollectionView *postbannerview;
 @property (nonatomic,strong) TDHomeTitleView *titleView;
@@ -54,15 +71,16 @@ enum TAG_HomeView_SECTION{
     [self.view addSubview:self.postbannerview];
     
     
-    _mainTable.frame = CGRectMake(0, self.postbannerview.bottom, [UIScreen width], self.view.height-_titleView.height);//内存警告时用
+    _mainTable.frame = CGRectMake(0, self.postbannerview.bottom, [UIScreen width], self.view.height-TAB_BAR_HEIGHT - self.postbannerview.bottom);//内存警告时用
     
+    [self requestBannerData];
+    [self refreshSectionView];
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
-    [self requestBannerData];
 }
 
 -(void)requestBannerData
@@ -103,6 +121,15 @@ enum TAG_HomeView_SECTION{
     [self.postbannerview refreshPosterBanner:headTemp];
 }
 
+
+
+-(void)refreshSectionView
+{
+    _arrSectionData = [NCInitial sharedInstance].indexData.childSectionData;
+    
+    [_mainTable reloadData];
+}
+
 #define leftoff 8
 -(TDBannerCollectionView *)postbannerview
 {
@@ -118,33 +145,51 @@ enum TAG_HomeView_SECTION{
         _titleView.delegate= self;
         _titleView.titleDelegate=self;
         [_titleView setTitleBarTudouColor];
-        [_titleView setBottomLineViewHidden:YES];//5.4 设计要求去掉
+ 
         
-        NSDictionary *homeTitleDic = [[NSUserDefaults standardUserDefaults] objectForKey:@"homeTitleInfo"];
-        _arrHomeTitle = [NSMutableArray array];
+        chooseArray = [NSMutableArray arrayWithArray:@[
+                                                       @[@"资讯",@"资料库"]]];
         
-        if (homeTitleDic) {
-            for (NSDictionary *dic in homeTitleDic) {
-                TDHomeTitleModel *model = [[TDHomeTitleModel alloc] initWithDictionary:dic];
-                
-                if (model.isValid) { //只显示可以的
-                    [_arrHomeTitle addObject:model];
-                }
-            }
-            
-            if (_arrHomeTitle && [_arrHomeTitle count] > 0) {   //cms配置的 icon 没问题的才显示
-                [_titleView setTitleItemsWithCMS:_arrHomeTitle];
-            }
-        }
-        
-        if (!_titleView.isCMSTitle) {
-            [_titleView setDefaultTitleItems];
-        }
-        
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showMarketingIcon) name:kTDTitleBarShowMarketControlNotification object:nil];
+        DropDownListView * dropDownView = [[DropDownListView alloc] initWithFrame:CGRectMake(0,30, 80, 40) dataSource:self delegate:self];
+        dropDownView.mSuperView = self.view;
+        [_titleView addSubview:dropDownView];
     }
     return _titleView;
+}
+
+
+
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+
+#pragma mark -- dropDownListDelegate
+-(void) chooseAtSection:(NSInteger)section index:(NSInteger)index
+{
+    NSLog(@"童大爷选了section:%d ,index:%d",section,index);
+}
+
+#pragma mark -- dropdownList DataSource
+-(NSInteger)numberOfSections
+{
+    return [chooseArray count];
+}
+-(NSInteger)numberOfRowsInSection:(NSInteger)section
+{
+    NSArray *arry =chooseArray[section];
+    return [arry count];
+}
+-(NSString *)titleInSection:(NSInteger)section index:(NSInteger) index
+{
+    return chooseArray[section][index];
+}
+-(NSInteger)defaultShowSection:(NSInteger)section
+{
+    return 0;
 }
 
 -(void)addTableView
@@ -162,11 +207,6 @@ enum TAG_HomeView_SECTION{
 //    [search setDefaultSearchWord:_homeDataSource.searchKey];
 //    [self.navigationController pushViewController:search animated:YES];
 
-}
-
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 /*
@@ -192,9 +232,9 @@ enum TAG_HomeView_SECTION{
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSInteger count = 4;
+    NSInteger count = [_arrSectionData count];
     
-    return count;
+    return 4;
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
@@ -206,116 +246,44 @@ enum TAG_HomeView_SECTION{
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    switch (indexPath.row) {
-        case 0:
-        {
-            static NSString *firstCellIdentifier = @"firstCell";
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:firstCellIdentifier];
-            if (!cell) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:firstCellIdentifier];
-                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                
-                cell.backgroundColor = [UIColor whiteColor];
-                
-                
-                NCHomeSectionView *secview = [[NCHomeSectionView alloc] initWithFrame:CGRectMake(0, 0, tableView.width, kCellHeight)];
-                secview.actiondelegate = self;
-//                secview.backgroundColor = [UIColor ];
-                secview.tag = TAG_HomeView_SECTION1;
-                [secview.leftImageButton setTitle:@"资讯" forState:UIControlStateNormal];
-                [secview.firstButton setTitle:@"安全新闻" forState:UIControlStateNormal];
-                [secview.secondButton setTitle:@"安全政策" forState:UIControlStateNormal];
-                [secview.moreButton setTitle:@"安全动态" forState:UIControlStateNormal];
-                
-                [cell.contentView addSubview:secview];
-            }
-            
-            return cell;
-        }
-            
-            break;
-        case 1:
-        {
-            static NSString *kCellIdentifier2 = @"Cell2";
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier2];
-            if (!cell) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifier2];
-                                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                cell.backgroundColor = [UIColor whiteColor];
-                
-                NCHomeSectionView *secview = [[NCHomeSectionView alloc] initWithFrame:CGRectMake(0, 0, tableView.width, 66)];
-                secview.actiondelegate = self;
-                secview.tag = TAG_HomeView_SECTION2;
-                [secview.leftImageButton setTitle:@"培训学习" forState:UIControlStateNormal];
-                [secview.firstButton setTitle:@"练习" forState:UIControlStateNormal];
-                [secview.secondButton setTitle:@"资料库" forState:UIControlStateNormal];
-                [secview.moreButton setTitle:@"安全动态" forState:UIControlStateNormal];
-                
-                [cell.contentView addSubview:secview];
-            }
-            
-            
-            return cell;
-        }
-            break;
-        case 2:
-        {
-            static NSString *kCellIdentifier3 = @"Cell3";
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier3];
-            if (!cell) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifier3];
-                                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                cell.backgroundColor = [UIColor whiteColor];
-                NCHomeSectionView *secview = [[NCHomeSectionView alloc] initWithFrame:CGRectMake(0, 0, tableView.width, 66)];
-                
-                secview.actiondelegate = self;
-                secview.tag = TAG_HomeView_SECTION3;
-                [secview.leftImageButton setTitle:@"考试报名" forState:UIControlStateNormal];
-                [secview.firstButton setTitle:@"报名" forState:UIControlStateNormal];
-                [secview.secondButton setTitle:@"考试公告" forState:UIControlStateNormal];
-                [secview.moreButton setTitle:@"更多" forState:UIControlStateNormal];
-                
-                [cell.contentView addSubview:secview];
-            }
-            
-            return cell;
-        }
-            break;
-        case 3:
-        {
-            static NSString *kCellIdentifier4 = @"Cell4";
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier4];
-            if (!cell) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:kCellIdentifier4];
-                                cell.selectionStyle = UITableViewCellSelectionStyleNone;
-                cell.backgroundColor = [UIColor whiteColor];
-                
-                NCHomeSectionView *secview = [[NCHomeSectionView alloc] initWithFrame:CGRectMake(0, 0, tableView.width, 66)];
-                secview.actiondelegate = self;
-                secview.tag = TAG_HomeView_SECTION4;
-                [secview.leftImageButton setTitle:@"认证查询" forState:UIControlStateNormal];
-                [secview.firstButton setTitle:@"个人证书查询" forState:UIControlStateNormal];
-                [secview.secondButton setTitle:@"认证机构查询" forState:UIControlStateNormal];
-                [secview.moreButton setTitle:@"更多" forState:UIControlStateNormal];
-                
-                [cell.contentView addSubview:secview];
-            }
-            
-            return cell;
-        }
-            break;
-        default:
-            break;
-    }
-    
-    static NSString *kCellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kCellIdentifier];
+    static NSString *firstCellIdentifier = @"firstCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:firstCellIdentifier];
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@""];
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:firstCellIdentifier];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         cell.backgroundColor = [UIColor whiteColor];
+        
+        NCHomeSectionView *secview = [[NCHomeSectionView alloc] initWithFrame:CGRectMake(0, 0, tableView.width, kCellHeight)];
+        secview.actiondelegate = self;
+//                secview.backgroundColor = [UIColor ];
+        secview.tag = 111;
+        
+        [cell.contentView addSubview:secview];
     }
+    NCHomeSectionView *secview = [cell.contentView viewWithTag:111];
+    secview.rowIndex = indexPath.row;
+    secview.firstButton.tag = TAG_HomeView_SECTION1+indexPath.row;
+    NCBaseModel *model = [_arrSectionData objectAtIndex:indexPath.row];
+    NSArray *child = model.childSectionData;
+
+    [secview.leftImageButton setTitle:model.modelName forState:UIControlStateNormal];
+
+    NCBaseModel *model0 = child[0];
+    [secview.firstButton setTitle:model0.modelName forState:UIControlStateNormal];
+    NCBaseModel *model1 = child[1];
+    [secview.secondButton setTitle:model1.modelName forState:UIControlStateNormal];
+    if ([child count] >2) {
+        NCBaseModel *model2 = child[2];
+        [secview.moreButton setTitle:model2.modelName forState:UIControlStateNormal];
+    }
+    else
+    {
+       [secview.moreButton setTitle:@"更多" forState:UIControlStateNormal];
+    }
+
     return cell;
+    
 }
 
 
@@ -363,30 +331,37 @@ enum TAG_HomeView_SECTION{
 
 -(void)homeSectionFisrtButtonAction:(NCHomeSectionView *)secview
 {
-    switch (secview.tag) {
+    NCBaseModel *model = _arrSectionData[secview.rowIndex];
+    NCBaseModel *childmodel= model.childSectionData[0];
+    switch (secview.firstButton.tag) {
         case TAG_HomeView_SECTION1:
         {
             NCNewsViewController *newview = [[NCNewsViewController alloc] init];
-            newview.newsID = @"2";
+       newview.currentModel = childmodel;
+            newview.childData = model.childSectionData;
             [self.navigationController pushViewController:newview animated:YES];
         }
             break;
         case TAG_HomeView_SECTION2:
         {
-            NCNewsViewController *newview = [[NCNewsViewController alloc] init];
-            newview.newsID = @"3";
+            NCPracticeViewController *newview = [[NCPracticeViewController alloc] init];
             [self.navigationController pushViewController:newview animated:YES];
         }
             break;
         case TAG_HomeView_SECTION3:
         {
-            NCNewsViewController *newview = [[NCNewsViewController alloc] init];
-            newview.newsID = @"4";
+            NCTestEnrollViewController *newview = [[NCTestEnrollViewController alloc] init];
             [self.navigationController pushViewController:newview animated:YES];
+         
         }
             break;
         case TAG_HomeView_SECTION4:
-            
+        {
+            NCCorpListViewController *newview = [[NCCorpListViewController alloc] init];
+            //            newview.currentModel = childmodel;
+            //            newview.childData = model.childSectionData;
+            [self.navigationController pushViewController:newview animated:YES];
+        }
             break;
         default:
             break;
@@ -394,22 +369,40 @@ enum TAG_HomeView_SECTION{
 }
 -(void)homeSectionSecondButtonAction:(NCHomeSectionView *)secview
 {
-    switch (secview.tag) {
+    NCBaseModel *model = _arrSectionData[secview.rowIndex];
+    NCBaseModel *childmodel= model.childSectionData[1];
+    switch (secview.firstButton.tag) {
         case TAG_HomeView_SECTION1:
         {
             NCNewsViewController *newview = [[NCNewsViewController alloc] init];
-            newview.newsID = @"3";
+            newview.currentModel = childmodel;
+            newview.childData = model.childSectionData;
             [self.navigationController pushViewController:newview animated:YES];
         }
             break;
         case TAG_HomeView_SECTION2:
-            
+        {
+            NCPracticeLibraryController *newview = [[NCPracticeLibraryController alloc] init];
+            newview.currentModel = childmodel;
+            newview.childData = model.childSectionData;
+            [self.navigationController pushViewController:newview animated:YES];
+        }
             break;
         case TAG_HomeView_SECTION3:
-            
+        {
+            NCTestNoticeViewController *newview = [[NCTestNoticeViewController alloc] init];
+            //            newview.currentModel = childmodel;
+            //            newview.childData = model.childSectionData;
+            [self.navigationController pushViewController:newview animated:YES];
+        }
             break;
         case TAG_HomeView_SECTION4:
-            
+        {
+            NCCorpListViewController *newview = [[NCCorpListViewController alloc] init];
+//            newview.currentModel = childmodel;
+//            newview.childData = model.childSectionData;
+            [self.navigationController pushViewController:newview animated:YES];
+        }
             break;
         default:
             break;
@@ -418,11 +411,18 @@ enum TAG_HomeView_SECTION{
 
 -(void)homeSectionMoreButtonAction:(NCHomeSectionView *)secview
 {
-    switch (secview.tag) {
+    NCBaseModel *model = _arrSectionData[secview.rowIndex];
+    
+    if ([model.childSectionData count]<=2) {
+        return;
+    }
+    NCBaseModel *childmodel= model.childSectionData[2];
+    switch (secview.firstButton.tag) {
         case TAG_HomeView_SECTION1:
         {
             NCNewsViewController *newview = [[NCNewsViewController alloc] init];
-            newview.newsID = @"4";
+            newview.currentModel = childmodel;
+            newview.childData = model.childSectionData;
             [self.navigationController pushViewController:newview animated:YES];
         }
             break;

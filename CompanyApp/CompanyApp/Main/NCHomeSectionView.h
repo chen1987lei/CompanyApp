@@ -27,6 +27,7 @@
 @property(nonatomic,strong) UIButton *firstButton;
 @property(nonatomic,strong) UIButton *secondButton;
 @property(nonatomic,strong) UIButton *moreButton;
+@property(nonatomic,assign) NSInteger rowIndex;
 
 -(instancetype) initWithFrame:(CGRect)frame;
 

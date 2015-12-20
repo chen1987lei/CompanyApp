@@ -8,13 +8,13 @@
 
 #import "NCNewsViewController.h"
 #import "HomeView.h"
-#import "NCInitial.h"
 #import "TDHomeModel.h"
 #import "NewsWebViewController.h"
 
 @interface NCNewsViewController ()<HomeViewDelegate,TDTitleBarDelegate>
 {
     HomeView *mHomeView;
+    BOOL _needrefresh;
 }
 @end
 
@@ -34,10 +34,17 @@
     [self initView];
     // Do any additional setup after loading the view.
     
-    [self initCommonData];
+//    [self initCommonData];
 }
 
-
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    if (_needrefresh) {
+        
+        [self initCommonData];
+    }
+}
 
 
 
@@ -86,8 +93,9 @@
 
 //初始化数据
 -(void)initCommonData{
-    
-    [[NCInitial sharedInstance] requestNewsListData:_newsID withPageFrom:1 withOnePageCount:10 WithComplate:^(NSDictionary *result, NSError *error) {
+  
+    NSInteger modelindex  = [_childData indexOfObject:_currentModel];
+    [[NCInitial sharedInstance] requestNewsListData:_currentModel.modelId withPageFrom:1 withOnePageCount:10 WithComplate:^(NSDictionary *result, NSError *error) {
         
         NSInteger code = [result[@"code"] integerValue];
         if (code == 200) {
@@ -101,13 +109,21 @@
                 model.subTitle = dict[@"summary"];
                 model.imageUrl = dict[@"img"];
                 model.coverImageUrl = dict[@"url"];
+                model.publicdate = dict[@"time"];
                 [mularr addObject:model];
             }
-            [mHomeView loadData:mularr];
+            
+            NSLog(@"---modelindex %d--",modelindex);
+            if (modelindex == mHomeView.baseChIndex) {
+                
+                [mHomeView loadData:mularr];
+            }
         }
         else
         {
+            [mHomeView loadData:nil];
             NSString *msg = result[@"msg"];
+            if(msg == nil) msg = @"刷新失败";
             [Utils alertTitle:@"提示" message:msg delegate:nil cancelBtn:@"好" otherBtnName:nil];
         }
         
@@ -127,13 +143,21 @@
     
     CGRect vViewRect = CGRectMake(0, self.titleBar.bottom, vWidth, vHeight );
     
-
     if (mHomeView == nil) {
         mHomeView = [[HomeView alloc] initWithFrame:vViewRect];
         mHomeView.actiondelegate = self;
     }
-    [self.view addSubview:mHomeView];
     
+    NSInteger currentIndex = [_childData indexOfObject:_currentModel];
+    NSMutableArray *mularr = [NSMutableArray new];
+    for (NCBaseModel *child in  _childData) {
+        [mularr addObject:child.modelName];
+    }
+    mHomeView.menuItemArray = mularr;
+    mHomeView.baseChIndex = currentIndex;
+    
+    [self.view addSubview:mHomeView];
+    [mHomeView  commInit];
 }
 
 -(void)homeViewDidClickNews:(TDHomeModel *)model
@@ -147,6 +171,13 @@
     
     [self.navigationController pushViewController:webcontroller animated:YES];
     
+}
+
+-(void)homeViewDidChangeChannel:(NSInteger)chIndex
+{
+     NCBaseModel *model = (NCBaseModel *)_childData[chIndex];
+    _currentModel = model;
+    [self initCommonData];
 }
 
 @end

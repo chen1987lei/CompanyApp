@@ -7,9 +7,12 @@
 //
 
 #import "NCMessageViewController.h"
+#import "TDHomeModel.h"
+#import "NCMessageCntentController.h"
 
 @interface NCMessageViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
+    NSMutableArray *_msgdata;
     UITableView *_mainTable;
 }
 @end
@@ -24,6 +27,8 @@
     [self.titleBar setTitle:@"我的消息"];
     
     [self addTableView];
+    
+    [self requestMessageData];
 }
 -(void)addTableView
 {
@@ -31,6 +36,39 @@
     _mainTable.dataSource = self;
     _mainTable.delegate = self;
     [self.view addSubview:_mainTable];
+}
+
+-(void)requestMessageData
+{
+    [[NCInitial sharedInstance] requestServerMessageData:1 withPageNumber:10 WithComplate:^(NSDictionary *result, NSError *error) {
+       
+        NSInteger code = [result[@"code"] integerValue];
+        if (code == 200) {
+            NSArray *res = result[@"res"];
+            
+            NSMutableArray *mularr =  [NSMutableArray array];
+            for (NSDictionary *dict in res) {
+                
+                TDHomeModel *model  = [[TDHomeModel alloc] init];
+                 model.modelId = dict[@"id"];
+                model.title = dict[@"title"];
+                model.subTitle = dict[@"summary"];
+                model.imageUrl = dict[@"img"];
+                model.coverImageUrl = dict[@"url"];
+                model.publicdate = dict[@"time"];
+                [mularr addObject:model];
+            }
+            _msgdata = mularr;
+            [_mainTable reloadData];
+        }
+        else
+        {
+            NSString *msg = result[@"msg"];
+            if(msg == nil) msg = @"刷新失败";
+            [Utils alertTitle:@"提示" message:msg delegate:nil cancelBtn:@"好" otherBtnName:nil];
+        }
+
+    }];
 }
 
 
@@ -47,9 +85,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSInteger count = 4;
-    
-    return count;
+    return [_msgdata count];
 }
 
 -(UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
@@ -61,36 +97,20 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
- 
-            static NSString *firstCellIdentifier = @"firstCell";
-            UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:firstCellIdentifier];
-            if (!cell) {
-                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:firstCellIdentifier];
-                
-                cell.backgroundColor = [UIColor whiteColor];
-            }
-    
-    switch (indexPath.row) {
-        case 0:
-        {
-            cell.textLabel.text =@"2015年北京市第十期安全员考试名单";
-            break;
-        }
-        case 1:
-        {
-            cell.textLabel.text =@"安全员考试报名方法"; break;
-        }
-        case 2:
-        {
-            cell.textLabel.text =@"劳动职业技能鉴定教材"; break;
-        }
-        case 3:
-        {
-            cell.textLabel.text =@"版本更新至2.0，增加新的功能"; break;
-        }
-            default:
-            break;
+    static NSString *firstCellIdentifier = @"firstCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:firstCellIdentifier];
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:firstCellIdentifier];
+        
+        cell.backgroundColor = [UIColor whiteColor];
     }
+    
+    TDHomeModel *model = _msgdata[indexPath.row];
+    NSString *title = model.title;
+    cell.textLabel.text = title;
+    NSString *image = model.imageUrl;
+    [cell.imageView sd_setImageWithURL:[NSURL URLWithString:image]];
+    
     return cell;
     
 }
@@ -100,6 +120,7 @@
 {
     
 }
+
 - (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Update the delete button's title based on how many items are selected.
@@ -110,7 +131,10 @@
     
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
-    
+    TDHomeModel *model = _msgdata[indexPath.row];
+    NCMessageCntentController *contentview= [[NCMessageCntentController alloc] init];
+    contentview.msgID = model.modelId;
+    [self.navigationController pushViewController:contentview animated:YES];
 }
 
 

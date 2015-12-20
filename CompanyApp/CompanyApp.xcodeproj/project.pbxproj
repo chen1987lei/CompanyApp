@@ -124,6 +124,38 @@
 		CED8B6311C22DA71009C5349 /* NCMyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CED8B6301C22DA71009C5349 /* NCMyViewController.m */; };
 		CEE733CD1C18671200343808 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEE733CC1C18671200343808 /* WebKit.framework */; };
 		CEE733D01C186CF800343808 /* NCUserNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE733CF1C186CF800343808 /* NCUserNetManager.m */; };
+		FA4DC3091C25A94D0014B0F2 /* NCPracticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4DC3081C25A94D0014B0F2 /* NCPracticeViewController.m */; };
+		FA4DC30E1C25D27B0014B0F2 /* NCUserLicenseView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4DC30D1C25D27B0014B0F2 /* NCUserLicenseView.m */; };
+		FA4DC3111C25E3C90014B0F2 /* NCLibraryHomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4DC3101C25E3C90014B0F2 /* NCLibraryHomeView.m */; };
+		FA4DC3141C25E4D70014B0F2 /* NCLibraryScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4DC3131C25E4D70014B0F2 /* NCLibraryScrollView.m */; };
+		FA4DC3171C25E6100014B0F2 /* NCPracticeLibraryController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4DC3161C25E6100014B0F2 /* NCPracticeLibraryController.m */; };
+		FA4DC3231C25EA360014B0F2 /* NCMessageCntentController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4DC3221C25EA360014B0F2 /* NCMessageCntentController.m */; };
+		FA4DC3261C2676990014B0F2 /* NCMyInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4DC3251C2676980014B0F2 /* NCMyInfoViewController.m */; };
+		FA4DC3291C2676A80014B0F2 /* NCMyNewNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4DC3281C2676A80014B0F2 /* NCMyNewNameViewController.m */; };
+		FA4DC32C1C2676D30014B0F2 /* NCMySettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4DC32B1C2676D30014B0F2 /* NCMySettingViewController.m */; };
+		FA4DC32F1C2676FE0014B0F2 /* NCMyResumeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4DC32E1C2676FE0014B0F2 /* NCMyResumeViewController.m */; };
+		FA4DC3321C267B450014B0F2 /* NCTestNoticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4DC3311C267B450014B0F2 /* NCTestNoticeViewController.m */; };
+		FA4DC3351C267B5C0014B0F2 /* NCTestNoticeContentController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4DC3341C267B5C0014B0F2 /* NCTestNoticeContentController.m */; };
+		FA4DC33E1C2682CD0014B0F2 /* NCPeopleLibraryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4DC33D1C2682CD0014B0F2 /* NCPeopleLibraryViewController.m */; };
+		FA4DC3411C2683050014B0F2 /* NCTestEnrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4DC3401C2683050014B0F2 /* NCTestEnrollViewController.m */; };
+		FA4DC3441C2683190014B0F2 /* NCTestEnrollInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4DC3431C2683190014B0F2 /* NCTestEnrollInfoViewController.m */; };
+		FA4DC3481C2683860014B0F2 /* NCPracticeStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4DC3471C2683860014B0F2 /* NCPracticeStartViewController.m */; };
+		FA4DC34B1C2683A50014B0F2 /* NCPracticeQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4DC34A1C2683A50014B0F2 /* NCPracticeQuestionViewController.m */; };
+		FA4DC34E1C2683C30014B0F2 /* NCPracticeAnserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4DC34D1C2683C30014B0F2 /* NCPracticeAnserViewController.m */; };
+		FA4DC3511C2683D40014B0F2 /* NCPracticeResultViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4DC3501C2683D40014B0F2 /* NCPracticeResultViewController.m */; };
+		FA4DC3541C2683ED0014B0F2 /* NCPracticeErrorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4DC3531C2683ED0014B0F2 /* NCPracticeErrorViewController.m */; };
+		FA4DC3571C2684020014B0F2 /* NCPracticeErrorInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4DC3561C2684020014B0F2 /* NCPracticeErrorInfoViewController.m */; };
+		FA4DC35B1C2684440014B0F2 /* NCPersonCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4DC35A1C2684440014B0F2 /* NCPersonCardViewController.m */; };
+		FA4DC35F1C2685040014B0F2 /* NCMyInputResumeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4DC35E1C2685040014B0F2 /* NCMyInputResumeViewController.m */; };
+		FA4DC3621C26851F0014B0F2 /* NCMyResumeInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4DC3611C26851F0014B0F2 /* NCMyResumeInfoViewController.m */; };
+		FA4DC3661C2723610014B0F2 /* NCMyCollecionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4DC3651C2723610014B0F2 /* NCMyCollecionViewController.m */; };
+		FA4DC36C1C272D1F0014B0F2 /* down_dark.png in Resources */ = {isa = PBXBuildFile; fileRef = FA4DC3681C272D1F0014B0F2 /* down_dark.png */; };
+		FA4DC36D1C272D1F0014B0F2 /* DropDownListView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4DC36B1C272D1F0014B0F2 /* DropDownListView.m */; };
+		FA4DC3761C272F020014B0F2 /* CorpMainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4DC3701C272F020014B0F2 /* CorpMainCell.m */; };
+		FA4DC3771C272F020014B0F2 /* CorpMainCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = FA4DC3711C272F020014B0F2 /* CorpMainCell.xib */; };
+		FA4DC3781C272F020014B0F2 /* NCCorpCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4DC3731C272F020014B0F2 /* NCCorpCardViewController.m */; };
+		FA4DC3791C272F020014B0F2 /* NCCorpListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4DC3751C272F020014B0F2 /* NCCorpListViewController.m */; };
+		FA4DC37B1C272FBE0014B0F2 /* 1.jpg in Resources */ = {isa = PBXBuildFile; fileRef = FA4DC37A1C272FBE0014B0F2 /* 1.jpg */; };
 		FA807AAE1C20A66C00A1FE42 /* NCNewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA807AAD1C20A66C00A1FE42 /* NCNewsViewController.m */; };
 		FA807AB21C20A6FC00A1FE42 /* HomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA807AB11C20A6FC00A1FE42 /* HomeView.m */; };
 		FA807ABD1C20A73200A1FE42 /* MenuHrizontal.m in Sources */ = {isa = PBXBuildFile; fileRef = FA807AB41C20A73200A1FE42 /* MenuHrizontal.m */; };
@@ -246,8 +278,8 @@
 		CE41D6B11C16B2AA002FC6BF /* wwanconnect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = wwanconnect.h; sourceTree = "<group>"; };
 		CE41D6B71C16BC85002FC6BF /* NCHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCHomeViewController.h; sourceTree = "<group>"; };
 		CE41D6B81C16BC85002FC6BF /* NCHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCHomeViewController.m; sourceTree = "<group>"; };
-		CE41D6BD1C16BCB6002FC6BF /* NCMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCMessageViewController.h; sourceTree = "<group>"; };
-		CE41D6BE1C16BCB6002FC6BF /* NCMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCMessageViewController.m; sourceTree = "<group>"; };
+		CE41D6BD1C16BCB6002FC6BF /* NCMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NCMessageViewController.h; path = ../Main/NCMessageViewController.h; sourceTree = "<group>"; };
+		CE41D6BE1C16BCB6002FC6BF /* NCMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NCMessageViewController.m; path = ../Main/NCMessageViewController.m; sourceTree = "<group>"; };
 		CE41D6C01C16BCC8002FC6BF /* NCLibraryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCLibraryViewController.h; sourceTree = "<group>"; };
 		CE41D6C11C16BCC8002FC6BF /* NCLibraryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCLibraryViewController.m; sourceTree = "<group>"; };
 		CE41D6C31C16BF91002FC6BF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -374,6 +406,68 @@
 		CEE733CC1C18671200343808 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		CEE733CE1C186CF800343808 /* NCUserNetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCUserNetManager.h; sourceTree = "<group>"; };
 		CEE733CF1C186CF800343808 /* NCUserNetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCUserNetManager.m; sourceTree = "<group>"; };
+		FA4DC3071C25A94D0014B0F2 /* NCPracticeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NCPracticeViewController.h; path = ../NCPracticeViewController.h; sourceTree = "<group>"; };
+		FA4DC3081C25A94D0014B0F2 /* NCPracticeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NCPracticeViewController.m; path = ../NCPracticeViewController.m; sourceTree = "<group>"; };
+		FA4DC30C1C25D27B0014B0F2 /* NCUserLicenseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCUserLicenseView.h; sourceTree = "<group>"; };
+		FA4DC30D1C25D27B0014B0F2 /* NCUserLicenseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCUserLicenseView.m; sourceTree = "<group>"; };
+		FA4DC30F1C25E3C90014B0F2 /* NCLibraryHomeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCLibraryHomeView.h; sourceTree = "<group>"; };
+		FA4DC3101C25E3C90014B0F2 /* NCLibraryHomeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCLibraryHomeView.m; sourceTree = "<group>"; };
+		FA4DC3121C25E4D70014B0F2 /* NCLibraryScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCLibraryScrollView.h; sourceTree = "<group>"; };
+		FA4DC3131C25E4D70014B0F2 /* NCLibraryScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCLibraryScrollView.m; sourceTree = "<group>"; };
+		FA4DC3151C25E6100014B0F2 /* NCPracticeLibraryController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPracticeLibraryController.h; sourceTree = "<group>"; };
+		FA4DC3161C25E6100014B0F2 /* NCPracticeLibraryController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPracticeLibraryController.m; sourceTree = "<group>"; };
+		FA4DC3211C25EA360014B0F2 /* NCMessageCntentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCMessageCntentController.h; sourceTree = "<group>"; };
+		FA4DC3221C25EA360014B0F2 /* NCMessageCntentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCMessageCntentController.m; sourceTree = "<group>"; };
+		FA4DC3241C2676980014B0F2 /* NCMyInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCMyInfoViewController.h; sourceTree = "<group>"; };
+		FA4DC3251C2676980014B0F2 /* NCMyInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCMyInfoViewController.m; sourceTree = "<group>"; };
+		FA4DC3271C2676A80014B0F2 /* NCMyNewNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCMyNewNameViewController.h; sourceTree = "<group>"; };
+		FA4DC3281C2676A80014B0F2 /* NCMyNewNameViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCMyNewNameViewController.m; sourceTree = "<group>"; };
+		FA4DC32A1C2676D30014B0F2 /* NCMySettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCMySettingViewController.h; sourceTree = "<group>"; };
+		FA4DC32B1C2676D30014B0F2 /* NCMySettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCMySettingViewController.m; sourceTree = "<group>"; };
+		FA4DC32D1C2676FE0014B0F2 /* NCMyResumeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCMyResumeViewController.h; sourceTree = "<group>"; };
+		FA4DC32E1C2676FE0014B0F2 /* NCMyResumeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCMyResumeViewController.m; sourceTree = "<group>"; };
+		FA4DC3301C267B450014B0F2 /* NCTestNoticeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCTestNoticeViewController.h; sourceTree = "<group>"; };
+		FA4DC3311C267B450014B0F2 /* NCTestNoticeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCTestNoticeViewController.m; sourceTree = "<group>"; };
+		FA4DC3331C267B5C0014B0F2 /* NCTestNoticeContentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCTestNoticeContentController.h; sourceTree = "<group>"; };
+		FA4DC3341C267B5C0014B0F2 /* NCTestNoticeContentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCTestNoticeContentController.m; sourceTree = "<group>"; };
+		FA4DC33C1C2682CD0014B0F2 /* NCPeopleLibraryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPeopleLibraryViewController.h; sourceTree = "<group>"; };
+		FA4DC33D1C2682CD0014B0F2 /* NCPeopleLibraryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPeopleLibraryViewController.m; sourceTree = "<group>"; };
+		FA4DC33F1C2683050014B0F2 /* NCTestEnrollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCTestEnrollViewController.h; sourceTree = "<group>"; };
+		FA4DC3401C2683050014B0F2 /* NCTestEnrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCTestEnrollViewController.m; sourceTree = "<group>"; };
+		FA4DC3421C2683190014B0F2 /* NCTestEnrollInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCTestEnrollInfoViewController.h; sourceTree = "<group>"; };
+		FA4DC3431C2683190014B0F2 /* NCTestEnrollInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCTestEnrollInfoViewController.m; sourceTree = "<group>"; };
+		FA4DC3461C2683860014B0F2 /* NCPracticeStartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPracticeStartViewController.h; sourceTree = "<group>"; };
+		FA4DC3471C2683860014B0F2 /* NCPracticeStartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPracticeStartViewController.m; sourceTree = "<group>"; };
+		FA4DC3491C2683A50014B0F2 /* NCPracticeQuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPracticeQuestionViewController.h; sourceTree = "<group>"; };
+		FA4DC34A1C2683A50014B0F2 /* NCPracticeQuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPracticeQuestionViewController.m; sourceTree = "<group>"; };
+		FA4DC34C1C2683C30014B0F2 /* NCPracticeAnserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPracticeAnserViewController.h; sourceTree = "<group>"; };
+		FA4DC34D1C2683C30014B0F2 /* NCPracticeAnserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPracticeAnserViewController.m; sourceTree = "<group>"; };
+		FA4DC34F1C2683D40014B0F2 /* NCPracticeResultViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPracticeResultViewController.h; sourceTree = "<group>"; };
+		FA4DC3501C2683D40014B0F2 /* NCPracticeResultViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPracticeResultViewController.m; sourceTree = "<group>"; };
+		FA4DC3521C2683ED0014B0F2 /* NCPracticeErrorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPracticeErrorViewController.h; sourceTree = "<group>"; };
+		FA4DC3531C2683ED0014B0F2 /* NCPracticeErrorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPracticeErrorViewController.m; sourceTree = "<group>"; };
+		FA4DC3551C2684020014B0F2 /* NCPracticeErrorInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPracticeErrorInfoViewController.h; sourceTree = "<group>"; };
+		FA4DC3561C2684020014B0F2 /* NCPracticeErrorInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPracticeErrorInfoViewController.m; sourceTree = "<group>"; };
+		FA4DC3591C2684440014B0F2 /* NCPersonCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPersonCardViewController.h; sourceTree = "<group>"; };
+		FA4DC35A1C2684440014B0F2 /* NCPersonCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPersonCardViewController.m; sourceTree = "<group>"; };
+		FA4DC35D1C2685040014B0F2 /* NCMyInputResumeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCMyInputResumeViewController.h; sourceTree = "<group>"; };
+		FA4DC35E1C2685040014B0F2 /* NCMyInputResumeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCMyInputResumeViewController.m; sourceTree = "<group>"; };
+		FA4DC3601C26851F0014B0F2 /* NCMyResumeInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCMyResumeInfoViewController.h; sourceTree = "<group>"; };
+		FA4DC3611C26851F0014B0F2 /* NCMyResumeInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCMyResumeInfoViewController.m; sourceTree = "<group>"; };
+		FA4DC3641C2723610014B0F2 /* NCMyCollecionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCMyCollecionViewController.h; sourceTree = "<group>"; };
+		FA4DC3651C2723610014B0F2 /* NCMyCollecionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCMyCollecionViewController.m; sourceTree = "<group>"; };
+		FA4DC3681C272D1F0014B0F2 /* down_dark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = down_dark.png; sourceTree = "<group>"; };
+		FA4DC3691C272D1F0014B0F2 /* DropDownChooseProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropDownChooseProtocol.h; sourceTree = "<group>"; };
+		FA4DC36A1C272D1F0014B0F2 /* DropDownListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DropDownListView.h; sourceTree = "<group>"; };
+		FA4DC36B1C272D1F0014B0F2 /* DropDownListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DropDownListView.m; sourceTree = "<group>"; };
+		FA4DC36F1C272F020014B0F2 /* CorpMainCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CorpMainCell.h; sourceTree = "<group>"; };
+		FA4DC3701C272F020014B0F2 /* CorpMainCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CorpMainCell.m; sourceTree = "<group>"; };
+		FA4DC3711C272F020014B0F2 /* CorpMainCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CorpMainCell.xib; sourceTree = "<group>"; };
+		FA4DC3721C272F020014B0F2 /* NCCorpCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCCorpCardViewController.h; sourceTree = "<group>"; };
+		FA4DC3731C272F020014B0F2 /* NCCorpCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCCorpCardViewController.m; sourceTree = "<group>"; };
+		FA4DC3741C272F020014B0F2 /* NCCorpListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCCorpListViewController.h; sourceTree = "<group>"; };
+		FA4DC3751C272F020014B0F2 /* NCCorpListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCCorpListViewController.m; sourceTree = "<group>"; };
+		FA4DC37A1C272FBE0014B0F2 /* 1.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1.jpg; sourceTree = "<group>"; };
 		FA807AAC1C20A66C00A1FE42 /* NCNewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCNewsViewController.h; sourceTree = "<group>"; };
 		FA807AAD1C20A66C00A1FE42 /* NCNewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCNewsViewController.m; sourceTree = "<group>"; };
 		FA807AB01C20A6FC00A1FE42 /* HomeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeView.h; sourceTree = "<group>"; };
@@ -485,6 +579,7 @@
 		CE41D57F1C0F1768002FC6BF /* CompanyApp */ = {
 			isa = PBXGroup;
 			children = (
+				FA4DC37A1C272FBE0014B0F2 /* 1.jpg */,
 				CE91496F1C1EFC5A0041480C /* OtherLibs */,
 				CE794E9B1C1927A800E76AEC /* Common */,
 				CE41D5831C0F1769002FC6BF /* AppDelegate.h */,
@@ -495,6 +590,7 @@
 				FA807AAB1C20A64B00A1FE42 /* NewsModule */,
 				CE41D59E1C15A873002FC6BF /* SearchModule */,
 				CE41D59F1C15A873002FC6BF /* UserModule */,
+				FA4DC3201C25E9F70014B0F2 /* MessageModule */,
 				CE41D58F1C0F176A002FC6BF /* Assets.xcassets */,
 				CE41D5941C0F176A002FC6BF /* Info.plist */,
 				CE41D6CD1C16BFDF002FC6BF /* Frameworks */,
@@ -515,17 +611,21 @@
 		CE41D59B1C15A873002FC6BF /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				FA4DC36E1C272F020014B0F2 /* CorpLibrary */,
+				FA4DC3581C26842B0014B0F2 /* PersonLibrary */,
 				CE9149A91C201FEC0041480C /* SearchView */,
 				CE9149921C201F670041480C /* HomeCustom */,
 				CE9149681C1EF6D80041480C /* Core */,
 				CE41D6B71C16BC85002FC6BF /* NCHomeViewController.h */,
 				CE41D6B81C16BC85002FC6BF /* NCHomeViewController.m */,
-				CE41D6BD1C16BCB6002FC6BF /* NCMessageViewController.h */,
-				CE41D6BE1C16BCB6002FC6BF /* NCMessageViewController.m */,
 				FAA063A31C21EA8A00E2C7DD /* MainCell.h */,
 				FAA063A41C21EA8A00E2C7DD /* MainCell.m */,
 				CE41D6C01C16BCC8002FC6BF /* NCLibraryViewController.h */,
 				CE41D6C11C16BCC8002FC6BF /* NCLibraryViewController.m */,
+				FA4DC30F1C25E3C90014B0F2 /* NCLibraryHomeView.h */,
+				FA4DC3101C25E3C90014B0F2 /* NCLibraryHomeView.m */,
+				FA4DC3121C25E4D70014B0F2 /* NCLibraryScrollView.h */,
+				FA4DC3131C25E4D70014B0F2 /* NCLibraryScrollView.m */,
 				CE9149CE1C2021910041480C /* NCHomeSectionView.h */,
 				CE9149CF1C2021910041480C /* NCHomeSectionView.m */,
 			);
@@ -573,8 +673,21 @@
 		CE41D5A21C15A873002FC6BF /* NameCard */ = {
 			isa = PBXGroup;
 			children = (
+				FA4DC3631C2723570014B0F2 /* MyCollection */,
 				CED8B62F1C22DA71009C5349 /* NCMyViewController.h */,
 				CED8B6301C22DA71009C5349 /* NCMyViewController.m */,
+				FA4DC3241C2676980014B0F2 /* NCMyInfoViewController.h */,
+				FA4DC3251C2676980014B0F2 /* NCMyInfoViewController.m */,
+				FA4DC3271C2676A80014B0F2 /* NCMyNewNameViewController.h */,
+				FA4DC3281C2676A80014B0F2 /* NCMyNewNameViewController.m */,
+				FA4DC32A1C2676D30014B0F2 /* NCMySettingViewController.h */,
+				FA4DC32B1C2676D30014B0F2 /* NCMySettingViewController.m */,
+				FA4DC32D1C2676FE0014B0F2 /* NCMyResumeViewController.h */,
+				FA4DC32E1C2676FE0014B0F2 /* NCMyResumeViewController.m */,
+				FA4DC35D1C2685040014B0F2 /* NCMyInputResumeViewController.h */,
+				FA4DC35E1C2685040014B0F2 /* NCMyInputResumeViewController.m */,
+				FA4DC3601C26851F0014B0F2 /* NCMyResumeInfoViewController.h */,
+				FA4DC3611C26851F0014B0F2 /* NCMyResumeInfoViewController.m */,
 			);
 			path = NameCard;
 			sourceTree = "<group>";
@@ -585,6 +698,8 @@
 				CE37C0D91C1AF3310047C647 /* TopNavBar */,
 				CE794EA71C199A7000E76AEC /* RegisterViewController.h */,
 				CE794EA81C199A7000E76AEC /* RegisterViewController.m */,
+				FA4DC30C1C25D27B0014B0F2 /* NCUserLicenseView.h */,
+				FA4DC30D1C25D27B0014B0F2 /* NCUserLicenseView.m */,
 			);
 			path = Register;
 			sourceTree = "<group>";
@@ -802,6 +917,7 @@
 		CE9149921C201F670041480C /* HomeCustom */ = {
 			isa = PBXGroup;
 			children = (
+				FA4DC3671C272D1F0014B0F2 /* dropDownList */,
 				CE042A831C2173A60032AADA /* PosterBanner */,
 				CE90E2A61C20523600F1D5E1 /* TDHomeModel.h */,
 				CE90E2A71C20523600F1D5E1 /* TDHomeModel.m */,
@@ -892,9 +1008,97 @@
 			path = SearchView;
 			sourceTree = "<group>";
 		};
+		FA4DC3201C25E9F70014B0F2 /* MessageModule */ = {
+			isa = PBXGroup;
+			children = (
+				CE41D6BD1C16BCB6002FC6BF /* NCMessageViewController.h */,
+				CE41D6BE1C16BCB6002FC6BF /* NCMessageViewController.m */,
+				FA4DC3211C25EA360014B0F2 /* NCMessageCntentController.h */,
+				FA4DC3221C25EA360014B0F2 /* NCMessageCntentController.m */,
+			);
+			path = MessageModule;
+			sourceTree = "<group>";
+		};
+		FA4DC3451C26835B0014B0F2 /* Practice */ = {
+			isa = PBXGroup;
+			children = (
+				FA4DC3071C25A94D0014B0F2 /* NCPracticeViewController.h */,
+				FA4DC3081C25A94D0014B0F2 /* NCPracticeViewController.m */,
+				FA4DC3461C2683860014B0F2 /* NCPracticeStartViewController.h */,
+				FA4DC3471C2683860014B0F2 /* NCPracticeStartViewController.m */,
+				FA4DC3491C2683A50014B0F2 /* NCPracticeQuestionViewController.h */,
+				FA4DC34A1C2683A50014B0F2 /* NCPracticeQuestionViewController.m */,
+				FA4DC34C1C2683C30014B0F2 /* NCPracticeAnserViewController.h */,
+				FA4DC34D1C2683C30014B0F2 /* NCPracticeAnserViewController.m */,
+				FA4DC34F1C2683D40014B0F2 /* NCPracticeResultViewController.h */,
+				FA4DC3501C2683D40014B0F2 /* NCPracticeResultViewController.m */,
+				FA4DC3521C2683ED0014B0F2 /* NCPracticeErrorViewController.h */,
+				FA4DC3531C2683ED0014B0F2 /* NCPracticeErrorViewController.m */,
+				FA4DC3551C2684020014B0F2 /* NCPracticeErrorInfoViewController.h */,
+				FA4DC3561C2684020014B0F2 /* NCPracticeErrorInfoViewController.m */,
+			);
+			path = Practice;
+			sourceTree = "<group>";
+		};
+		FA4DC3581C26842B0014B0F2 /* PersonLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				FA4DC3591C2684440014B0F2 /* NCPersonCardViewController.h */,
+				FA4DC35A1C2684440014B0F2 /* NCPersonCardViewController.m */,
+				FA4DC33C1C2682CD0014B0F2 /* NCPeopleLibraryViewController.h */,
+				FA4DC33D1C2682CD0014B0F2 /* NCPeopleLibraryViewController.m */,
+			);
+			name = PersonLibrary;
+			sourceTree = "<group>";
+		};
+		FA4DC3631C2723570014B0F2 /* MyCollection */ = {
+			isa = PBXGroup;
+			children = (
+				FA4DC3641C2723610014B0F2 /* NCMyCollecionViewController.h */,
+				FA4DC3651C2723610014B0F2 /* NCMyCollecionViewController.m */,
+			);
+			path = MyCollection;
+			sourceTree = "<group>";
+		};
+		FA4DC3671C272D1F0014B0F2 /* dropDownList */ = {
+			isa = PBXGroup;
+			children = (
+				FA4DC3681C272D1F0014B0F2 /* down_dark.png */,
+				FA4DC3691C272D1F0014B0F2 /* DropDownChooseProtocol.h */,
+				FA4DC36A1C272D1F0014B0F2 /* DropDownListView.h */,
+				FA4DC36B1C272D1F0014B0F2 /* DropDownListView.m */,
+			);
+			path = dropDownList;
+			sourceTree = "<group>";
+		};
+		FA4DC36E1C272F020014B0F2 /* CorpLibrary */ = {
+			isa = PBXGroup;
+			children = (
+				FA4DC36F1C272F020014B0F2 /* CorpMainCell.h */,
+				FA4DC3701C272F020014B0F2 /* CorpMainCell.m */,
+				FA4DC3711C272F020014B0F2 /* CorpMainCell.xib */,
+				FA4DC3721C272F020014B0F2 /* NCCorpCardViewController.h */,
+				FA4DC3731C272F020014B0F2 /* NCCorpCardViewController.m */,
+				FA4DC3741C272F020014B0F2 /* NCCorpListViewController.h */,
+				FA4DC3751C272F020014B0F2 /* NCCorpListViewController.m */,
+			);
+			path = CorpLibrary;
+			sourceTree = "<group>";
+		};
 		FA807AAA1C20A64B00A1FE42 /* ExerciseModule */ = {
 			isa = PBXGroup;
 			children = (
+				FA4DC3451C26835B0014B0F2 /* Practice */,
+				FA4DC3151C25E6100014B0F2 /* NCPracticeLibraryController.h */,
+				FA4DC3161C25E6100014B0F2 /* NCPracticeLibraryController.m */,
+				FA4DC3301C267B450014B0F2 /* NCTestNoticeViewController.h */,
+				FA4DC3311C267B450014B0F2 /* NCTestNoticeViewController.m */,
+				FA4DC3331C267B5C0014B0F2 /* NCTestNoticeContentController.h */,
+				FA4DC3341C267B5C0014B0F2 /* NCTestNoticeContentController.m */,
+				FA4DC33F1C2683050014B0F2 /* NCTestEnrollViewController.h */,
+				FA4DC3401C2683050014B0F2 /* NCTestEnrollViewController.m */,
+				FA4DC3421C2683190014B0F2 /* NCTestEnrollInfoViewController.h */,
+				FA4DC3431C2683190014B0F2 /* NCTestEnrollInfoViewController.m */,
 			);
 			name = ExerciseModule;
 			path = CompanyApp/ExerciseModule;
@@ -1019,6 +1223,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA807AD21C20A7D400A1FE42 /* HomeViewCell.xib in Resources */,
+				FA4DC36C1C272D1F0014B0F2 /* down_dark.png in Resources */,
+				FA4DC3771C272F020014B0F2 /* CorpMainCell.xib in Resources */,
+				FA4DC37B1C272FBE0014B0F2 /* 1.jpg in Resources */,
 				FA807ACD1C20A78700A1FE42 /* LoadMoreCell.xib in Resources */,
 				CE41D5901C0F176A002FC6BF /* Assets.xcassets in Resources */,
 			);
@@ -1064,16 +1271,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA4DC3541C2683ED0014B0F2 /* NCPracticeErrorViewController.m in Sources */,
+				FA4DC3111C25E3C90014B0F2 /* NCLibraryHomeView.m in Sources */,
 				CE41D6B21C16B2AB002FC6BF /* Base64.m in Sources */,
 				CE37C0DC1C1AF3310047C647 /* TopNavBar.m in Sources */,
 				CE90E2991C204CC700F1D5E1 /* TDBaseBigCellView.m in Sources */,
 				CE90E2811C204A0B00F1D5E1 /* TDStringRequestOperation.m in Sources */,
 				CE90E2AB1C2052A600F1D5E1 /* TDCustomCell.m in Sources */,
+				FA4DC3511C2683D40014B0F2 /* NCPracticeResultViewController.m in Sources */,
 				CE90E26C1C20491700F1D5E1 /* TDSearchBarViewController.m in Sources */,
 				CED8B6311C22DA71009C5349 /* NCMyViewController.m in Sources */,
 				CE41D6531C15ACF8002FC6BF /* NSFileManager-AES.m in Sources */,
 				CE042AA11C21AB1C0032AADA /* NCModifyPWDViewController.m in Sources */,
 				CE41D5EA1C15AB74002FC6BF /* CALayer+Addition.m in Sources */,
+				FA4DC3481C2683860014B0F2 /* NCPracticeStartViewController.m in Sources */,
 				CE042AA41C21AD560032AADA /* RKCardView.m in Sources */,
 				CE90E29C1C204CDC00F1D5E1 /* TDBaseCellView.m in Sources */,
 				CE41D5851C0F1769002FC6BF /* AppDelegate.m in Sources */,
@@ -1081,10 +1292,15 @@
 				CE90E2931C204CA600F1D5E1 /* TDBaseHorizontalCellView.m in Sources */,
 				CE90E2A21C20506C00F1D5E1 /* TDMultiplyLable.m in Sources */,
 				CE9149C11C201FEC0041480C /* TDSearchHomeViewController.m in Sources */,
+				FA4DC35F1C2685040014B0F2 /* NCMyInputResumeViewController.m in Sources */,
+				FA4DC3231C25EA360014B0F2 /* NCMessageCntentController.m in Sources */,
 				CE41D5EF1C15AB74002FC6BF /* NSFileHandle+Addition.m in Sources */,
+				FA4DC32C1C2676D30014B0F2 /* NCMySettingViewController.m in Sources */,
 				CE41D6361C15ACD1002FC6BF /* NSString+MD5.m in Sources */,
 				CE41D6C21C16BCC8002FC6BF /* NCLibraryViewController.m in Sources */,
 				CE41D5FF1C15AB74002FC6BF /* UITextField+Addition.m in Sources */,
+				FA4DC30E1C25D27B0014B0F2 /* NCUserLicenseView.m in Sources */,
+				FA4DC34E1C2683C30014B0F2 /* NCPracticeAnserViewController.m in Sources */,
 				FA807AC71C20A74E00A1FE42 /* CircleView.m in Sources */,
 				CE90E2781C20499000F1D5E1 /* EmptyView.m in Sources */,
 				CE042A8E1C2173A60032AADA /* TDBannerCollectionView.m in Sources */,
@@ -1092,14 +1308,20 @@
 				CE41D5F41C15AB74002FC6BF /* NSString+Color.m in Sources */,
 				CE41D6031C15AB74002FC6BF /* WKWebView+JavascriptRun.m in Sources */,
 				CE41D5FE1C15AB74002FC6BF /* UIScreen+Addition.m in Sources */,
+				FA4DC3781C272F020014B0F2 /* NCCorpCardViewController.m in Sources */,
 				CE41D5F71C15AB74002FC6BF /* UIButton+Addtion.m in Sources */,
+				FA4DC3291C2676A80014B0F2 /* NCMyNewNameViewController.m in Sources */,
 				CE90E2871C204A6200F1D5E1 /* TDSearchAlbumVideoCell.m in Sources */,
+				FA4DC3091C25A94D0014B0F2 /* NCPracticeViewController.m in Sources */,
 				CE042A8F1C2173A60032AADA /* TDBannerCollectionViewCell.m in Sources */,
+				FA4DC3321C267B450014B0F2 /* NCTestNoticeViewController.m in Sources */,
 				CE90E2661C2048D800F1D5E1 /* TDCommActivity.m in Sources */,
+				FA4DC3171C25E6100014B0F2 /* NCPracticeLibraryController.m in Sources */,
 				CE41D6B61C16B2AB002FC6BF /* wwanconnect.c in Sources */,
 				CE90E2A51C20508F00F1D5E1 /* TDBorderView.m in Sources */,
 				CE41D5F81C15AB74002FC6BF /* UIColor+Addition.m in Sources */,
 				CE9149C31C201FEC0041480C /* TDSearchSegmentView.m in Sources */,
+				FA4DC3411C2683050014B0F2 /* NCTestEnrollViewController.m in Sources */,
 				FA807ABD1C20A73200A1FE42 /* MenuHrizontal.m in Sources */,
 				CE41D5F01C15AB74002FC6BF /* NSManagedObject+Addition.m in Sources */,
 				CE41D5B01C15A9E4002FC6BF /* Universal.m in Sources */,
@@ -1111,7 +1333,9 @@
 				CE9149A71C201F670041480C /* TDTitleBar.m in Sources */,
 				CE41D6B31C16B2AB002FC6BF /* CoreDataAccess.m in Sources */,
 				CE90E28A1C204BF100F1D5E1 /* TDLabel.m in Sources */,
+				FA4DC3441C2683190014B0F2 /* NCTestEnrollInfoViewController.m in Sources */,
 				CE41D5ED1C15AB74002FC6BF /* NSDate+HumanInterval.m in Sources */,
+				FA4DC32F1C2676FE0014B0F2 /* NCMyResumeViewController.m in Sources */,
 				CE794EA11C1927DA00E76AEC /* NCNetworkManager.m in Sources */,
 				FA807ABF1C20A73200A1FE42 /* SGFocusImageItem.m in Sources */,
 				CE042A9A1C21A38F0032AADA /* NewsWebViewController.m in Sources */,
@@ -1119,7 +1343,9 @@
 				CE794EA91C199A7000E76AEC /* RegisterViewController.m in Sources */,
 				CE042A901C2173A60032AADA /* TDPageControl.m in Sources */,
 				CE41D5821C0F1768002FC6BF /* main.m in Sources */,
+				FA4DC35B1C2684440014B0F2 /* NCPersonCardViewController.m in Sources */,
 				CE91496E1C1EF6D80041480C /* NCModelManager.m in Sources */,
+				FA4DC3571C2684020014B0F2 /* NCPracticeErrorInfoViewController.m in Sources */,
 				CE41D6D41C16D21F002FC6BF /* NCUserConfig.m in Sources */,
 				CE794EA61C199A6300E76AEC /* Utils.m in Sources */,
 				CE41D6011C15AB74002FC6BF /* UIWebView+JavascriptRun.m in Sources */,
@@ -1127,6 +1353,7 @@
 				CEE733D01C186CF800343808 /* NCUserNetManager.m in Sources */,
 				CE9149C91C201FEC0041480C /* TDSearchVideoResultViewController.m in Sources */,
 				CE90E2901C204C5300F1D5E1 /* TDBaseCell.m in Sources */,
+				FA4DC3141C25E4D70014B0F2 /* NCLibraryScrollView.m in Sources */,
 				CE41D6BF1C16BCB6002FC6BF /* NCMessageViewController.m in Sources */,
 				CE41D5EC1C15AB74002FC6BF /* NSData+Addition.m in Sources */,
 				CE41D5FD1C15AB74002FC6BF /* UIImage+TDGIF.m in Sources */,
@@ -1143,6 +1370,8 @@
 				CE90E2841C204A2100F1D5E1 /* SearchHistory.m in Sources */,
 				CE95FCDD1C1715C800C53975 /* TDAutocompleteTextField.m in Sources */,
 				CE9149A11C201F670041480C /* ShadowPathLayer.m in Sources */,
+				FA4DC3791C272F020014B0F2 /* NCCorpListViewController.m in Sources */,
+				FA4DC3261C2676990014B0F2 /* NCMyInfoViewController.m in Sources */,
 				CE9149C21C201FEC0041480C /* TDSearchPopMessageView.m in Sources */,
 				CE41D6351C15ACD1002FC6BF /* NSDate+Fuzzy.m in Sources */,
 				CE41D6541C15ACF8002FC6BF /* rijndael.c in Sources */,
@@ -1158,8 +1387,11 @@
 				CE9149CD1C2020350041480C /* TDViewController.m in Sources */,
 				CE042A951C2174DE0032AADA /* TDHomePosterBannerModel.m in Sources */,
 				CE41D5AA1C15A939002FC6BF /* NCTabBar.m in Sources */,
+				FA4DC36D1C272D1F0014B0F2 /* DropDownListView.m in Sources */,
 				CE41D5FC1C15AB74002FC6BF /* UIImage+Addition.m in Sources */,
 				FA807AB21C20A6FC00A1FE42 /* HomeView.m in Sources */,
+				FA4DC33E1C2682CD0014B0F2 /* NCPeopleLibraryViewController.m in Sources */,
+				FA4DC3621C26851F0014B0F2 /* NCMyResumeInfoViewController.m in Sources */,
 				CE41D5FA1C15AB74002FC6BF /* UIFont+Addtion.m in Sources */,
 				CE41D5F21C15AB74002FC6BF /* NSNumber+Addition.m in Sources */,
 				FA807AC81C20A74E00A1FE42 /* EGORefreshTableHeaderView.m in Sources */,
@@ -1174,6 +1406,8 @@
 				CE91496D1C1EF6D80041480C /* NCInitial.m in Sources */,
 				CE9149A21C201F670041480C /* TDBaseObject.m in Sources */,
 				CE9149781C1EFC5A0041480C /* UIImage+BoxBlur.m in Sources */,
+				FA4DC3661C2723610014B0F2 /* NCMyCollecionViewController.m in Sources */,
+				FA4DC3761C272F020014B0F2 /* CorpMainCell.m in Sources */,
 				FA807ABE1C20A73200A1FE42 /* SGFocusImageFrame.m in Sources */,
 				FAA063A51C21EA8A00E2C7DD /* MainCell.m in Sources */,
 				CE41D5E91C15AB74002FC6BF /* CAGradientLayer+Addition.m in Sources */,
@@ -1183,6 +1417,8 @@
 				CE95FCDA1C1713DD00C53975 /* NCBaseViewController.m in Sources */,
 				CE41D6B91C16BC85002FC6BF /* NCHomeViewController.m in Sources */,
 				CE90E27B1C2049C100F1D5E1 /* TDHttpCore.m in Sources */,
+				FA4DC34B1C2683A50014B0F2 /* NCPracticeQuestionViewController.m in Sources */,
+				FA4DC3351C267B5C0014B0F2 /* NCTestNoticeContentController.m in Sources */,
 				CE41D5F91C15AB74002FC6BF /* UIDevice+Addition.m in Sources */,
 				CE9149C61C201FEC0041480C /* TDSearchTitleView.m in Sources */,
 			);

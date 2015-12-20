@@ -11,7 +11,6 @@
 
 #import "TDHomeModel.h"
 
-#import "NewsWebViewController.h"
 @implementation ScrollPageView
 
 - (id)initWithFrame:(CGRect)frame
@@ -62,10 +61,12 @@
 
 #pragma mark 移动ScrollView到某个页面
 -(void)moveScrollowViewAthIndex:(NSInteger)aIndex{
+ 
     mNeedUseDelegate = NO;
     CGRect vMoveRect = CGRectMake(self.frame.size.width * aIndex, 0, self.frame.size.width, self.frame.size.width);
     [_scrollView scrollRectToVisible:vMoveRect animated:YES];
     mCurrentPage= aIndex;
+    
     if ([_delegate respondsToSelector:@selector(didScrollPageViewChangedPage:)]) {
         [_delegate didScrollPageViewChangedPage:mCurrentPage];
     }
@@ -88,7 +89,7 @@
     mNeedUseDelegate = YES;
 }
 
-- (void)scrollViewDidScroll:(UIScrollView *)scrollView
+-(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     int page = (_scrollView.contentOffset.x+kScreenWidth/2.0) / kScreenWidth;
     if (mCurrentPage == page) {
@@ -122,7 +123,6 @@
     HomeViewCell *vCell = [aTableView dequeueReusableCellWithIdentifier:vCellIdentify];
     if (vCell == nil) {
         vCell = [[[NSBundle mainBundle] loadNibNamed:@"HomeViewCell" owner:self options:nil] lastObject];
-       
     }
     
     TDHomeModel *model = [aView.tableInfoArray objectAtIndex:aIndexPath.row];
@@ -131,7 +131,7 @@
     
     vCell.titleLabel.text = model.title;
     vCell.subTitleLabel.text = model.subTitle;
-    vCell.dateLabel.text = @"25分钟前";
+    vCell.dateLabel.text = model.publicdate;
     return vCell;
 }
 
@@ -149,9 +149,6 @@
     if ([_delegate respondsToSelector:@selector(didClickNewsModel:)]) {
         [_delegate didClickNewsModel:model];
     }
-    
-
-    
 }
 
 -(void)loadData:(void(^)(int aAddedRowCount))complete FromView:(CustomTableView *)aView{
@@ -169,7 +166,8 @@
 
 -(void)loadListData:(NSArray *)listData
 {
-    CustomTableView *vTableContentView =(CustomTableView *)[_contentItems objectAtIndex:0];
+    NSLog(@"---mCurrentPage %d--",mCurrentPage);
+    CustomTableView *vTableContentView =(CustomTableView *)[_contentItems objectAtIndex:mCurrentPage];
     
     vTableContentView.tableInfoArray = [NSMutableArray arrayWithArray: listData];
     [vTableContentView.homeTableView reloadData];

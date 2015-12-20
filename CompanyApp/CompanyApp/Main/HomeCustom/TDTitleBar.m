@@ -232,6 +232,7 @@ static NSInteger itemFontSize = 15;
 
 - (void)setLeftTitle:(NSString *)title withSelector:(SEL)selector{
     isShowLeftTitle = YES;
+    [_leftItem setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [self configButton:_leftItem title:title];
     [self setLeftSelector:selector];
 }

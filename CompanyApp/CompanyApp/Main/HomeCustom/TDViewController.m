@@ -202,6 +202,7 @@
         [self.view addSubview:_titleBar];
     if ([self respondsToSelector:@selector(edgesForExtendedLayout)])
         self.edgesForExtendedLayout = UIRectEdgeNone;
+    
 }
 
 - (void)viewDidUnload

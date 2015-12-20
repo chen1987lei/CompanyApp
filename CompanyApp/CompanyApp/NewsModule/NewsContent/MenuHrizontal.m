@@ -75,6 +75,8 @@
 -(void)changeButtonsToNormalState{
     for (UIButton *vButton in mButtonArray) {
         vButton.selected = NO;
+        
+        vButton.backgroundColor =[UIColor whiteColor];
     }
 }
 
@@ -89,6 +91,7 @@
     UIButton *vButton = [mButtonArray objectAtIndex:aIndex];
     [self changeButtonsToNormalState];
     vButton.selected = YES;
+    vButton.backgroundColor =[UIColor redColor];
     [self moveScrolViewWithIndex:aIndex];
 }
 
