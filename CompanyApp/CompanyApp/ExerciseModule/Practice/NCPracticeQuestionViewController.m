@@ -9,7 +9,10 @@
 #import "NCPracticeQuestionViewController.h"
 
 @interface NCPracticeQuestionViewController ()<UITableViewDataSource,UITableViewDelegate>
-
+{
+    UIImageView *_choiceImageview;
+    UILabel *_qtitleView;
+}
 @property(nonatomic,strong) UIView *headView;
 @property(nonatomic,strong) UITableView *infoTableView;
 @property(nonatomic,strong) UIView *footView;
@@ -21,14 +24,15 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     
-    UIView *bottomview = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 40)];
     self.titleBar.hidden = NO;
     self.titleBar.delegate = self;
     [self.titleBar setLeftTitle:@"返回" withSelector:@selector(goback)];
     
     self.infoTableView.tableHeaderView = self.headView;
-    self.infoTableView.tableFooterView = self.headView;
     [self.view addSubview:self.infoTableView];
+    
+    
+    [self.view addSubview:self.footView];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -45,7 +49,7 @@
 -(UITableView *)infoTableView
 {
     if (!_infoTableView) {
-        _infoTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.titleBar.height, kScreenWidth, kScreenHeight-self.titleBar.height)];
+        _infoTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.titleBar.height, kScreenWidth, kScreenHeight-self.titleBar.height- 50)];
         _infoTableView.delegate = self;
         _infoTableView.dataSource = self;
     }
@@ -57,62 +61,81 @@
 {
     if (!_headView) {
         
-        _headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 140)];
+        _headView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 60)];
+ 
+        _choiceImageview = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 50, 20)];
+        _choiceImageview.clipsToBounds = YES;
+        _choiceImageview.layer.cornerRadius = _choiceImageview.width/2;
+        [_headView addSubview:_choiceImageview];
         
-        UIImageView *_photoview = [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 120, 120)];
-        _photoview.clipsToBounds = YES;
-        _photoview.layer.cornerRadius = _photoview.width/2;
-        [_headView addSubview:_photoview];
-        
-        UILabel *_nameLabel = [[UILabel alloc] initWithFrame:CGRectMake(_photoview.right+4, _photoview.top, 100, 16)];
-        [_headView addSubview:_photoview];
-        _nameLabel.text = @"编织施工组织设计方案时，必须制定针对性的（）";
-    
+        _qtitleView = [[UILabel alloc] initWithFrame:CGRectMake(_choiceImageview.right+4, _choiceImageview.top,_headView.width-_choiceImageview.right, 30)];
+        _qtitleView.numberOfLines = 0;
+        [_headView addSubview:_qtitleView];
+        _qtitleView.text = @"编织施工组织设计方案时，必须制定针对性的（）";
     }
     
     return _headView;
 }
 
+-(void)nextButtonAction
+{
+    
+}
+
+-(void)processButtonAction
+{
+    
+}
+
+-(void)collectButtonAction
+{
+    
+}
+
+-(void)subButtonAction
+{
+    
+}
 -(UIView *)footView
 {
     if (!_footView) {
+        _footView = [[UIView alloc] initWithFrame:CGRectMake(0, self.infoTableView.bottom, kScreenWidth, 50)];
+        _footView.backgroundColor =[UIColor brownColor];
         
-            UIToolbar *editModeToolBar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, 0, 320, 50)];
-            
-            UIButton *deletebtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 7, 140, 30)];
-            deletebtn.titleLabel.font = [UIFont systemFontOfSize:15];
-            [deletebtn setTitle:@" 下一题 " forState:UIControlStateNormal];
+        float btnwidth = kScreenWidth/4;
+        UIButton *nextbtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 7, btnwidth, 30)];
+            nextbtn.titleLabel.font = [UIFont systemFontOfSize:15];
+            [nextbtn setTitle:@" 下一题 " forState:UIControlStateNormal];
 //            [deletebtn setImage:[UIImage imageNamed:@"icon-rubbish.png"] forState:UIControlStateNormal];
-            [deletebtn addTarget:self action:@selector(deleteSelectedMessage) forControlEvents:UIControlEventTouchUpInside];
-            UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc]  initWithCustomView:deletebtn];
-            
-            
-            UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:nil action:nil];
-            
-            UIButton *transmitbtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 7, 140, 30)];
-            transmitbtn.titleLabel.font = [UIFont systemFontOfSize:15];
-            [transmitbtn setTitle:@" 1/100 " forState:UIControlStateNormal];
-            [transmitbtn addTarget:self action:@selector(editMenuTransmitPressed) forControlEvents:UIControlEventTouchUpInside];
-            UIBarButtonItem *transmitButton = [[UIBarButtonItem alloc] initWithCustomView:transmitbtn];
+            [nextbtn addTarget:self action:@selector(nextButtonAction) forControlEvents:UIControlEventTouchUpInside];
+     
+        [_footView addSubview:nextbtn];
         
-        UIButton *collectbtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 7, 140, 30)];
+            
+        UIButton *processbtn = [[UIButton alloc] initWithFrame:CGRectMake(nextbtn.right, 7, btnwidth, 30)];
+            processbtn.titleLabel.font = [UIFont systemFontOfSize:15];
+            [processbtn setTitle:@" 1/100 " forState:UIControlStateNormal];
+            [processbtn addTarget:self action:@selector(processButtonAction) forControlEvents:UIControlEventTouchUpInside];
+        
+             [_footView addSubview:processbtn];
+        
+        UIButton *collectbtn = [[UIButton alloc] initWithFrame:CGRectMake(processbtn.right, 7, btnwidth, 30)];
         collectbtn.titleLabel.font = [UIFont systemFontOfSize:15];
         [collectbtn setTitle:@"收藏 " forState:UIControlStateNormal];
         //            [deletebtn setImage:[UIImage imageNamed:@"icon-rubbish.png"] forState:UIControlStateNormal];
-        [collectbtn addTarget:self action:@selector(deleteSelectedMessage) forControlEvents:UIControlEventTouchUpInside];
-        UIBarButtonItem *collectButton = [[UIBarButtonItem alloc]  initWithCustomView:deletebtn];
+        [collectbtn addTarget:self action:@selector(collectButtonAction) forControlEvents:UIControlEventTouchUpInside];
         
-        UIButton *subbtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 7, 140, 30)];
+        [_footView addSubview:collectbtn];
+        
+        
+        UIButton *subbtn = [[UIButton alloc] initWithFrame:CGRectMake(collectbtn.right, 7, btnwidth, 30)];
         subbtn.titleLabel.font = [UIFont systemFontOfSize:15];
         [subbtn setTitle:@" 交卷 " forState:UIControlStateNormal];
         //            [deletebtn setImage:[UIImage imageNamed:@"icon-rubbish.png"] forState:UIControlStateNormal];
-        [subbtn addTarget:self action:@selector(deleteSelectedMessage) forControlEvents:UIControlEventTouchUpInside];
-        UIBarButtonItem *subButton = [[UIBarButtonItem alloc]  initWithCustomView:deletebtn];
+        [subbtn addTarget:self action:@selector(subButtonAction) forControlEvents:UIControlEventTouchUpInside];
         
+        [_footView addSubview:subbtn];
         
-        [editModeToolBar setItems:[NSArray arrayWithObjects:deleteButton,transmitButton,collectButton,subButton,nil]];
-            
-        _footView = editModeToolBar;
     }
     
     return _footView;
