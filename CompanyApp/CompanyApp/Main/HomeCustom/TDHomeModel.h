@@ -16,20 +16,19 @@
 @property (nonatomic,copy) NSString *modelId;
 @property (nonatomic,copy) NSString *content;
 
-
+@property (nonatomic,copy) NSString *url;
 
 @property (nonatomic,copy) NSString *name;
 @property (nonatomic,copy) NSArray *book;
 //@property (nonatomic,copy) NSString *imageurl;
 @property (nonatomic,copy) NSString *address;
 @property (nonatomic,copy) NSString *phone;
-@property (nonatomic,copy) NSString *img;
+@property (nonatomic,copy) NSString *imageUrl;              //图片
 @property (nonatomic,copy) NSString *addv;
 
 
 
 @property (nonatomic,copy) NSString *cornerImgUrl;
-@property (nonatomic,copy) NSString *imageUrl;              //图片
 @property (nonatomic,copy) NSString *coverImageUrl;              //图片
 
 @property (nonatomic,copy) NSString *module_cover_image;              //图片

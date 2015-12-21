@@ -10,4 +10,6 @@
 
 @interface NCCorpListViewController : TDViewController
 
+@property(nonatomic,strong) NCBaseModel *currentModel;
+@property(nonatomic,strong) NSArray *childData;
 @end

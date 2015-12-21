@@ -146,9 +146,14 @@ DropDownChooseDelegate,DropDownChooseDelegate>
         _titleView.titleDelegate=self;
         [_titleView setTitleBarTudouColor];
  
+       NCBaseModel *model = [NCInitial sharedInstance].indexSearchData;
+        NSMutableArray *muarr = [NSMutableArray new];
+        for (NCBaseModel *chmodel in model.childSectionData) {
+            [muarr addObject:chmodel.modelName];
+            
+        } chooseArray = [NSMutableArray arrayWithArray:@[muarr]];
         
-        chooseArray = [NSMutableArray arrayWithArray:@[
-                                                       @[@"资讯",@"资料库"]]];
+//        chooseArray = [NSMutableArray arrayWithArray:@[@[@"资讯",@"资料库"]]];
         
         DropDownListView * dropDownView = [[DropDownListView alloc] initWithFrame:CGRectMake(0,30, 80, 40) dataSource:self delegate:self];
         dropDownView.mSuperView = self.view;
@@ -337,7 +342,7 @@ DropDownChooseDelegate,DropDownChooseDelegate>
         case TAG_HomeView_SECTION1:
         {
             NCNewsViewController *newview = [[NCNewsViewController alloc] init];
-       newview.currentModel = childmodel;
+            newview.currentModel = childmodel;
             newview.childData = model.childSectionData;
             [self.navigationController pushViewController:newview animated:YES];
         }
@@ -391,16 +396,16 @@ DropDownChooseDelegate,DropDownChooseDelegate>
         case TAG_HomeView_SECTION3:
         {
             NCTestNoticeViewController *newview = [[NCTestNoticeViewController alloc] init];
-            //            newview.currentModel = childmodel;
-            //            newview.childData = model.childSectionData;
+            newview.currentModel = childmodel;
+            newview.childData = model.childSectionData;
             [self.navigationController pushViewController:newview animated:YES];
         }
             break;
         case TAG_HomeView_SECTION4:
         {
             NCCorpListViewController *newview = [[NCCorpListViewController alloc] init];
-//            newview.currentModel = childmodel;
-//            newview.childData = model.childSectionData;
+            newview.currentModel = childmodel;
+            newview.childData = model.childSectionData;
             [self.navigationController pushViewController:newview animated:YES];
         }
             break;

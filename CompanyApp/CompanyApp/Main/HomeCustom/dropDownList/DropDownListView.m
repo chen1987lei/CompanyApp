@@ -159,7 +159,7 @@
     [self.mSuperView addSubview:self.mTableView];
     
     //动画设置位置
-    rect .size.height = 240;
+    rect.size.height = 240;
     [UIView animateWithDuration:0.3 animations:^{
         self.mTableBaseView.alpha = 0.2;
         self.mTableView.alpha = 0.2;

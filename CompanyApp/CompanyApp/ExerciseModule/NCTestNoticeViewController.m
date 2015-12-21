@@ -9,9 +9,15 @@
 #import "NCTestNoticeViewController.h"
 #import "MainCell.h"
 
+#import "NCInitial.h"
+#import "TDHomeModel.h"
+
+#import "NCTestNoticeContentController.h"
+#import "NewsWebViewController.h"
 @interface NCTestNoticeViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     UITableView *_mainTable;
+    NSMutableArray *_noticelist;
 }
 @end
 
@@ -27,6 +33,33 @@
     [self.titleBar setLeftTitle:@"返回" withSelector:@selector(goback)];
     
     [self addTableView];
+    
+    
+    _noticelist = [NSMutableArray new];
+    
+    [[NCInitial sharedInstance] requestNewsListData:_currentModel.modelId withPageFrom:1 withOnePageCount:10 WithComplate:^(NSDictionary *result, NSError *error) {
+        
+        NSInteger code = [result[@"code"] integerValue];
+        if (code == 200) {
+            NSArray *res = result[@"res"];
+            for (NSDictionary *dict in res) {
+                TDHomeModel *model = [[TDHomeModel alloc] init];
+                [_noticelist addObject:model];
+                model.modelId = dict[@"id"];
+                model.title = dict[@"title"];
+                             model.subTitle = dict[@"summary"];
+                             model.publicdate = dict[@"time"];
+                             model.url = dict[@"url"];
+                            model.imageUrl = dict[@"img"];
+                
+                [_noticelist addObject:model];
+//                "id":"9","title":"工程师考试要求","summary":" 工程师考试要求工程师考试要求工程师考试要求工程师考试要求工程师考试要求工程师考试要求工程师考试要求工程师考试要求工程师考试要求工程师考试要求工程师考试要求工程师考试要求工程师考试要求工程师考试要求工程师考试要求工程师考试要求工程师考试要求工程师考试要求工程师考试要求工程师考试要求工程师考试要求工程师考试要求工程师考试要求工程师考试要求工程师考试要求工程师考试要求工程师考试要求工程师考试要求工程师考试要求工程师考试要求工程师考试要求工程师考试要求工程师考试要求工程师考试要求工程师考试要求工程师考试要求工程","time":"2015-12-14","img":"http://anquan.weilomo.com/Uploads/2015/1214/thumb/154x154/566e9e902e2d3.jpg","url":"http://anquan.weilomo.com/H5/Index/newscontent/id/9
+                
+            }
+            
+            [_mainTable reloadData];
+        }
+    }];
 }
 
 
@@ -38,6 +71,7 @@
 -(void)addTableView
 {
     _mainTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, kScreenWidth, self.view.height - TAB_BAR_HEIGHT)];
+    _mainTable.separatorStyle = UITableViewCellSeparatorStyleSingleLine;
     _mainTable.dataSource = self;
     _mainTable.delegate = self;
     [self.view addSubview:_mainTable];
@@ -57,7 +91,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSInteger count = 4;
+    NSInteger count = [_noticelist count];
     
     return count;
 }
@@ -82,8 +116,8 @@
         cell.selectionStyle = UITableViewCellSelectionStyleGray;
         
     }
-
-    
+   TDHomeModel *model =  _noticelist[indexPath.row];
+    cell.textLabel.text = model.title;
     return cell;
     
 }
@@ -103,7 +137,14 @@
     
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
+    TDHomeModel *model =  _noticelist[indexPath.row];
+    NSString *newUrlstr = model.url;
+    NewsWebViewController *webcontroller = [[NewsWebViewController alloc] init];
+    webcontroller.newsUrlString = newUrlstr;
     
+    [webcontroller.titleBar setTitle: model.title];
+    
+    [self.navigationController pushViewController:webcontroller animated:YES];
 }
 
 

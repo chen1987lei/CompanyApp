@@ -15,7 +15,6 @@
 #define kCategoryURL @"http://anquan.weilomo.com/Api/Class/list.html"
 #define kNewsListURL @"http://anquan.weilomo.com/Api/News/list.html"
 
-#define kNewsListURL @"http://anquan.weilomo.com/Api/News/list.html"
 
 #define kNewsContentURL @"http://anquan.weilomo.com/Api/News/content.html"
 
@@ -245,7 +244,7 @@
                 talentCityModel.childSectionData = tmparr;
                 
                 talentModel.childSectionData = talentchild;
-                weakself.talents_cateData = collectionModel;
+                weakself.talents_cateData = talentModel;
                 
                 
 
@@ -279,31 +278,20 @@
                     
                 
 
-                tmparr = [NSMutableArray new];
                 NSDictionary *index_search_cate = res[@"index_search_cate"];
                 NCBaseModel *index_searchModel = [self parseData:index_search_cate andParentModel:nil];
                 index_searchModel.modelName = @"index_search_cate";
-                
-                
-                index_searchModel.childSectionData = tmparr;
+    
                 weakself.indexSearchData  = index_searchModel;
                 
                 
                 
                 NSDictionary *certificate_search_cate = res[@"certificate_search_cate"];
-                NCBaseModel *certificate_searchModel =  [[NCBaseModel alloc] init];
+                NCBaseModel *certificate_searchModel =  [self parseData:certificate_search_cate andParentModel:nil];
                 certificate_searchModel.modelName = @"certificate_search_cate";
-                NSMutableArray *certificate_searchchild = [NSMutableArray new];
-                for (NSDictionary *dict in certificate_search_cate) {
-                    
-                    NCBaseModel *child =  [[NCBaseModel alloc] init];
-                    child.modelId = dict[@"id"];
-                    child.modelName = dict[@"name"];
-                    [certificate_searchchild addObject:child];
-                }
-                certificate_searchModel.childSectionData = certificate_searchchild;
                 weakself.certificate_searchData = certificate_searchModel;
               
+                
                 NSDictionary *organization_search_cate = res[@"organization_search_cate"];
                 NCBaseModel *organization_searchModel =  [self parseData:organization_search_cate andParentModel:nil];
                 organization_searchModel.modelName = @"organization_search_cate";
@@ -311,14 +299,21 @@
                 
                 
                 NSDictionary *reg_certificate = res[@"reg_certificate"];
-                NCBaseModel *reg_certificateModel = [self parseData:reg_certificate  andParentModel:nil];
-                reg_certificateModel.modelName = @"reg_certificate";
+                NCBaseModel *reg_certificateModel = [[NCBaseModel alloc] init];
+                reg_certificateModel.modelName = reg_certificate[@"title"];
+                reg_certificateModel.modelSubTitle =  reg_certificate[@"subtitle"];
+                reg_certificateModel.content =  reg_certificate[@"content"];
+                weakself.reg_certificateData = reg_certificateModel;
                 
-                
+                //简历协议
                 NSDictionary *resume_certificate = res[@"resume_certificate"];
-                NCBaseModel *resume_certificateModel =
-                [self parseData:resume_certificate  andParentModel:nil];
-                resume_certificateModel.modelName = @"resume_certificate";
+                NCBaseModel *resume_certificateModel = [[NCBaseModel alloc] init];
+                resume_certificateModel.modelName = resume_certificate[@"title"];
+                resume_certificateModel.modelSubTitle =  resume_certificate[@"subtitle"];
+                resume_certificateModel.content =  resume_certificate[@"content"];
+                weakself.reg_certificateData = resume_certificateModel;
+                
+                
                 weakself.reg_certificateData = resume_certificateModel;
                 
                 
@@ -422,6 +417,8 @@
     
     NCUserConfig *user = [NCUserConfig sharedInstance];
     NSMutableDictionary *params =  [NSMutableDictionary dictionary];
+    
+//    [params setObject:cagID forKey:@"cid"];
     [params setObject:user.uid forKey:@"uid"];
     [params setObject:user.uuid forKey:@"uuid"];
     

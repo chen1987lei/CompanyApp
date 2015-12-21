@@ -131,6 +131,7 @@
 		CED8B6311C22DA71009C5349 /* NCMyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CED8B6301C22DA71009C5349 /* NCMyViewController.m */; };
 		CEE733CD1C18671200343808 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CEE733CC1C18671200343808 /* WebKit.framework */; };
 		CEE733D01C186CF800343808 /* NCUserNetManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CEE733CF1C186CF800343808 /* NCUserNetManager.m */; };
+		FA09BDEA1C287D96009E030F /* NCMyCollectionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA09BDE91C287D96009E030F /* NCMyCollectionViewController.m */; };
 		FA4DC3091C25A94D0014B0F2 /* NCPracticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4DC3081C25A94D0014B0F2 /* NCPracticeViewController.m */; };
 		FA4DC30E1C25D27B0014B0F2 /* NCUserLicenseView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4DC30D1C25D27B0014B0F2 /* NCUserLicenseView.m */; };
 		FA4DC3111C25E3C90014B0F2 /* NCLibraryHomeView.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4DC3101C25E3C90014B0F2 /* NCLibraryHomeView.m */; };
@@ -425,6 +426,8 @@
 		CEE733CC1C18671200343808 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		CEE733CE1C186CF800343808 /* NCUserNetManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCUserNetManager.h; sourceTree = "<group>"; };
 		CEE733CF1C186CF800343808 /* NCUserNetManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCUserNetManager.m; sourceTree = "<group>"; };
+		FA09BDE81C287D96009E030F /* NCMyCollectionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCMyCollectionViewController.h; sourceTree = "<group>"; };
+		FA09BDE91C287D96009E030F /* NCMyCollectionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCMyCollectionViewController.m; sourceTree = "<group>"; };
 		FA4DC3071C25A94D0014B0F2 /* NCPracticeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NCPracticeViewController.h; path = ../NCPracticeViewController.h; sourceTree = "<group>"; };
 		FA4DC3081C25A94D0014B0F2 /* NCPracticeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NCPracticeViewController.m; path = ../NCPracticeViewController.m; sourceTree = "<group>"; };
 		FA4DC30C1C25D27B0014B0F2 /* NCUserLicenseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCUserLicenseView.h; sourceTree = "<group>"; };
@@ -645,6 +648,7 @@
 		CE41D59B1C15A873002FC6BF /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				FA09BDE71C287D88009E030F /* MyCollection */,
 				FA4DC36E1C272F020014B0F2 /* CorpLibrary */,
 				FA4DC3581C26842B0014B0F2 /* PersonLibrary */,
 				CE9149A91C201FEC0041480C /* SearchView */,
@@ -1040,6 +1044,15 @@
 				CE9149BF1C201FEC0041480C /* TDSearchViewController.m */,
 			);
 			path = SearchView;
+			sourceTree = "<group>";
+		};
+		FA09BDE71C287D88009E030F /* MyCollection */ = {
+			isa = PBXGroup;
+			children = (
+				FA09BDE81C287D96009E030F /* NCMyCollectionViewController.h */,
+				FA09BDE91C287D96009E030F /* NCMyCollectionViewController.m */,
+			);
+			path = MyCollection;
 			sourceTree = "<group>";
 		};
 		FA4DC3201C25E9F70014B0F2 /* MessageModule */ = {
@@ -1459,6 +1472,7 @@
 				CE41D5E91C15AB74002FC6BF /* CAGradientLayer+Addition.m in Sources */,
 				CE90E2721C20494A00F1D5E1 /* TDCustomSeg.m in Sources */,
 				CE90E2631C20478D00F1D5E1 /* TDHud.m in Sources */,
+				FA09BDEA1C287D96009E030F /* NCMyCollectionViewController.m in Sources */,
 				CE9149D01C2021910041480C /* NCHomeSectionView.m in Sources */,
 				CE95FCDA1C1713DD00C53975 /* NCBaseViewController.m in Sources */,
 				CE41D6B91C16BC85002FC6BF /* NCHomeViewController.m in Sources */,
