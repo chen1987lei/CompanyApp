@@ -47,7 +47,7 @@
 -(UITableView *)infoTableView
 {
     if (!_infoTableView) {
-        _infoTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight-self.titleBar.height)];
+        _infoTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.titleBarHeight, kScreenWidth, kScreenHeight-self.titleBar.height)];
         _infoTableView.delegate = self;
         _infoTableView.dataSource = self;
     }

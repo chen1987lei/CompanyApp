@@ -23,8 +23,18 @@
     self.titleBar.hidden = NO;
     [self.titleBar setTitle:@"考试公告"];
     
+    self.titleBar.delegate = self;
+    [self.titleBar setLeftTitle:@"返回" withSelector:@selector(goback)];
+    
     [self addTableView];
 }
+
+
+-(void)goback
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 -(void)addTableView
 {
     _mainTable = [[UITableView alloc] initWithFrame:CGRectMake(0, 64, kScreenWidth, self.view.height - TAB_BAR_HEIGHT)];

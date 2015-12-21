@@ -8,10 +8,18 @@
 
 #import "NCPracticeQuestionViewController.h"
 
+#import "NCPracticeManager.h"
+#import "NCPracticeResultViewController.h"
+
 @interface NCPracticeQuestionViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     UIImageView *_choiceImageview;
     UILabel *_qtitleView;
+    
+    NSInteger _questionIndex;
+    NSArray *_currentChoicelist;
+    
+    UIButton *_processbtn;
 }
 @property(nonatomic,strong) UIView *headView;
 @property(nonatomic,strong) UITableView *infoTableView;
@@ -31,8 +39,39 @@
     self.infoTableView.tableHeaderView = self.headView;
     [self.view addSubview:self.infoTableView];
     
+ 
     
     [self.view addSubview:self.footView];
+    
+    [self requestQuestionlist];
+}
+
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    if (_shouldShowErrInfo) {
+        UILabel *errorlbl =  [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, 100)];
+        errorlbl.numberOfLines = 0;
+        
+        NSArray *questionlist = [NCPracticeManager sharedInstance].questionList;
+        
+        NSPracticeQuestion *quest = questionlist[_questionIndex];
+        errorlbl.text = quest.parsing;   //@"试题详解";
+        self.infoTableView.tableFooterView = errorlbl;
+    }
+    
+}
+
+
+-(void)requestQuestionlist
+{
+    WS(weakself);
+    [[NCPracticeManager sharedInstance] requestQuestionlistWithComplete:^(NSArray *result) {
+        
+        [weakself refreshQuestionView];
+        
+    }];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -77,9 +116,34 @@
     return _headView;
 }
 
--(void)nextButtonAction
+
+-(void)refreshQuestionView
 {
     
+    NSArray *questionlist = [NCPracticeManager sharedInstance].questionList;
+
+    NSPracticeQuestion *quest = questionlist[_questionIndex];
+    
+    NSString *str =  [NSString stringWithFormat:@"%ld/%lu", (long)_questionIndex, (unsigned long)[questionlist count]];
+    [_processbtn setTitle:str forState: UIControlStateNormal];
+    _qtitleView.text  = quest.question;
+    _currentChoicelist = quest.choicelist;
+    
+ 
+    [_infoTableView reloadData];
+}
+
+
+-(void)nextButtonAction
+{
+    NSArray *questionlist = [NCPracticeManager sharedInstance].questionList;
+    if (_questionIndex == ([questionlist count] -1) ) {
+        
+        [self subButtonAction];
+        return;
+    }
+    _questionIndex ++;
+    [self refreshQuestionView];
 }
 
 -(void)processButtonAction
@@ -95,7 +159,12 @@
 -(void)subButtonAction
 {
     
+    [NCPracticeManager sharedInstance].usedtime = [[NSDate date] timeIntervalSinceDate:[NCPracticeManager sharedInstance].startDate] ;
+    
+    NCPracticeResultViewController *result = [[NCPracticeResultViewController alloc] init];
+    [self.navigationController pushViewController:result animated:YES];
 }
+
 -(UIView *)footView
 {
     if (!_footView) {
@@ -112,14 +181,15 @@
         [_footView addSubview:nextbtn];
         
             
-        UIButton *processbtn = [[UIButton alloc] initWithFrame:CGRectMake(nextbtn.right, 7, btnwidth, 30)];
-            processbtn.titleLabel.font = [UIFont systemFontOfSize:15];
-            [processbtn setTitle:@" 1/100 " forState:UIControlStateNormal];
-            [processbtn addTarget:self action:@selector(processButtonAction) forControlEvents:UIControlEventTouchUpInside];
+        _processbtn = [[UIButton alloc] initWithFrame:CGRectMake(nextbtn.right, 7, btnwidth, 30)];
+        _processbtn.titleLabel.font = [UIFont systemFontOfSize:15];
+        [_processbtn setTitle:@" 1/100 " forState:UIControlStateNormal];
+        [_processbtn addTarget:self action:@selector(processButtonAction) forControlEvents:UIControlEventTouchUpInside];
         
-             [_footView addSubview:processbtn];
+        [_footView addSubview:_processbtn];
         
-        UIButton *collectbtn = [[UIButton alloc] initWithFrame:CGRectMake(processbtn.right, 7, btnwidth, 30)];
+        
+        UIButton *collectbtn = [[UIButton alloc] initWithFrame:CGRectMake(_processbtn.right, 7, btnwidth, 30)];
         collectbtn.titleLabel.font = [UIFont systemFontOfSize:15];
         [collectbtn setTitle:@"收藏 " forState:UIControlStateNormal];
         //            [deletebtn setImage:[UIImage imageNamed:@"icon-rubbish.png"] forState:UIControlStateNormal];
@@ -155,7 +225,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSInteger count = 4;
+    NSInteger count = [_currentChoicelist count];
     
     return count;
 }
@@ -201,8 +271,12 @@
     UIButton *choicebtn = [cell.contentView viewWithTag:123];
     UILabel *choiceLabel = [cell.contentView viewWithTag:124];
     
-    choiceLabel.text = @"安全技术措施和方案";
+    
+    NSDictionary *dict =  _currentChoicelist[indexPath.row];
+    
+    choiceLabel.text =  [[dict allValues] lastObject];
     choicebtn.titleLabel.tag = indexPath.row;
+
     switch (indexPath.row) {
         case 0:
         {
@@ -234,7 +308,14 @@
 
 -(void)choiceButtonAction:(UIButton *)sender
 {
+    //保存当前答案
+    NSInteger qindex = sender.titleLabel.tag;
     
+    NSDictionary *dict =  _currentChoicelist[qindex];
+    NSPracticeQuestion *quest = [NCPracticeManager sharedInstance].questionList[_questionIndex];
+    quest.useranswer  = [[dict allKeys] lastObject];
+    
+    [self nextButtonAction];
 }
 
 
@@ -252,7 +333,10 @@
 {
     
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
+    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     
+    UIButton *choicebtn = [cell.contentView viewWithTag:123];
+    [self choiceButtonAction:choicebtn];
     
 }
 

@@ -8,7 +8,7 @@
 
 #import "NCTestNoticeContentController.h"
 
-@interface NCTestNoticeContentController ()
+@interface NCTestNoticeContentController ()<TDTitleBarDelegate>
 
 @end
 
@@ -17,6 +17,21 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    self.view.backgroundColor = [UIColor whiteColor];
+    
+    [self.titleBar setTitle:@"考试公告"];
+    self.titleBar.hidden = NO;
+    self.titleBar.delegate = self;
+    [self.titleBar setLeftTitle:@"返回" withSelector:@selector(goback)];
+    
+    
+}
+
+-(void)goback
+{
+    [self.navigationController popViewControllerAnimated:YES];
+    
 }
 
 - (void)didReceiveMemoryWarning {

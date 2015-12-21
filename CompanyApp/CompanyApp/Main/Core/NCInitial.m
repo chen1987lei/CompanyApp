@@ -27,6 +27,11 @@
 
 #define kCorpListUrl @"http://anquan.weilomo.com/Api/Organ/list.html"
 #define  kCorpInfoUrl @"http://anquan.weilomo.com/Api/Organ/info.html"
+
+
+#define kTestListURL @"http://anquan.weilomo.com/Api/Test/list.html"
+
+
 @implementation NCBaseModel
 
 @end
@@ -93,8 +98,15 @@
                 mb.topValue = dict[@"top"];
             if(dict[@"content"])
                 mb.content = dict[@"content"];
+            if(dict[@"child"])
+            {
+                id tttt = dict[@"child"];
+                if ([tttt isKindOfClass:[NSArray class]]) {
+                    mb = [self parseData:tttt andParentModel:mb];
+                }
+            }
             
-            [tmparr addObject:tmparr];
+            [tmparr addObject:mb];
         }
         if (parent == nil) {
             parent =  [[NCBaseModel alloc] init];
@@ -116,7 +128,13 @@
         if(dict[@"child"])
         {
             id child = dict[@"child"];
-            parent = [self parseData:child  andParentModel:parent];
+            if (child) {
+                parent = [self parseData:child  andParentModel:parent];
+            }
+            else
+            {
+                NSLog(@"323");
+            }
         }
         return parent;
     }
@@ -305,6 +323,7 @@
                 
                 
                 NSDictionary *practice_cate = res[@"practice_cate"];
+                
                 NCBaseModel *practice_catehModel =  [self parseData:practice_cate  andParentModel:nil];
                 practice_catehModel.modelName = @"certificate_search_cate";
                 weakself.practiceData = practice_catehModel;
@@ -527,6 +546,49 @@
     __weak AFHTTPRequestOperation *operation = [self.requestManager HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         //            {"code":200,"res":[{"id":"12","name":"个人证书查询","fid":"7","top":"99"},{"id":"13","name":"认证机构查询","fid":"7","top":"99"}]}
+        
+        
+        NSDictionary *dict = [operation.responseData objectFromJSONData];
+        
+        completeBlock(dict, nil);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        completeBlock(nil, error);
+        
+    }];
+    
+    [operation setQueuePriority:NSOperationQueuePriorityLow];
+    [self.requestManager.operationQueue addOperation:operation];
+}
+
+
+
+-(void)requestQuestionListData:(NSString *)cagID
+                     WithComplate:(void (^)(NSDictionary *result, NSError *error))completeBlock;
+{
+
+    NCUserConfig *user = [NCUserConfig sharedInstance];
+    NSMutableDictionary *params =  [NSMutableDictionary dictionary];
+    [params setObject:cagID forKey:@"cid"];
+    
+    [params setObject:user.uid forKey:@"uid"];
+    [params setObject:user.uuid forKey:@"uuid"];
+    [params addEntriesFromDictionary: [NCInitial getBaseParams]];
+    
+    
+    
+    NSMutableURLRequest *request = [self.requestManager.requestSerializer requestWithMethod:@"POST" URLString:kTestListURL
+                                                                                 parameters:params error:nil];
+    
+    
+    //    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:
+    //                   [NSURL URLWithString: kInitialURL ]];
+    
+    request.timeoutInterval = 10;
+    
+    WS(weakself)
+    __weak AFHTTPRequestOperation *operation = [self.requestManager HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         
         NSDictionary *dict = [operation.responseData objectFromJSONData];

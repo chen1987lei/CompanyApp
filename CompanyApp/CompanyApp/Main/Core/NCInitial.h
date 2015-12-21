@@ -74,4 +74,6 @@ withOnePageCount:(NSInteger)onepageCount
 -(void)requestCorpInfo:(NSString *)corpId
                    WithComplate:(void (^)(NSDictionary *result, NSError *error))completeBlock;
 
+-(void)requestQuestionListData:(NSString *)cagID
+          WithComplate:(void (^)(NSDictionary *result, NSError *error))completeBlock;
 @end

@@ -16,6 +16,13 @@
 		CE042A9E1C21AB0F0032AADA /* NCRecoveryPWDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE042A9D1C21AB0F0032AADA /* NCRecoveryPWDViewController.m */; };
 		CE042AA11C21AB1C0032AADA /* NCModifyPWDViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE042AA01C21AB1C0032AADA /* NCModifyPWDViewController.m */; };
 		CE042AA41C21AD560032AADA /* RKCardView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE042AA31C21AD560032AADA /* RKCardView.m */; };
+		CE22206B1C27EB050091C6E6 /* expandableImage.png in Resources */ = {isa = PBXBuildFile; fileRef = CE2220631C27EB050091C6E6 /* expandableImage.png */; };
+		CE22206C1C27EB050091C6E6 /* expandableImage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = CE2220641C27EB050091C6E6 /* expandableImage@2x.png */; };
+		CE22206D1C27EB050091C6E6 /* SKSTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2220661C27EB050091C6E6 /* SKSTableView.m */; };
+		CE22206E1C27EB050091C6E6 /* SKSTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2220681C27EB050091C6E6 /* SKSTableViewCell.m */; };
+		CE22206F1C27EB050091C6E6 /* SKSTableViewCellIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = CE22206A1C27EB050091C6E6 /* SKSTableViewCellIndicator.m */; };
+		CE2220721C27FEC00091C6E6 /* NSPracticeQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2220711C27FEC00091C6E6 /* NSPracticeQuestion.m */; };
+		CE2220751C2810CE0091C6E6 /* NCPracticeManager.m in Sources */ = {isa = PBXBuildFile; fileRef = CE2220741C2810CE0091C6E6 /* NCPracticeManager.m */; };
 		CE37C0DC1C1AF3310047C647 /* TopNavBar.m in Sources */ = {isa = PBXBuildFile; fileRef = CE37C0DB1C1AF3310047C647 /* TopNavBar.m */; };
 		CE41D5821C0F1768002FC6BF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = CE41D5811C0F1768002FC6BF /* main.m */; };
 		CE41D5851C0F1769002FC6BF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = CE41D5841C0F1769002FC6BF /* AppDelegate.m */; };
@@ -192,6 +199,18 @@
 		CE042AA01C21AB1C0032AADA /* NCModifyPWDViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCModifyPWDViewController.m; sourceTree = "<group>"; };
 		CE042AA21C21AD560032AADA /* RKCardView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RKCardView.h; sourceTree = "<group>"; };
 		CE042AA31C21AD560032AADA /* RKCardView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RKCardView.m; sourceTree = "<group>"; };
+		CE2220631C27EB050091C6E6 /* expandableImage.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = expandableImage.png; sourceTree = "<group>"; };
+		CE2220641C27EB050091C6E6 /* expandableImage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "expandableImage@2x.png"; sourceTree = "<group>"; };
+		CE2220651C27EB050091C6E6 /* SKSTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKSTableView.h; sourceTree = "<group>"; };
+		CE2220661C27EB050091C6E6 /* SKSTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKSTableView.m; sourceTree = "<group>"; };
+		CE2220671C27EB050091C6E6 /* SKSTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKSTableViewCell.h; sourceTree = "<group>"; };
+		CE2220681C27EB050091C6E6 /* SKSTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKSTableViewCell.m; sourceTree = "<group>"; };
+		CE2220691C27EB050091C6E6 /* SKSTableViewCellIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKSTableViewCellIndicator.h; sourceTree = "<group>"; };
+		CE22206A1C27EB050091C6E6 /* SKSTableViewCellIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKSTableViewCellIndicator.m; sourceTree = "<group>"; };
+		CE2220701C27FEC00091C6E6 /* NSPracticeQuestion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSPracticeQuestion.h; sourceTree = "<group>"; };
+		CE2220711C27FEC00091C6E6 /* NSPracticeQuestion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NSPracticeQuestion.m; sourceTree = "<group>"; };
+		CE2220731C2810CE0091C6E6 /* NCPracticeManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPracticeManager.h; sourceTree = "<group>"; };
+		CE2220741C2810CE0091C6E6 /* NCPracticeManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPracticeManager.m; sourceTree = "<group>"; };
 		CE37C0DA1C1AF3310047C647 /* TopNavBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopNavBar.h; sourceTree = "<group>"; };
 		CE37C0DB1C1AF3310047C647 /* TopNavBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopNavBar.m; sourceTree = "<group>"; };
 		CE41D57D1C0F1768002FC6BF /* CompanyApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CompanyApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -547,6 +566,21 @@
 				CE042AA01C21AB1C0032AADA /* NCModifyPWDViewController.m */,
 			);
 			path = RecoveryPwd;
+			sourceTree = "<group>";
+		};
+		CE2220621C27EB050091C6E6 /* SKSTableView */ = {
+			isa = PBXGroup;
+			children = (
+				CE2220631C27EB050091C6E6 /* expandableImage.png */,
+				CE2220641C27EB050091C6E6 /* expandableImage@2x.png */,
+				CE2220651C27EB050091C6E6 /* SKSTableView.h */,
+				CE2220661C27EB050091C6E6 /* SKSTableView.m */,
+				CE2220671C27EB050091C6E6 /* SKSTableViewCell.h */,
+				CE2220681C27EB050091C6E6 /* SKSTableViewCell.m */,
+				CE2220691C27EB050091C6E6 /* SKSTableViewCellIndicator.h */,
+				CE22206A1C27EB050091C6E6 /* SKSTableViewCellIndicator.m */,
+			);
+			path = SKSTableView;
 			sourceTree = "<group>";
 		};
 		CE37C0D91C1AF3310047C647 /* TopNavBar */ = {
@@ -1022,6 +1056,7 @@
 		FA4DC3451C26835B0014B0F2 /* Practice */ = {
 			isa = PBXGroup;
 			children = (
+				CE2220621C27EB050091C6E6 /* SKSTableView */,
 				FA4DC3071C25A94D0014B0F2 /* NCPracticeViewController.h */,
 				FA4DC3081C25A94D0014B0F2 /* NCPracticeViewController.m */,
 				FA4DC3461C2683860014B0F2 /* NCPracticeStartViewController.h */,
@@ -1036,6 +1071,10 @@
 				FA4DC3531C2683ED0014B0F2 /* NCPracticeErrorViewController.m */,
 				FA4DC3551C2684020014B0F2 /* NCPracticeErrorInfoViewController.h */,
 				FA4DC3561C2684020014B0F2 /* NCPracticeErrorInfoViewController.m */,
+				CE2220701C27FEC00091C6E6 /* NSPracticeQuestion.h */,
+				CE2220711C27FEC00091C6E6 /* NSPracticeQuestion.m */,
+				CE2220731C2810CE0091C6E6 /* NCPracticeManager.h */,
+				CE2220741C2810CE0091C6E6 /* NCPracticeManager.m */,
 			);
 			path = Practice;
 			sourceTree = "<group>";
@@ -1223,6 +1262,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				FA807AD21C20A7D400A1FE42 /* HomeViewCell.xib in Resources */,
+				CE22206B1C27EB050091C6E6 /* expandableImage.png in Resources */,
+				CE22206C1C27EB050091C6E6 /* expandableImage@2x.png in Resources */,
 				FA4DC36C1C272D1F0014B0F2 /* down_dark.png in Resources */,
 				FA4DC3771C272F020014B0F2 /* CorpMainCell.xib in Resources */,
 				FA4DC37B1C272FBE0014B0F2 /* 1.jpg in Resources */,
@@ -1295,6 +1336,7 @@
 				FA4DC35F1C2685040014B0F2 /* NCMyInputResumeViewController.m in Sources */,
 				FA4DC3231C25EA360014B0F2 /* NCMessageCntentController.m in Sources */,
 				CE41D5EF1C15AB74002FC6BF /* NSFileHandle+Addition.m in Sources */,
+				CE22206F1C27EB050091C6E6 /* SKSTableViewCellIndicator.m in Sources */,
 				FA4DC32C1C2676D30014B0F2 /* NCMySettingViewController.m in Sources */,
 				CE41D6361C15ACD1002FC6BF /* NSString+MD5.m in Sources */,
 				CE41D6C21C16BCC8002FC6BF /* NCLibraryViewController.m in Sources */,
@@ -1328,9 +1370,11 @@
 				CE90E2961C204CB100F1D5E1 /* TDBaseVerticalCellView.m in Sources */,
 				CE90E2801C204A0B00F1D5E1 /* TDJSONRequestOperation.m in Sources */,
 				CE90E26F1C20493A00F1D5E1 /* TDSearchBar.m in Sources */,
+				CE22206E1C27EB050091C6E6 /* SKSTableViewCell.m in Sources */,
 				CE41D5F61C15AB74002FC6BF /* UIAlertView+Addition.m in Sources */,
 				CE90E2B21C20538400F1D5E1 /* TTTAttributedLabel.m in Sources */,
 				CE9149A71C201F670041480C /* TDTitleBar.m in Sources */,
+				CE22206D1C27EB050091C6E6 /* SKSTableView.m in Sources */,
 				CE41D6B31C16B2AB002FC6BF /* CoreDataAccess.m in Sources */,
 				CE90E28A1C204BF100F1D5E1 /* TDLabel.m in Sources */,
 				FA4DC3441C2683190014B0F2 /* NCTestEnrollInfoViewController.m in Sources */,
@@ -1360,11 +1404,13 @@
 				FA807AC01C20A73200A1FE42 /* CustomTableView.m in Sources */,
 				CE90E2A81C20523600F1D5E1 /* TDHomeModel.m in Sources */,
 				CE9149791C1EFC5A0041480C /* UIImage+screenshot.m in Sources */,
+				CE2220751C2810CE0091C6E6 /* NCPracticeManager.m in Sources */,
 				CE9149A31C201F670041480C /* TDBlurView.m in Sources */,
 				CE41D6D01C16CBB5002FC6BF /* NCLoginViewController.m in Sources */,
 				CE41D5EB1C15AB74002FC6BF /* NSArray+Addition.m in Sources */,
 				CE41D5F11C15AB74002FC6BF /* NSMutableArray+Addition.m in Sources */,
 				FA807AD11C20A7D400A1FE42 /* HomeViewCell.m in Sources */,
+				CE2220721C27FEC00091C6E6 /* NSPracticeQuestion.m in Sources */,
 				CE41D5EE1C15AB74002FC6BF /* NSDictionary+Addition.m in Sources */,
 				CE90E2601C20477B00F1D5E1 /* TDFailedView.m in Sources */,
 				CE90E2841C204A2100F1D5E1 /* SearchHistory.m in Sources */,
@@ -1519,9 +1565,9 @@
 				INFOPLIST_FILE = CompanyApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.apple.CompanyApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tudou.CompanyApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "4218b125-6d1f-4970-a2e8-9b51b8b38e55";
 			};
 			name = Debug;
 		};
@@ -1537,9 +1583,9 @@
 				INFOPLIST_FILE = CompanyApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.apple.CompanyApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tudou.CompanyApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "4218b125-6d1f-4970-a2e8-9b51b8b38e55";
 			};
 			name = Release;
 		};

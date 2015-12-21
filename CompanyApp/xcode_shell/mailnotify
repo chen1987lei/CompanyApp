@@ -1,0 +1,47 @@
+
+#收件人，多个收件人以空格分隔
+email_reciver="chenlei1@tudou.com 410269408@qq.com"
+#发送者邮箱
+
+email_sender=822030882@qq.com
+#邮箱用户名
+email_username=822030882
+#邮箱密码
+email_password=oshcnhckqinqbcde
+#smtp服务器地址
+email_smtphost=smtp.qq.com
+
+currentUser=`ls -l /dev/console | cut -d " " -f4`
+
+
+#获取shell文件所在的绝对路径
+current_path=$(pwd)
+tmp_path=$(dirname $0)
+cd $tmp_path
+shell_path=$(pwd)
+
+#发送邮件接收方，加上当前电脑
+ownermail=`/usr/libexec/PlistBuddy -c "Print DeliveryAccounts:0:CanonicalEmailAddress" "/Users/${currentUser}/Library/Mail/V2/MailData/Accounts.plist"`
+echo  $ownermail
+newemail_reciver="${email_reciver} ${ownermail}"
+echo  $newemail_reciver
+
+
+#发送邮件
+#将之前html的换行方式改为\n
+git_log=`echo ${git_log//<br\/>/\\\n}`
+change_msg=`echo ${change_msg//<br\/>/\\\n}`
+
+echo "Sending  email to notify start..."
+email_title="土豆App开始打包"
+
+if [ $# != 1 ];then
+	email_title="土豆App开始打包"	
+else
+	email_title="另一个土豆App正在打包，请等待"
+fi
+
+email_content="hi,\n\nThe app is building,please waitting.....\n\nThanks!"
+${shell_path}/sendEmail -f ${email_sender} -t ${newemail_reciver} -s ${email_smtphost} -u ${email_title} -xu ${email_username} -xp ${email_password} -m ${email_content}  -o message-charset=utf-8
+
+

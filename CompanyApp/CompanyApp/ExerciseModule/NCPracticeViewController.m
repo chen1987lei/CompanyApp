@@ -8,13 +8,17 @@
 
 #import "NCPracticeViewController.h"
 #import "TDHomeModel.h"
+#import "NCInitial.h"
 
+#import "NCPracticeManager.h"
 #import "NCPracticeStartViewController.h"
+#import "SKSTableView.h"
+#import "SKSTableViewCell.h"
 
-@interface NCPracticeViewController ()<TDTitleBarDelegate,UITableViewDataSource,UITableViewDelegate>
+@interface NCPracticeViewController ()<TDTitleBarDelegate,UITableViewDataSource,UITableViewDelegate,SKSTableViewDelegate>
 
 @property(nonatomic,strong) NSArray *listdata;
-@property(nonatomic,strong) UITableView *infoTableView;
+@property(nonatomic,strong) SKSTableView *infoTableView;
 @end
 
 @implementation NCPracticeViewController
@@ -35,35 +39,10 @@
 
 -(void)requestCorpListData
 {
-    WS(weakself)
-    [[NCInitial sharedInstance] requestCorpListData:nil page:1 withPageNumber:10 WithComplate:^(NSDictionary *result, NSError *error) {
-        
-        NSInteger code = [result[@"code"] integerValue];
-        if (code == 200) {
-            NSArray *res = result[@"res"];
-            
-            NSMutableArray *mularr =  [NSMutableArray array];
-            for (NSDictionary *dict in res) {
-                
-                TDHomeModel *model  = [[TDHomeModel alloc] init];
-                model.name = dict[@"name"];
-                model.book = dict[@"book"];
-                model.address = dict[@"address"];
-                model.imageUrl = dict[@"img"];
-                model.phone = dict[@"phone"];
-                model.addv = dict[@"addv"];
-                [mularr addObject:model];
-            }
-            [weakself loadTableData:mularr];
-            
-        }
-        else
-        {
-            NSString *msg = result[@"msg"];
-            if(msg == nil) msg = @"刷新失败";
-            [Utils alertTitle:@"提示" message:msg delegate:nil cancelBtn:@"好" otherBtnName:nil];
-        }
-    }];
+    NCBaseModel *model = [NCInitial sharedInstance].practiceData;
+    
+    [self loadTableData:model.childSectionData];
+    
 }
 
 -(void)loadTableData:(NSArray *)list
@@ -82,9 +61,10 @@
 -(UITableView *)infoTableView
 {
     if (!_infoTableView) {
-        _infoTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.titleBar.bottom, kScreenWidth, kScreenHeight-self.titleBar.height)];
+        _infoTableView = [[SKSTableView alloc] initWithFrame:CGRectMake(0, self.titleBar.bottom, kScreenWidth, kScreenHeight-self.titleBar.height)];
         _infoTableView.delegate = self;
         _infoTableView.dataSource = self;
+        _infoTableView.SKSTableViewDelegate = self;
     }
     return _infoTableView;
     
@@ -106,32 +86,58 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSInteger count = [self.listdata count];
-    
-    return count;
+    return  [self.listdata count];
 }
 
-
+- (NSInteger)tableView:(SKSTableView *)tableView numberOfSubRowsAtIndexPath:(NSIndexPath *)indexPath;
+{
+    NCBaseModel *childmodel = self.listdata[indexPath.row];
+    return   [childmodel.childSectionData count];
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     
     static NSString *CellIdentifier = @"CorpMainCell";
-    
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        cell.selectionStyle = UITableViewCellSelectionStyleGray;
-        
-    }
+    SKSTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    cell.textLabel.text = @"考试题1";
-
+    if (!cell)
+        cell = [[SKSTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    
+    NCBaseModel *model = self.listdata[indexPath.row];
+    
+    cell.textLabel.text = model.modelName;
+    
+    if ([model.childSectionData count] >0)
+        cell.isExpandable = YES;
+    else
+        cell.isExpandable = NO;
+    
     return cell;
     
 }
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForSubRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"UITableViewCell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    if (!cell)
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+   
+    NCBaseModel *model = self.listdata[indexPath.row];
+    
+    NSInteger subrow = indexPath.subRow -1;
+    NCBaseModel *childmodel = model.childSectionData[subrow];
+    cell.textLabel.text = childmodel.modelName;
+    //[NSString stringWithFormat:@"%@", self.contents[indexPath.section][indexPath.row][indexPath.subRow]];
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    cell.textLabel.tag = indexPath.row;
+    return cell;
+}
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -143,12 +149,27 @@
     // Update the delete button's title based on how many items are selected.
     
 }
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
     
-    NCPracticeStartViewController *view = [[NCPracticeStartViewController alloc] init];
-    [self.navigationController pushViewController:view animated:YES];
+    SKSTableViewCell *cell = (SKSTableViewCell *)[tableView cellForRowAtIndexPath:indexPath];
+    if ([cell isKindOfClass:[SKSTableViewCell class]] && cell.isExpandable) {
+        
+    }
+    else
+    {
+        NSInteger cellrow = cell.textLabel.tag;
+        NCBaseModel *model = self.listdata[cellrow];
+        NSInteger subrow = indexPath.subRow ;
+//        NCBaseModel *childmodel = model.childSectionData[subrow];
+        
+        [NCPracticeManager sharedInstance].testStartId = @"17";// childmodel.modelId;
+        NCPracticeStartViewController *view = [[NCPracticeStartViewController alloc] init];
+        [self.navigationController pushViewController:view animated:YES];
+        
+    }
     
 }
 

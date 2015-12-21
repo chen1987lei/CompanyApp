@@ -10,4 +10,5 @@
 
 @interface NCPracticeQuestionViewController : TDViewController
 
+@property(nonatomic,assign) BOOL shouldShowErrInfo;
 @end

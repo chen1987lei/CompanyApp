@@ -1,0 +1,27 @@
+#!/bin/sh 
+myPath="111buildingLock"
+
+
+if test -f "$myPath"; then 
+echo "..............................."
+echo "......another building exisit，exit........."
+echo "..............................."
+
+xcode_shell/mailnotify  .
+  exit;
+fi
+
+
+xcode_shell/mailnotify
+
+touch "$myPath"
+
+echo "......begin update local code........."
+git pull
+echo ".........update code succeed......................"
+
+xcode_shell/cocoapods-build .
+
+xcode_shell/ipa-publish-fir -d .
+
+rm "$myPath"

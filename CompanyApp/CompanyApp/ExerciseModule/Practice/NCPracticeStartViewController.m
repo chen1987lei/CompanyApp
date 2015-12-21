@@ -9,6 +9,8 @@
 #import "NCPracticeStartViewController.h"
 #import "NCPracticeQuestionViewController.h"
 
+#import "NCPracticeManager.h"
+
 @interface NCPracticeStartViewController ()
 
 @end
@@ -19,15 +21,26 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
 //    self.titleBar.hidden = YES;
+    
+    self.view.backgroundColor =[UIColor whiteColor];
+    
     UIButton *startButton =  [[UIButton alloc] initWithFrame:CGRectMake(100, 200, 100, 50)];
+    [startButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
     [startButton addTarget:self action:@selector(startButtonAction) forControlEvents:UIControlEventTouchUpInside];
     [startButton setTitle:@"开始做题" forState:UIControlStateNormal];
     [self.view addSubview:startButton];
     
 }
 
+-(void)goback
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+
 -(void)startButtonAction
 {
+    [NCPracticeManager sharedInstance].startDate = [NSDate date];
     NCPracticeQuestionViewController *view = [[NCPracticeQuestionViewController alloc] init];
     [self.navigationController pushViewController:view animated:YES];
 }
