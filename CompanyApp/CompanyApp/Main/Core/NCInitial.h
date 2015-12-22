@@ -38,7 +38,15 @@
 @property(nonatomic,strong) NCBaseModel *resume_certificateData;
 @property(nonatomic,strong) NCBaseModel *signup_cateData;
 @property(nonatomic,strong) NCBaseModel *talents_cateData;
-
+//index_cate   首页份分类
+//index_search_cate搜索下拉
+//certificate_search_cate 证书查询下拉
+//organization_search_cate  机构查询下拉
+//practice_cate  测试提分类
+//signup_cate   考试报名分类
+//talents_cate 人才库分类
+//collection_cate  收藏分类
+//slidelist_cate  幻灯片接口
 
 +(NCInitial *)sharedInstance;
 

@@ -31,6 +31,9 @@
 #define kTestListURL @"http://anquan.weilomo.com/Api/Test/list.html"
 
 
+#define kResumeListURL @"http://anquan.weilomo.com/Api/Resume/list.html"
+
+
 @implementation NCBaseModel
 
 @end
