@@ -12,6 +12,12 @@
 
 #import "NCUserConfig.h"
 
+
+typedef NS_ENUM(NSInteger, UploadImageType) {
+    UploadImageDefault ,   //横图
+    UploadImageHeadPhoto,
+    UploadImageResumePhoto
+};
 @interface NCUserNetManager : NSObject
 {
     
@@ -43,4 +49,5 @@
 
 -(void)doUserFavoriteAction:(NSString *)nid andCategory:(NSString *)category  WithComplate:(void (^)(NSDictionary *result, NSError *error))completeBlock;;
 
+-(void)uploadUserHeadPhoto:(UIImage *)uploadimage withImgType:(UploadImageType )imgType  withComplate:(void (^)(NSDictionary *result, NSError *error))completeBlock;
 @end

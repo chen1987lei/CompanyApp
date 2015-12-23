@@ -237,7 +237,7 @@ withComplate:(void (^)(NSDictionary *result
     }
     NCUserConfig *user = [NCUserConfig sharedInstance];
     NSMutableDictionary *params =  [NSMutableDictionary dictionary];
-    [params setObject:@"1" forKey:@"uid"];
+    [params setObject:user.uid forKey:@"uid"];
     [params setObject:user.uuid forKey:@"uuid"];
     
     [params addEntriesFromDictionary: [NCInitial getBaseParams]];
@@ -290,7 +290,7 @@ withComplate:(void (^)(NSDictionary *result
     }
     NCUserConfig *user = [NCUserConfig sharedInstance];
     NSMutableDictionary *params =  [NSMutableDictionary dictionary];
-    [params setObject:@"1" forKey:@"uid"];
+    [params setObject:user.uid forKey:@"uid"];
     [params setObject:user.uuid forKey:@"uuid"];
  
     [params setObject:nid forKey:@"nid"];
@@ -333,7 +333,7 @@ withComplate:(void (^)(NSDictionary *result
 {
     NCUserConfig *user = [NCUserConfig sharedInstance];
     NSMutableDictionary *params =  [NSMutableDictionary dictionary];
-    [params setObject:@"1" forKey:@"uid"];
+    [params setObject:user.uid forKey:@"uid"];
     [params setObject:user.uuid forKey:@"uuid"];
     
     [params setObject:password forKey:@"oldpwd"];
@@ -371,7 +371,7 @@ withComplate:(void (^)(NSDictionary *result
 {
     NCUserConfig *user = [NCUserConfig sharedInstance];
     NSMutableDictionary *params =  [NSMutableDictionary dictionary];
-    [params setObject:@"1" forKey:@"uid"];
+    [params setObject:user.uid forKey:@"uid"];
     [params setObject:user.uuid forKey:@"uuid"];
     
     [params setObject:newname forKey:@"name"];
@@ -407,7 +407,7 @@ withComplate:(void (^)(NSDictionary *result
 {
     NCUserConfig *user = [NCUserConfig sharedInstance];
     NSMutableDictionary *params =  [NSMutableDictionary dictionary];
-    [params setObject:@"1" forKey:@"uid"];
+    [params setObject:user.uid forKey:@"uid"];
     [params setObject:user.uuid forKey:@"uuid"];
     
     [params setObject:sexstr forKey:@"sex"];
@@ -437,5 +437,56 @@ withComplate:(void (^)(NSDictionary *result
 }
 
 
-
+-(void)uploadUserHeadPhoto:(UIImage *)uploadimage withImgType:(UploadImageType )imgType  withComplate:(void (^)(NSDictionary *result, NSError *error))completeBlock;
+{
+    NCUserConfig *user = [NCUserConfig sharedInstance];
+    NSMutableDictionary *params =  [NSMutableDictionary dictionary];
+    [params setObject:user.uid forKey:@"uid"];
+    [params setObject:user.uuid forKey:@"uuid"];
+    [params addEntriesFromDictionary: [NCInitial getBaseParams]];
+    
+    switch (imgType) {
+        case UploadImageDefault:
+            break;
+        case UploadImageHeadPhoto:
+              [params setObject:@"1" forKey:@"imgType"];
+            break;
+        case UploadImageResumePhoto:
+              [params setObject:@"2" forKey:@"imgType"];
+            break;
+        default:
+            break;
+    }
+    
+    
+    NSMutableURLRequest *request = [self.requestManager.requestSerializer
+                                    
+                                    multipartFormRequestWithMethod:@"POST" URLString:kUserNewSexURL parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        
+        NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
+        formatter.dateFormat = @"yyyyMMddHHmmss";
+        NSString *str = [formatter stringFromDate:[NSDate date]];
+        NSString *fileName = [NSString stringWithFormat:@"%@.png",str];
+       
+        NSData *imageData = UIImagePNGRepresentation(uploadimage);
+        [formData appendPartWithFileData:imageData name:@"file" fileName:fileName mimeType:@"image/png"];
+                                    } error:NULL];
+    
+    request.timeoutInterval = 30;
+    __weak AFHTTPRequestOperation *operation = [self.requestManager HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSDictionary *dict = [operation.responseData objectFromJSONData];
+        
+        completeBlock(dict, nil);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        completeBlock(nil, error);
+        
+    }];
+    
+    
+    [operation setQueuePriority:NSOperationQueuePriorityLow];
+    [self.requestManager.operationQueue addOperation:operation];
+}
 @end

@@ -615,7 +615,7 @@
     [params setObject:newsID forKey:@"id"];
 
     
-    [params setObject:@"1" forKey:@"uid"];
+    [params setObject:user.uid forKey:@"uid"];
     [params setObject:user.uuid forKey:@"uuid"];
     [params addEntriesFromDictionary: [NCInitial getBaseParams]];
     
