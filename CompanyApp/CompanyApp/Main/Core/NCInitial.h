@@ -84,4 +84,8 @@ withOnePageCount:(NSInteger)onepageCount
 
 -(void)requestQuestionListData:(NSString *)cagID
           WithComplate:(void (^)(NSDictionary *result, NSError *error))completeBlock;
+
+
+-(void)requestResumeListData:(NSString *)areaId witheTime:(NSString *)etime andBookType:(NSInteger)booktype page:(NSInteger )page withPageNumber:(NSInteger)pagenum
+                  WithComplate:(void (^)(NSDictionary *result, NSError *error))completeBlock;
 @end

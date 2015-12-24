@@ -12,7 +12,7 @@
 
 #import "TDNoneMenuTextField.h"
 
-@interface NCRecoveryPWDViewController ()<UITableViewDataSource,UITableViewDelegate,UITextViewDelegate>
+@interface NCRecoveryPWDViewController ()<UITableViewDataSource,UITableViewDelegate,UITextFieldDelegate>
 {
    NSInteger _count;
     
