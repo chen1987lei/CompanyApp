@@ -417,7 +417,9 @@
 -(void)requestCategoryData:(NSString *)cagID
               WithComplate:(void (^)(NSDictionary *result, NSError *error))completeBlock;
 {
-    
+    if (![NCUserConfig haslogin]) {
+        return;
+    } 
     NCUserConfig *user = [NCUserConfig sharedInstance];
     NSMutableDictionary *params =  [NSMutableDictionary dictionary];
     
@@ -804,7 +806,42 @@
 -(void)requestResumeListData:(NSString *)areaId witheTime:(NSString *)etime andBookType:(NSInteger)booktype page:(NSInteger )page withPageNumber:(NSInteger)pagenum
                 WithComplate:(void (^)(NSDictionary *result, NSError *error))completeBlock
 {
+    if (![NCUserConfig haslogin]) {
+    return;
+}
+    NCUserConfig *user = [NCUserConfig sharedInstance];
+    NSMutableDictionary *params =  [NSMutableDictionary dictionary];
     
+//    [params setObject:corpId forKey:@"areaId"];
+    
+    [params setObject:user.uid forKey:@"uid"];
+    [params setObject:user.uuid forKey:@"uuid"];
+    [params addEntriesFromDictionary: [NCInitial getBaseParams]];
+    
+    [params setObject:[NSNumber numberWithInteger:page] forKey:@"page"];
+    [params setObject:[NSNumber numberWithInteger:pagenum]  forKey:@"pagenum"];
+    
+    NSMutableURLRequest *request = [self.requestManager.requestSerializer requestWithMethod:@"POST" URLString:kResumeListURL
+                                                                                 parameters:params error:nil];
+    
+    request.timeoutInterval = 10;
+    
+    WS(weakself)
+    __weak AFHTTPRequestOperation *operation = [self.requestManager HTTPRequestOperationWithRequest:request success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        //{"code":200,"res":{"title":"版本更新2.0","id":"1","content":"系统有的更新请及时更新","time":"2015-12-10"}}
+        
+        NSDictionary *dict = [operation.responseData objectFromJSONData];
+        
+        completeBlock(dict, nil);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
+        completeBlock(nil, error);
+        
+    }];
+    
+    [operation setQueuePriority:NSOperationQueuePriorityLow];
+    [self.requestManager.operationQueue addOperation:operation];
 }
 
 @end
