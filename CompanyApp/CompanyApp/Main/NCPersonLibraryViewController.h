@@ -1,5 +1,5 @@
 //
-//  NCLibraryViewController.h
+//  NCPersonLibraryViewController.h
 //  CompanyApp
 //
 //  Created by chenlei on 15/12/8.
@@ -9,6 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "TDViewController.h"
 
-@interface NCLibraryViewController : TDViewController
+@interface NCPersonLibraryViewController : TDViewController
 
 @end
