@@ -130,7 +130,10 @@
     }
     
     TDHomeModel *model = self.listdata[indexPath.row];
-    cell.Headerphoto.image = [UIImage imageNamed:@"1.jpg"];
+    
+    [cell.Headerphoto sd_setImageWithURL:[NSURL URLWithString:model.imageUrl]];
+    
+    //.image = [UIImage imageNamed:@"1.jpg"];
 //    /Uploads/2015/1208/thumb/90x90/566671d7b5ced.jpg
 //    [cell.Headerphoto sd_setImageWithURL: [NSURL URLWithString:model.imageUrl]];
     cell.nameLabel.text = model.name;

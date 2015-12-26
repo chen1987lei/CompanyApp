@@ -1,21 +1,21 @@
 //
-//  NCLibraryViewController.m
+//  NCPersonLibraryViewController.m
 //  CompanyApp
 //
 //  Created by chenlei on 15/12/8.
 //  Copyright © 2015年 chenlei. All rights reserved.
 //
 
-#import "NCLibraryViewController.h"
+#import "NCPersonLibraryViewController.h"
 #import "MainCell.h"
 
-@interface NCLibraryViewController ()<UITableViewDataSource,UITableViewDelegate>
+@interface NCPersonLibraryViewController ()<UITableViewDataSource,UITableViewDelegate>
 {
     UITableView *_mainTable;
 }
 @end
 
-@implementation NCLibraryViewController
+@implementation NCPersonLibraryViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -24,6 +24,12 @@
     [self.titleBar setTitle:@"人才库"];
     
     [self addTableView];
+    
+    [[NCInitial sharedInstance] requestResumeListData:nil witheTime:nil andBookType:1 page:1 withPageNumber:10 WithComplate:^(NSDictionary *result, NSError *error) {
+       
+        
+        
+    }];
 }
 -(void)addTableView
 {

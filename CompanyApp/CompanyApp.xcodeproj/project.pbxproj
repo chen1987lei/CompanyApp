@@ -65,7 +65,7 @@
 		CE41D6B61C16B2AB002FC6BF /* wwanconnect.c in Sources */ = {isa = PBXBuildFile; fileRef = CE41D6B01C16B2AA002FC6BF /* wwanconnect.c */; };
 		CE41D6B91C16BC85002FC6BF /* NCHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE41D6B81C16BC85002FC6BF /* NCHomeViewController.m */; };
 		CE41D6BF1C16BCB6002FC6BF /* NCMessageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE41D6BE1C16BCB6002FC6BF /* NCMessageViewController.m */; };
-		CE41D6C21C16BCC8002FC6BF /* NCLibraryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE41D6C11C16BCC8002FC6BF /* NCLibraryViewController.m */; };
+		CE41D6C21C16BCC8002FC6BF /* NCPersonLibraryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CE41D6C11C16BCC8002FC6BF /* NCPersonLibraryViewController.m */; };
 		CE41D6C41C16BF91002FC6BF /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE41D6C31C16BF91002FC6BF /* UIKit.framework */; };
 		CE41D6C61C16BF96002FC6BF /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE41D6C51C16BF96002FC6BF /* AVFoundation.framework */; };
 		CE41D6C81C16BF9F002FC6BF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CE41D6C71C16BF9F002FC6BF /* Foundation.framework */; };
@@ -144,7 +144,6 @@
 		FA4DC32F1C2676FE0014B0F2 /* NCMyResumeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4DC32E1C2676FE0014B0F2 /* NCMyResumeViewController.m */; };
 		FA4DC3321C267B450014B0F2 /* NCTestNoticeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4DC3311C267B450014B0F2 /* NCTestNoticeViewController.m */; };
 		FA4DC3351C267B5C0014B0F2 /* NCTestNoticeContentController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4DC3341C267B5C0014B0F2 /* NCTestNoticeContentController.m */; };
-		FA4DC33E1C2682CD0014B0F2 /* NCPeopleLibraryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4DC33D1C2682CD0014B0F2 /* NCPeopleLibraryViewController.m */; };
 		FA4DC3411C2683050014B0F2 /* NCTestEnrollViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4DC3401C2683050014B0F2 /* NCTestEnrollViewController.m */; };
 		FA4DC3441C2683190014B0F2 /* NCTestEnrollInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4DC3431C2683190014B0F2 /* NCTestEnrollInfoViewController.m */; };
 		FA4DC3481C2683860014B0F2 /* NCPracticeStartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FA4DC3471C2683860014B0F2 /* NCPracticeStartViewController.m */; };
@@ -300,8 +299,8 @@
 		CE41D6B81C16BC85002FC6BF /* NCHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCHomeViewController.m; sourceTree = "<group>"; };
 		CE41D6BD1C16BCB6002FC6BF /* NCMessageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NCMessageViewController.h; path = ../Main/NCMessageViewController.h; sourceTree = "<group>"; };
 		CE41D6BE1C16BCB6002FC6BF /* NCMessageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NCMessageViewController.m; path = ../Main/NCMessageViewController.m; sourceTree = "<group>"; };
-		CE41D6C01C16BCC8002FC6BF /* NCLibraryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCLibraryViewController.h; sourceTree = "<group>"; };
-		CE41D6C11C16BCC8002FC6BF /* NCLibraryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCLibraryViewController.m; sourceTree = "<group>"; };
+		CE41D6C01C16BCC8002FC6BF /* NCPersonLibraryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPersonLibraryViewController.h; sourceTree = "<group>"; };
+		CE41D6C11C16BCC8002FC6BF /* NCPersonLibraryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPersonLibraryViewController.m; sourceTree = "<group>"; };
 		CE41D6C31C16BF91002FC6BF /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		CE41D6C51C16BF96002FC6BF /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		CE41D6C71C16BF9F002FC6BF /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -452,8 +451,6 @@
 		FA4DC3311C267B450014B0F2 /* NCTestNoticeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCTestNoticeViewController.m; sourceTree = "<group>"; };
 		FA4DC3331C267B5C0014B0F2 /* NCTestNoticeContentController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCTestNoticeContentController.h; sourceTree = "<group>"; };
 		FA4DC3341C267B5C0014B0F2 /* NCTestNoticeContentController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCTestNoticeContentController.m; sourceTree = "<group>"; };
-		FA4DC33C1C2682CD0014B0F2 /* NCPeopleLibraryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCPeopleLibraryViewController.h; sourceTree = "<group>"; };
-		FA4DC33D1C2682CD0014B0F2 /* NCPeopleLibraryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCPeopleLibraryViewController.m; sourceTree = "<group>"; };
 		FA4DC33F1C2683050014B0F2 /* NCTestEnrollViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCTestEnrollViewController.h; sourceTree = "<group>"; };
 		FA4DC3401C2683050014B0F2 /* NCTestEnrollViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NCTestEnrollViewController.m; sourceTree = "<group>"; };
 		FA4DC3421C2683190014B0F2 /* NCTestEnrollInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NCTestEnrollInfoViewController.h; sourceTree = "<group>"; };
@@ -622,6 +619,9 @@
 				CE41D5831C0F1769002FC6BF /* AppDelegate.h */,
 				CE41D5841C0F1769002FC6BF /* AppDelegate.m */,
 				CE41D5A41C15A8A4002FC6BF /* CustomControl */,
+				FA4DC36E1C272F020014B0F2 /* CorpLibrary */,
+				FA4DC3581C26842B0014B0F2 /* PersonLibrary */,
+				CE9149A91C201FEC0041480C /* SearchView */,
 				CE41D59B1C15A873002FC6BF /* Main */,
 				FA807AAA1C20A64B00A1FE42 /* ExerciseModule */,
 				FA807AAB1C20A64B00A1FE42 /* NewsModule */,
@@ -648,22 +648,12 @@
 		CE41D59B1C15A873002FC6BF /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				FA09BDE71C287D88009E030F /* MyCollection */,
-				FA4DC36E1C272F020014B0F2 /* CorpLibrary */,
-				FA4DC3581C26842B0014B0F2 /* PersonLibrary */,
-				CE9149A91C201FEC0041480C /* SearchView */,
 				CE9149921C201F670041480C /* HomeCustom */,
 				CE9149681C1EF6D80041480C /* Core */,
 				CE41D6B71C16BC85002FC6BF /* NCHomeViewController.h */,
 				CE41D6B81C16BC85002FC6BF /* NCHomeViewController.m */,
 				FAA063A31C21EA8A00E2C7DD /* MainCell.h */,
 				FAA063A41C21EA8A00E2C7DD /* MainCell.m */,
-				CE41D6C01C16BCC8002FC6BF /* NCLibraryViewController.h */,
-				CE41D6C11C16BCC8002FC6BF /* NCLibraryViewController.m */,
-				FA4DC30F1C25E3C90014B0F2 /* NCLibraryHomeView.h */,
-				FA4DC3101C25E3C90014B0F2 /* NCLibraryHomeView.m */,
-				FA4DC3121C25E4D70014B0F2 /* NCLibraryScrollView.h */,
-				FA4DC3131C25E4D70014B0F2 /* NCLibraryScrollView.m */,
 				CE9149CE1C2021910041480C /* NCHomeSectionView.h */,
 				CE9149CF1C2021910041480C /* NCHomeSectionView.m */,
 			);
@@ -680,6 +670,7 @@
 		CE41D59F1C15A873002FC6BF /* UserModule */ = {
 			isa = PBXGroup;
 			children = (
+				FA09BDE71C287D88009E030F /* MyCollection */,
 				CE042A9B1C21AAC30032AADA /* RecoveryPwd */,
 				CE41D6D11C16D207002FC6BF /* UserCore */,
 				CE41D5A01C15A873002FC6BF /* AccountInfo */,
@@ -1043,7 +1034,8 @@
 				CE9149BE1C201FEC0041480C /* TDSearchViewController.h */,
 				CE9149BF1C201FEC0041480C /* TDSearchViewController.m */,
 			);
-			path = SearchView;
+			name = SearchView;
+			path = Main/SearchView;
 			sourceTree = "<group>";
 		};
 		FA09BDE71C287D88009E030F /* MyCollection */ = {
@@ -1052,7 +1044,8 @@
 				FA09BDE81C287D96009E030F /* NCMyCollectionViewController.h */,
 				FA09BDE91C287D96009E030F /* NCMyCollectionViewController.m */,
 			);
-			path = MyCollection;
+			name = MyCollection;
+			path = ../Main/MyCollection;
 			sourceTree = "<group>";
 		};
 		FA4DC3201C25E9F70014B0F2 /* MessageModule */ = {
@@ -1097,10 +1090,15 @@
 			children = (
 				FA4DC3591C2684440014B0F2 /* NCPersonCardViewController.h */,
 				FA4DC35A1C2684440014B0F2 /* NCPersonCardViewController.m */,
-				FA4DC33C1C2682CD0014B0F2 /* NCPeopleLibraryViewController.h */,
-				FA4DC33D1C2682CD0014B0F2 /* NCPeopleLibraryViewController.m */,
+				CE41D6C01C16BCC8002FC6BF /* NCPersonLibraryViewController.h */,
+				CE41D6C11C16BCC8002FC6BF /* NCPersonLibraryViewController.m */,
+				FA4DC30F1C25E3C90014B0F2 /* NCLibraryHomeView.h */,
+				FA4DC3101C25E3C90014B0F2 /* NCLibraryHomeView.m */,
+				FA4DC3121C25E4D70014B0F2 /* NCLibraryScrollView.h */,
+				FA4DC3131C25E4D70014B0F2 /* NCLibraryScrollView.m */,
 			);
 			name = PersonLibrary;
+			path = Main;
 			sourceTree = "<group>";
 		};
 		FA4DC3631C2723570014B0F2 /* MyCollection */ = {
@@ -1134,7 +1132,8 @@
 				FA4DC3741C272F020014B0F2 /* NCCorpListViewController.h */,
 				FA4DC3751C272F020014B0F2 /* NCCorpListViewController.m */,
 			);
-			path = CorpLibrary;
+			name = CorpLibrary;
+			path = Main/CorpLibrary;
 			sourceTree = "<group>";
 		};
 		FA807AAA1C20A64B00A1FE42 /* ExerciseModule */ = {
@@ -1248,6 +1247,7 @@
 				TargetAttributes = {
 					CE41D57C1C0F1768002FC6BF = {
 						CreatedOnToolsVersion = 7.1;
+						DevelopmentTeam = FX5Z3YYZFM;
 					};
 				};
 			};
@@ -1352,7 +1352,7 @@
 				CE22206F1C27EB050091C6E6 /* SKSTableViewCellIndicator.m in Sources */,
 				FA4DC32C1C2676D30014B0F2 /* NCMySettingViewController.m in Sources */,
 				CE41D6361C15ACD1002FC6BF /* NSString+MD5.m in Sources */,
-				CE41D6C21C16BCC8002FC6BF /* NCLibraryViewController.m in Sources */,
+				CE41D6C21C16BCC8002FC6BF /* NCPersonLibraryViewController.m in Sources */,
 				CE41D5FF1C15AB74002FC6BF /* UITextField+Addition.m in Sources */,
 				FA4DC30E1C25D27B0014B0F2 /* NCUserLicenseView.m in Sources */,
 				FA4DC34E1C2683C30014B0F2 /* NCPracticeAnserViewController.m in Sources */,
@@ -1449,7 +1449,6 @@
 				FA4DC36D1C272D1F0014B0F2 /* DropDownListView.m in Sources */,
 				CE41D5FC1C15AB74002FC6BF /* UIImage+Addition.m in Sources */,
 				FA807AB21C20A6FC00A1FE42 /* HomeView.m in Sources */,
-				FA4DC33E1C2682CD0014B0F2 /* NCPeopleLibraryViewController.m in Sources */,
 				FA4DC3621C26851F0014B0F2 /* NCMyResumeInfoViewController.m in Sources */,
 				CE41D5FA1C15AB74002FC6BF /* UIFont+Addtion.m in Sources */,
 				CE41D5F21C15AB74002FC6BF /* NSNumber+Addition.m in Sources */,
@@ -1579,7 +1578,7 @@
 				INFOPLIST_FILE = CompanyApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tudou.companyapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.apple.companyapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -1592,12 +1591,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PREFIX_HEADER = CompanyApp/CompanyAppPrefix.pch;
 				INFOPLIST_FILE = CompanyApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tudou.companyapp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.apple.companyapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

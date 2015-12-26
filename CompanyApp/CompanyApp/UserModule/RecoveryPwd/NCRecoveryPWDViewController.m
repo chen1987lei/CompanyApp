@@ -38,6 +38,7 @@
     
     self.title = @"忘记密码";
     
+    self.view.backgroundColor = [UIColor whiteColor];
     //创建tableView
     [self createTableView];
     

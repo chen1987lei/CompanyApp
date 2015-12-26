@@ -22,14 +22,21 @@
     // Do any additional setup after loading the view.
     self.titleBar.hidden = NO;
     
+    [self.titleBar setLeftTitle:@"返回" withSelector:@selector(goback)];
     
     [self.view addSubview:self.infoTableView];
 }
 
+-(void)goback
+{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+
 -(UITableView *)infoTableView
 {
     if (!_infoTableView) {
-        _infoTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, kScreenWidth, kScreenHeight-self.titleBar.height)];
+        _infoTableView = [[UITableView alloc] initWithFrame:CGRectMake(0, self.titleBarHeight, kScreenWidth, kScreenHeight-self.titleBar.height)];
         _infoTableView.delegate = self;
         _infoTableView.dataSource = self;
     }

@@ -22,7 +22,11 @@
     // Do any additional setup after loading the view.
 //    self.titleBar.hidden = YES;
     
-    self.view.backgroundColor =[UIColor whiteColor];
+    self.view.backgroundColor =[UIColor blueColor];
+    UIButton *backbtn = [[UIButton alloc] initWithFrame:CGRectMake(0, StatusBar_Height, 60, 30)];
+    [backbtn setTitle:@"返回" forState:UIControlStateNormal];
+    [backbtn addTarget:self action:@selector(goback) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:backbtn];
     
     UIButton *startButton =  [[UIButton alloc] initWithFrame:CGRectMake(100, 200, 100, 50)];
     [startButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
@@ -31,6 +35,7 @@
     [self.view addSubview:startButton];
     
 }
+
 
 -(void)goback
 {

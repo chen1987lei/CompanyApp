@@ -10,7 +10,7 @@
 #import "UIView+Addition.h"
 
 #import "NCHomeViewController.h"
-#import "NCLibraryViewController.h"
+#import "NCPersonLibraryViewController.h"
 #import "NCMessageViewController.h"
 #import "NCMyViewController.h"
 
@@ -77,7 +77,7 @@ static NCTabBarController * _currentTabarController;
     
     NCHomeViewController * home= [[NCHomeViewController alloc] init];
     
-    NCLibraryViewController *subscribe = [[NCLibraryViewController alloc] init];
+    NCPersonLibraryViewController *subscribe = [[NCPersonLibraryViewController alloc] init];
     
     NCMessageViewController *find = [[NCMessageViewController alloc] init];
     
